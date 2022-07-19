@@ -1,11 +1,11 @@
-import { Button, Dimensions, Image, StyleSheet, Text, View,  } from "react-native";
+import { Button, Dimensions, Image, StyleSheet, Text, TouchableOpacity, View,  } from "react-native";
 import React from "react";
 import { TextInput } from "react-native";
 import LogoLogin from "../../assets/LogoLogin";
 
 const width = Dimensions.get("window").width;
 const heigth = Dimensions.get("window").height;
-const LoginComponent = () => {
+const LoginComponent = ({route, navigation}) => {
   return (
     <View style={styles.container}>
       <View style={styles.Header}>
@@ -23,8 +23,9 @@ const LoginComponent = () => {
         <TextInput placeholder= {"Ingresa tu email"} style={styles.Input}></TextInput>
         <Text style={styles.formText}>Contraseña</Text>
         <TextInput  secureTextEntry={true} placeholder= {"Ingresa tu contraseña"} style={styles.Input}></TextInput>
-        <Text style={styles.forgott}>¿Olvidaste tu contraseña?</Text>
-        <View style={styles.loginButton} ><Text style={styles.loginButtonText}>INICIAR SESIÓN</Text></View>
+        <TouchableOpacity onPress={()=>navigation.navigate("ResetPass")} style={{display:"flex"}}>
+        <Text style={styles.forgott}>¿Olvidaste tu contraseña?</Text></TouchableOpacity>
+        <TouchableOpacity onPress={()=>navigation.navigate("Bienvenido")} style={styles.loginButton} ><Text style={styles.loginButtonText}>INICIAR SESIÓN</Text></TouchableOpacity >
       </View>
       <Text style={styles.SingUpText}>¿No tenés cuenta? Registrate</Text>
       <View style={styles.SignUpButton} ><Text style={styles.SingUpTextButton}>REGISTRATE</Text></View>
@@ -67,6 +68,7 @@ const styles = StyleSheet.create({
     lineHeight: 35,
     color: "#322843",
     fontWeight: "600",
+    fontFamily:"Roboto-Regular"
   },
   SubTitle: {
     fontSize: 15,
