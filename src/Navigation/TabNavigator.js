@@ -17,8 +17,9 @@ import TabPerfilS from "../assets/TabPerfilS"
 import TabPerfil from "../assets/TabPerfil"
 import LoginCarousel from '../Controllers/LoginCarousel/LoginCarousel';
 import BienvenidoComponent from '../Components/Bienvenido/Bienvenido';
-import Icon from '../assets/asdaaa';
+
 import HomeComponent from '../Components/Home/Home';
+import CatalogoComponent from '../Components/Catálogo/Catalogo';
 const TabNavigator = () => {
     const Tab = createBottomTabNavigator();
     return (
@@ -64,10 +65,10 @@ const TabNavigator = () => {
             tabBarShowLabel:false
             })}
           >
-      <Tab.Screen name="Catalogo" component={LoginCarousel} />
+      <Tab.Screen name="Catalogo" component={CatalogoComponent} />
             <Tab.Screen name="Pedidos" component={ResetPassComponent} />
             
-            <Tab.Screen name="Home" component={HomeComponent} />
+            <Tab.Screen name="Home"  component={HomeComponent} />
             <Tab.Screen name="Contacto" component={BienvenidoComponent} />
             <Tab.Screen name="Perfil" component={LoginCarousel} />
           </Tab.Navigator>
