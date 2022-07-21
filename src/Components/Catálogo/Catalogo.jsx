@@ -5,6 +5,7 @@ import {
   ScrollView,
   StyleSheet,
   Text,
+  TouchableOpacity,
   View,
 } from "react-native";
 import React from "react";
@@ -20,15 +21,14 @@ import maped from "./assets/maped.png";
 import paper from "./assets/paper.png";
 import { Icon } from "react-native-elements/dist/icons/Icon.js";
 import { Card } from "react-native-elements/dist/card/Card.js";
+import HeaderComponent from "../Elementos/Header/Header";
 const width = Dimensions.get("window").width;
 const heigth = Dimensions.get("window").height;
-const CatalogoComponent = () => {
+const CatalogoComponent = ({route, navigation}) => {
   const pedidos = [faber, maped, paper, faber, maped, paper];
   return (
     <View style={styles.container}>
-      <View style={styles.Header}>
-        <Text style={styles.HeaderTitle}>Catálogo</Text>
-      </View>
+    <HeaderComponent navigation={navigation} Titulo="Catálogo" Atras={false} Carrito={true} />
       <SearchBar
         platform="android"
         inputStyle={styles.searchText}
@@ -40,39 +40,39 @@ const CatalogoComponent = () => {
         <Text style={styles.SubTitle}>Categorías</Text>
         <View style={styles.CatIconosContainer}>
           <View style={styles.CatInd}>
-            <View style={styles.CatCirc}>
+            <TouchableOpacity onPress={()=>navigation.navigate("CategoriaLista")} style={styles.CatCirc}>
               <Escr />
-            </View>
+            </TouchableOpacity >
             <Text style={styles.CatText}>Escritura</Text>
           </View>
           <View style={styles.CatInd}>
-            <View style={styles.CatCirc}>
+            <TouchableOpacity onPress={()=>navigation.navigate("CategoriaLista")} style={styles.CatCirc}>
               <Esc />
-            </View>
+            </TouchableOpacity >
             <Text style={styles.CatText}>Escolar</Text>
           </View>
           <View style={styles.CatInd}>
-            <View style={styles.CatCirc}>
+            <TouchableOpacity onPress={()=>navigation.navigate("CategoriaLista")} style={styles.CatCirc}>
               <Cuad />
-            </View>
+            </TouchableOpacity >
             <Text style={styles.CatText}>Cuadernos y repuestos</Text>
           </View>
           <View style={styles.CatInd}>
-            <View style={styles.CatCirc}>
+            <TouchableOpacity onPress={()=>navigation.navigate("CategoriaLista")} style={styles.CatCirc}>
               <Com />
-            </View>
+            </TouchableOpacity >
             <Text style={styles.CatText}>Comercial</Text>
           </View>
           <View style={styles.CatInd}>
-            <View style={styles.CatCirc}>
+            <TouchableOpacity onPress={()=>navigation.navigate("CategoriaLista")} style={styles.CatCirc}>
               <Pap />
-            </View>
+            </TouchableOpacity >
             <Text style={styles.CatText}>Papeles, PVC y goma eva</Text>
           </View>
           <View style={styles.CatInd}>
-            <View style={styles.CatCirc}>
+            <TouchableOpacity onPress={()=>navigation.navigate("CategoriaLista")} style={styles.CatCirc}>
               <Art />
-            </View>
+            </TouchableOpacity >
             <Text style={styles.CatText}>Artística y regalería</Text>
           </View>
         </View>
@@ -90,6 +90,7 @@ const CatalogoComponent = () => {
             </View>
           </View>
           <FlatList
+          showsHorizontalScrollIndicator={false}
             keyExtractor={(item) => pedidos.indexOf(item)}
             numColumns={1}
             data={pedidos}
@@ -134,8 +135,8 @@ const styles = StyleSheet.create({
     minHeight: "90%",
   },
   Header: {
-    marginBottom: "4%",
-    height: "11%",
+    marginBottom: 8,
+    height: 90,   
     width: "100%",
     display: "flex",
     justifyContent: "center",

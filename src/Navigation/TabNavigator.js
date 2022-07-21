@@ -4,7 +4,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import ResetCodeComponent from "../Components/ResetCode/ResetCode";
 import ResetPassComponent from "../Components/ResetPass/ResetPass";
-
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import TabHomeS from "../assets/TabHomeS"
 import TabHome from "../assets/TabHome"
 import TabPedidosS from "../assets/TabPedidosS"
@@ -20,8 +20,11 @@ import BienvenidoComponent from '../Components/Bienvenido/Bienvenido';
 
 import HomeComponent from '../Components/Home/Home';
 import CatalogoComponent from '../Components/Catálogo/Catalogo';
+import CategoriaListaComponent from '../Components/CategoríaLista/CategoriaLista';
+import CatalogoNavigator from './CatalogoNavigator';
 const TabNavigator = () => {
     const Tab = createBottomTabNavigator();
+    const Stack = createNativeStackNavigator();
     return (
         <NavigationContainer>
           <Tab.Navigator
@@ -55,6 +58,7 @@ const TabNavigator = () => {
                   focused?<TabPerfilS />:<TabPerfil/>
                   )
                 }
+                
     
                 // You can return any component that you like here!
         
@@ -65,13 +69,14 @@ const TabNavigator = () => {
             tabBarShowLabel:false
             })}
           >
-      <Tab.Screen name="Catalogo" component={CatalogoComponent} />
+            <Tab.Screen name="Catalogo" component={CatalogoNavigator} />
             <Tab.Screen name="Pedidos" component={ResetPassComponent} />
-            
             <Tab.Screen name="Home"  component={HomeComponent} />
             <Tab.Screen name="Contacto" component={BienvenidoComponent} />
             <Tab.Screen name="Perfil" component={LoginCarousel} />
+            
           </Tab.Navigator>
+         
         </NavigationContainer>
       );
     }

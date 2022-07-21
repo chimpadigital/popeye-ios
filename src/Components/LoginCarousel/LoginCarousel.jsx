@@ -76,8 +76,8 @@ const styles = StyleSheet.create({
     minHeight: "100%",
   },
   Header: {
-    marginBottom: "4%",
-    height: "10%",
+    marginBottom: 8,
+    height: 90,
     width: "100%",
     display: "flex",
     justifyContent: "center",

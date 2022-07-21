@@ -12,11 +12,12 @@ import avatar from "../../assets/Temporal/avatar.png";
 import { Card } from "react-native-elements";
 import { Icon } from "react-native-elements/dist/icons/Icon";
 import { Divider } from "react-native-elements/dist/divider/Divider";
+import HeaderComponent from"../Elementos/Header/Header.jsx"
 
 const width = Dimensions.get("window").width;
 const heigth = Dimensions.get("window").height;
 
-const HomeComponent = () => {
+const HomeComponent = ({navigation}) => {
   const recomendados = [
     {
       name: "Caja de lápices Faber Castell",
@@ -55,9 +56,7 @@ const HomeComponent = () => {
   return (
     
     <View style={styles.container}>
-      <View style={styles.Header}>
-        <Text style={styles.HeaderTitle}>Popeye App</Text>
-      </View>
+      <HeaderComponent navigation={navigation} Titulo="Popeye App" />
 
       <View style={styles.Perfil}>
         <Image source={avatar} style={styles.avatar} />
@@ -168,8 +167,8 @@ const styles = StyleSheet.create({
     width: "90%",
   },
   Header: {
-    marginBottom: "4%",
-    height: "11%",
+    marginBottom: 8,
+    height: 90,   
     width: "100%",
     display: "flex",
     justifyContent: "center",
@@ -199,6 +198,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
   },
   pedidosCard:{
+    maxWidth: width * 0.92,
     width: width * 0.92,
     border:0,
     shadowColor: "#000",

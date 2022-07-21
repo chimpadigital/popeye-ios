@@ -16,6 +16,7 @@ import BienvenidoComponent from "./src/Components/Bienvenido/Bienvenido";
 import LoginCarousel from "./src/Controllers/LoginCarousel/LoginCarousel";
 
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
+
 import ResetPassComponent from "./src/Components/ResetPass/ResetPass";
 import ResetCodeComponent from "./src/Components/ResetCode/ResetCode";
 import TabNavigator from "./src/Navigation/TabNavigator";

@@ -1,5 +1,6 @@
 import React from 'react'
 import Svg, {Path, Circle, Rect} from "react-native-svg"
+import G from "react-native-svg"
 const TabCatalogoS = () => {
   return (
 <Svg width="65" height="69" viewBox="0 0 65 69" fill="none" xmlns="http://www.w3.org/2000/svg">
