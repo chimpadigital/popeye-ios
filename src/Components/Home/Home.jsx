@@ -184,8 +184,8 @@ const styles = StyleSheet.create({
     paddingLeft: 35,
   },
   avatar: {
-    width: 56,
-    height: 56,
+    width: 86,
+    height: 86,
   },
   card: {
     width: width * 0.92,

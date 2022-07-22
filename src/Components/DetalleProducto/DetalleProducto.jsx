@@ -13,7 +13,7 @@ const DetalleProductoComponent = ({ navigation }) => {
   const [cantidad, setCantidad] = useState(1)
   return (
     <ScrollView style={styles.container}>
-      <HeaderComponent navigation={navigation} Titulo="Catálogo" Atras={true} />
+      <HeaderComponent navigation={navigation} Titulo="Producto" Atras={true} />
       <View style={styles.CategoriaHeader}>
         <View style={styles.CatCirc}>
           <Escr />
