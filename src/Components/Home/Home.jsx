@@ -12,13 +12,43 @@ import avatar from "../../assets/Temporal/avatar.png";
 import { Card } from "react-native-elements";
 import { Icon } from "react-native-elements/dist/icons/Icon";
 import { Divider } from "react-native-elements/dist/divider/Divider";
-import HeaderComponent from"../Elementos/Header/Header.jsx"
+import HeaderComponent from "../Elementos/Header/Header.jsx";
 
 const width = Dimensions.get("window").width;
 const heigth = Dimensions.get("window").height;
 
-const HomeComponent = ({navigation}) => {
+const HomeComponent = ({ navigation }) => {
   const recomendados = [
+    {
+      name: "Caja de lápices Faber Castell",
+      amount: "24 unidades",
+      price: 2825,
+    },
+    {
+      name: "Tijeras Mapped antideslizan...",
+      amount: "60 unidades",
+      price: 1995,
+    },
+    {
+      name: "Fibrón Trabi multitrazo negr...",
+      amount: "12 unidades",
+      price: 805,
+    },
+    {
+      name: "Caja de lápices Faber Castell",
+      amount: "24 unidades",
+      price: 2825,
+    },
+    {
+      name: "Tijeras Mapped antideslizan...",
+      amount: "60 unidades",
+      price: 1995,
+    },
+    {
+      name: "Fibrón Trabi multitrazo negr...",
+      amount: "12 unidades",
+      price: 805,
+    },
     {
       name: "Caja de lápices Faber Castell",
       amount: "24 unidades",
@@ -51,10 +81,14 @@ const HomeComponent = ({navigation}) => {
       details: "4 unidades",
       date: "02/06/2021",
     },
+    {
+      nro: "12123",
+      details: "24 unidades",
+      date: "14/05/2021",
+    },
   ];
 
   return (
-    
     <View style={styles.container}>
       <HeaderComponent navigation={navigation} Titulo="Popeye App" />
 
@@ -67,42 +101,48 @@ const HomeComponent = ({navigation}) => {
           </Text>
         </View>
       </View>
-      <ScrollView style={styles.ScrollView}>
+
       <View style={styles.PedidosContainer}>
         <Text style={styles.SubTitleP}>Pedidos Actuales</Text>
-        
-        {pedidos.map((e) => {
-          return (
-            <View style={styles.pedidosCard}>
-              <Text style={styles.PedNum}>Pedido #{e.nro}</Text>
-              <Text style={styles.PedT}>{e.details}</Text>
-              <Text style={styles.PedT}>${e.date}</Text>
-              <Divider />
-            </View>
-          );
-        })}
-       
+        <ScrollView style={styles.ScrollView}>
+          {pedidos.map((e) => {
+            return (
+              <View style={styles.pedidosCard}>
+                <Text style={styles.PedNum}>Pedido #{e.nro}</Text>
+                <Text style={styles.PedT}>{e.details}</Text>
+                <Text style={styles.PedT}>${e.date}</Text>
+                <Divider />
+              </View>
+            );
+          })}
+        </ScrollView>
       </View>
-      <View style={styles.RecomendadosContainer}>
+      <View style={styles.PedidosContainer1}>
         <View style={styles.recomendadosTextCont}>
-          <Text style={styles.SubTitle}>Recomendados</Text>
+          <Text style={styles.SubTitleP}>Recomendados</Text>
+
           <View style={styles.recomendadosTextCont}>
-          <Text style={styles.VerMas}>
-            Ver más
-            
-          </Text>
-          <Icon name="navigate-next" type="material" color="#7A8D9C" size={22} /></View>
+            <Text style={styles.VerMas}>Ver más</Text>
+            <Icon
+              name="navigate-next"
+              type="material"
+              color="#7A8D9C"
+              size={22}
+            />
+          </View>
         </View>
-        {recomendados.map((e) => {
-          return (
-            <Card containerStyle={styles.card}>
-              <Text style={styles.RecName}>{e.name}</Text>
-              <Text style={styles.RecAmount}>{e.amount}</Text>
-              <Text style={styles.RecPrice}>${e.price}</Text>
-            </Card>
-          );
-        })}
-      </View></ScrollView>
+        <ScrollView style={styles.ScrollView}>
+          {recomendados.map((e) => {
+            return (
+              <Card containerStyle={styles.card}>
+                <Text style={styles.RecName}>{e.name}</Text>
+                <Text style={styles.RecAmount}>{e.amount}</Text>
+                <Text style={styles.RecPrice}>${e.price}</Text>
+              </Card>
+            );
+          })}
+        </ScrollView>
+      </View>
     </View>
   );
 };
@@ -110,33 +150,36 @@ const HomeComponent = ({navigation}) => {
 export default HomeComponent;
 
 const styles = StyleSheet.create({
+  PedidosContainer1: {
+    paddingHorizontal: width * 0.04,
+
+    height: "43%",
+  },
   PedidosContainer: {
     paddingHorizontal: width * 0.04,
-    paddingVertical: width * 0.04,
+
+    height: "39%",
   },
 
-  RecomendadosContainer: {
-    paddingHorizontal: width * 0.04,
-    paddingVertical: width * 0.04,
-    display: "flex",
-  },
-  ScrollView:{
+  ScrollView: {
     flex: 1,
-    paddingBottom: 100,
-    minHeight:"90%"
+    display: "flex",
+    minHeight: heigth * 0.25,
+    paddingBottom: 15,
+    width: width,
+    paddingBottom: 150,
+    alignSelf: "center",
   },
   SubTitle: {
     fontSize: 20,
-    fontWeight: "600",
+    fontWeight: "700",
     color: "#333542",
-    
   },
   SubTitleP: {
     fontSize: 20,
-    fontWeight: "600",
+    fontWeight: "700",
     color: "#333542",
     paddingVertical: width * 0.04,
-    
   },
   logo: {
     width: 300,
@@ -147,7 +190,7 @@ const styles = StyleSheet.create({
     flexDirection: "column",
     backgroundColor: "#fff",
     minHeight: "100%",
-    paddingBottom:100
+    paddingBottom: 100,
   },
   Hola: {
     fontSize: 32,
@@ -157,6 +200,7 @@ const styles = StyleSheet.create({
     lineHeight: 18.75,
     color: "#474A5C",
     fontSize: 16,
+    marginTop: 8,
   },
   Perfil: {
     display: "flex",
@@ -168,7 +212,7 @@ const styles = StyleSheet.create({
   },
   Header: {
     marginBottom: 8,
-    height: 90,   
+    height: 90,
     width: "100%",
     display: "flex",
     justifyContent: "center",
@@ -184,8 +228,8 @@ const styles = StyleSheet.create({
     paddingLeft: 35,
   },
   avatar: {
-    width: 86,
-    height: 86,
+    width: 66,
+    height: 66,
   },
   card: {
     width: width * 0.92,
@@ -197,19 +241,18 @@ const styles = StyleSheet.create({
     display: "flex",
     justifyContent: "center",
   },
-  pedidosCard:{
+  pedidosCard: {
     maxWidth: width * 0.92,
     width: width * 0.92,
-    border:0,
+    border: 0,
     shadowColor: "#000",
     height: 96,
     alignSelf: "center",
     borderRadius: 12,
     display: "flex",
     justifyContent: "center",
-    marginTop:-15,
+    marginTop: -15,
     paddingHorizontal: width * 0.02,
-    
   },
   RecName: {
     fontSize: 14,
@@ -229,23 +272,23 @@ const styles = StyleSheet.create({
   recomendadosTextCont: {
     display: "flex",
     flexDirection: "row",
-    justifyContent:"space-between"
+    justifyContent: "space-between",
   },
   VerMas: {
     color: "#7A8D9C",
-    alignItems:"center",
-    fontSize:16,
-    
-    fontWeight:"400"
+    alignItems: "center",
+    fontSize: 16,
+
+    fontWeight: "400",
   },
-  PedNum:{
-    fontSize:14,
-    fontWeight:"600"
+  PedNum: {
+    fontSize: 14,
+    fontWeight: "700",
   },
-  PedT:{
-    fontSize:14,
-    fontWeight:"300",
-    fontStyle:"italic",
-    marginBottom:4
-  }
+  PedT: {
+    fontSize: 14,
+    fontWeight: "300",
+    fontStyle: "italic",
+    marginBottom: 4,
+  },
 });

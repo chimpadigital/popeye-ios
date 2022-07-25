@@ -22,6 +22,9 @@ import HomeComponent from '../Components/Home/Home';
 import CatalogoComponent from '../Components/Catálogo/Catalogo';
 import CategoriaListaComponent from '../Components/CategoríaLista/CategoriaLista';
 import CatalogoNavigator from './CatalogoNavigator';
+import AsesorComponent from '../Components/Asesor/Asesor';
+import PerfilComponent from '../Components/Perfil/Perfil';
+import PedidosComponent from '../Components/Pedidos/Pedidos';
 const TabNavigator = () => {
     const Tab = createBottomTabNavigator();
     const Stack = createNativeStackNavigator();
@@ -70,10 +73,10 @@ const TabNavigator = () => {
             })}
           >
             <Tab.Screen name="Catalogo" component={CatalogoNavigator} />
-            <Tab.Screen name="Pedidos" component={ResetPassComponent} />
+            <Tab.Screen name="Pedidos"  component={PedidosComponent} />
             <Tab.Screen name="Home"  component={HomeComponent} />
-            <Tab.Screen name="Contacto" component={BienvenidoComponent} />
-            <Tab.Screen name="Perfil" component={LoginCarousel} />
+            <Tab.Screen name="Contacto" component={AsesorComponent} />
+            <Tab.Screen name="Perfil" component={PerfilComponent} />
             
           </Tab.Navigator>
          
