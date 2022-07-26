@@ -127,6 +127,6 @@ const styles = StyleSheet.create({
   main:{
     maxHeight: heigth * 0.05,
     zIndex:10,
-    backgroundColor:"yellow",
+  
   }
 });

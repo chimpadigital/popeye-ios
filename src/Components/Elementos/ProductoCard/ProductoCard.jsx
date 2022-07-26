@@ -11,7 +11,7 @@ import { Icon } from "react-native-elements/dist/icons/Icon";
 
 const width = Dimensions.get("window").width;
 const heigth = Dimensions.get("window").height;
-const ProductoCardComponent = ({ name, amount, price, navigation }) => {
+const ProductoCardComponent = ({  navigation, name, amount, price, }) => {
   const [cora, setCora] = useState(false);
   return (
     <View style={styles.container}>

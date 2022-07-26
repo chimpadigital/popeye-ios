@@ -9,6 +9,7 @@ import { store } from "../Redux/store";
 import CategoriaListaComponent from '../Components/CategoríaLista/CategoriaLista';
 import ProductosListaCategoriaComponent from '../Components/ProductosLista/ProductosListaCategoria';
 import DetalleProductoComponent from '../Components/DetalleProducto/DetalleProducto';
+import Carrito from '../Controllers/Carrito';
 const CatalogoNavigator = () => {
     const Stack = createNativeStackNavigator();
     const customTextProps = {
@@ -35,6 +36,7 @@ const CatalogoNavigator = () => {
           <Stack.Screen Screen name="CategoriaLista" component={CategoriaListaComponent} />
           <Stack.Screen Screen name="ProductosListaCategoriaComponent" component={ProductosListaCategoriaComponent} />
           <Stack.Screen Screen name="DetalleProductoComponent" component={DetalleProductoComponent} />
+          <Stack.Screen Screen name="Carrito" component={Carrito} />
           </Stack.Navigator>
    
       </Provider>

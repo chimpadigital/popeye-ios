@@ -31,7 +31,7 @@ const CategoriaListaComponent = ({ route, navigation }) => {
           style={styles.SubCatCont}
         >
           <View style={styles.TextCont}>
-            <Text style={styles.SubCatText}>Una subcategoria aqui</Text>
+            <Text style={styles.SubCatText}>Brillantina, lentejuelas, lupas, palitos</Text>
             <Icon
               name="navigate-next"
               type="material"
@@ -49,7 +49,7 @@ const CategoriaListaComponent = ({ route, navigation }) => {
           style={styles.SubCatCont}
         >
           <View style={styles.TextCont}>
-            <Text style={styles.SubCatText}>Una subcategoria aqui</Text>
+            <Text style={styles.SubCatText}>Carpetas escolares y aros de carpeta</Text>
             <Icon
               name="navigate-next"
               type="material"
@@ -67,7 +67,7 @@ const CategoriaListaComponent = ({ route, navigation }) => {
           style={styles.SubCatCont}
         >
           <View style={styles.TextCont}>
-            <Text style={styles.SubCatText}>Una subcategoria aqui</Text>
+            <Text style={styles.SubCatText}>Cartucheras y canoplas</Text>
             <Icon
               name="navigate-next"
               type="material"
@@ -85,7 +85,7 @@ const CategoriaListaComponent = ({ route, navigation }) => {
           style={styles.SubCatCont}
         >
           <View style={styles.TextCont}>
-            <Text style={styles.SubCatText}>Una subcategoria aqui</Text>
+            <Text style={styles.SubCatText}>Cintas adhesivas y portarrollos</Text>
             <Icon
               name="navigate-next"
               type="material"
@@ -103,7 +103,7 @@ const CategoriaListaComponent = ({ route, navigation }) => {
           style={styles.SubCatCont}
         >
           <View style={styles.TextCont}>
-            <Text style={styles.SubCatText}>Una subcategoria aqui</Text>
+            <Text style={styles.SubCatText}>Gomas, correctores y cinta correctora</Text>
             <Icon
               name="navigate-next"
               type="material"
@@ -121,7 +121,7 @@ const CategoriaListaComponent = ({ route, navigation }) => {
           style={styles.SubCatCont}
         >
           <View style={styles.TextCont}>
-            <Text style={styles.SubCatText}>Una subcategoria aqui</Text>
+            <Text style={styles.SubCatText}>Láminas, tab. periódicas y diccionarios</Text>
             <Icon
               name="navigate-next"
               type="material"
@@ -139,7 +139,7 @@ const CategoriaListaComponent = ({ route, navigation }) => {
           style={styles.SubCatCont}
         >
           <View style={styles.TextCont}>
-            <Text style={styles.SubCatText}>Una subcategoria aqui</Text>
+            <Text style={styles.SubCatText}>Mochilas y bolsos</Text>
             <Icon
               name="navigate-next"
               type="material"
@@ -157,7 +157,7 @@ const CategoriaListaComponent = ({ route, navigation }) => {
           style={styles.SubCatCont}
         >
           <View style={styles.TextCont}>
-            <Text style={styles.SubCatText}>Una subcategoria aqui</Text>
+            <Text style={styles.SubCatText}>Pizarras, tableros, tizas y borradores</Text>
             <Icon
               name="navigate-next"
               type="material"
@@ -175,7 +175,7 @@ const CategoriaListaComponent = ({ route, navigation }) => {
           style={styles.SubCatCont}
         >
           <View style={styles.TextCont}>
-            <Text style={styles.SubCatText}>Una subcategoria aqui</Text>
+            <Text style={styles.SubCatText}>Sacapuntas, reglas, compás y set ge...</Text>
             <Icon
               name="navigate-next"
               type="material"
@@ -193,7 +193,7 @@ const CategoriaListaComponent = ({ route, navigation }) => {
           style={styles.SubCatCont}
         >
           <View style={styles.TextCont}>
-            <Text style={styles.SubCatText}>Una subcategoria aqui</Text>
+            <Text style={styles.SubCatText}>Separadores, etiquetas, ojalillos, asig...</Text>
             <Icon
               name="navigate-next"
               type="material"
@@ -211,7 +211,7 @@ const CategoriaListaComponent = ({ route, navigation }) => {
           style={styles.SubCatCont}
         >
           <View style={styles.TextCont}>
-            <Text style={styles.SubCatText}>Una subcategoria aqui</Text>
+            <Text style={styles.SubCatText}>Set de jardín y cantimploras</Text>
             <Icon
               name="navigate-next"
               type="material"
@@ -229,7 +229,7 @@ const CategoriaListaComponent = ({ route, navigation }) => {
           style={styles.SubCatCont}
         >
           <View style={styles.TextCont}>
-            <Text style={styles.SubCatText}>Una subcategoria aqui</Text>
+            <Text style={styles.SubCatText}>Témperas, plastlina, pinceles y acuar...</Text>
             <Icon
               name="navigate-next"
               type="material"
@@ -247,7 +247,7 @@ const CategoriaListaComponent = ({ route, navigation }) => {
           style={styles.SubCatCont}
         >
           <View style={styles.TextCont}>
-            <Text style={styles.SubCatText}>Una subcategoria aqui</Text>
+            <Text style={styles.SubCatText}>Tijeras y cutters</Text>
             <Icon
               name="navigate-next"
               type="material"

@@ -2,8 +2,6 @@ import * as React from 'react';
 import { StyleSheet, View } from "react-native";
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import ResetCodeComponent from "../Components/ResetCode/ResetCode";
-import ResetPassComponent from "../Components/ResetPass/ResetPass";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import TabHomeS from "../assets/TabHomeS"
 import TabHome from "../assets/TabHome"
@@ -15,16 +13,11 @@ import TabContactoS from "../assets/TabContactoS"
 import TabContacto from "../assets/TabContacto"
 import TabPerfilS from "../assets/TabPerfilS"
 import TabPerfil from "../assets/TabPerfil"
-import LoginCarousel from '../Controllers/LoginCarousel/LoginCarousel';
-import BienvenidoComponent from '../Components/Bienvenido/Bienvenido';
-
 import HomeComponent from '../Components/Home/Home';
-import CatalogoComponent from '../Components/Catálogo/Catalogo';
-import CategoriaListaComponent from '../Components/CategoríaLista/CategoriaLista';
 import CatalogoNavigator from './CatalogoNavigator';
 import AsesorComponent from '../Components/Asesor/Asesor';
-import PerfilComponent from '../Components/Perfil/Perfil';
 import PedidosComponent from '../Components/Pedidos/Pedidos';
+import PerfilNavigator from './PerfilNavigator';
 const TabNavigator = () => {
     const Tab = createBottomTabNavigator();
     const Stack = createNativeStackNavigator();
@@ -76,7 +69,7 @@ const TabNavigator = () => {
             <Tab.Screen name="Pedidos"  component={PedidosComponent} />
             <Tab.Screen name="Home"  component={HomeComponent} />
             <Tab.Screen name="Contacto" component={AsesorComponent} />
-            <Tab.Screen name="Perfil" component={PerfilComponent} />
+            <Tab.Screen name="Perfil" component={PerfilNavigator} />
             
           </Tab.Navigator>
          

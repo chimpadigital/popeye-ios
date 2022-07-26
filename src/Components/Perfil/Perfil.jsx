@@ -14,9 +14,11 @@ const width = Dimensions.get("window").width;
 const heigth = Dimensions.get("window").height;
 
 function PerfilComponent({ navigation }) {
+  
   return (
     <ScrollView style={styles.container}>
       <HeaderComponent
+      Carrito={true}
         navigation={navigation}
         Titulo="Asesor Comercial"
         Atras={true}

@@ -34,8 +34,7 @@ const DetalleProductoComponent = ({ navigation }) => {
       </View>
       <Text style={styles.desc}>Paragraphs are the building blocks of papers. Many students define paragraphs in terms of length: a paragraph is a group of at least five sentences, a paragraph is half a page long, etc.</Text>
       <View style={styles.CantidadContainer}>
-        <Text style={styles.cantidadText}>Cantidad:</Text>
-        <TouchableOpacity style={styles.botonMenos} onPress={()=>setCantidad(cantidad>0?cantidad-1:0)}><Text style={styles.CantidadMenos}>-</Text></TouchableOpacity>
+                <TouchableOpacity style={styles.botonMenos} onPress={()=>setCantidad(cantidad>0?cantidad-1:0)}><Text style={styles.CantidadMenos}>-</Text></TouchableOpacity>
         <TouchableOpacity style={styles.botonCantidad}><Text style={styles.Cantidad}>{cantidad}</Text></TouchableOpacity>
         <TouchableOpacity style={styles.botonMas} onPress={()=>setCantidad(cantidad+1)}><Text style={styles.CantidadMas}>+</Text></TouchableOpacity>
       </View>

@@ -25,7 +25,7 @@ const HeaderComponent = ({Titulo, Carrito, Atras, navigation}) => {
             Carrito&&  
             <View style={styles.Carrito}>    
             <Icon
-            
+            onPress={()=>navigation.navigate("Carrito")}
             name="shopping-cart"
             type="material"
             color="#FFF"
