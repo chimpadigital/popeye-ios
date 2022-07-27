@@ -53,7 +53,7 @@ const styles = StyleSheet.create({
         alignItems: "center",
         backgroundColor: "#0F50A7",
         zIndex:9,
-        marginBottom:10,
+       
       },
       HeaderTitle: {
         fontSize: 20,

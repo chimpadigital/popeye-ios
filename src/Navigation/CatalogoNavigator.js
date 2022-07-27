@@ -10,6 +10,9 @@ import CategoriaListaComponent from '../Components/CategoríaLista/CategoriaList
 import ProductosListaCategoriaComponent from '../Components/ProductosLista/ProductosListaCategoria';
 import DetalleProductoComponent from '../Components/DetalleProducto/DetalleProducto';
 import Carrito from '../Controllers/Carrito';
+import CheckoutComponent from '../Components/Carrito/Checkout';
+import MetodoPagoComponent from '../Components/Carrito/MetodoPago';
+import MetodoEntregaComponent from '../Components/Carrito/MetodoEntrega';
 const CatalogoNavigator = () => {
     const Stack = createNativeStackNavigator();
     const customTextProps = {
@@ -37,6 +40,9 @@ const CatalogoNavigator = () => {
           <Stack.Screen Screen name="ProductosListaCategoriaComponent" component={ProductosListaCategoriaComponent} />
           <Stack.Screen Screen name="DetalleProductoComponent" component={DetalleProductoComponent} />
           <Stack.Screen Screen name="Carrito" component={Carrito} />
+          <Stack.Screen Screen name="Checkout" component={CheckoutComponent} />
+          <Stack.Screen Screen name="MetodoPago" component={MetodoPagoComponent} />
+          <Stack.Screen Screen name="MetodoEntrega" component={MetodoEntregaComponent} />
           </Stack.Navigator>
    
       </Provider>

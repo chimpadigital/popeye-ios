@@ -197,7 +197,7 @@ const styles = StyleSheet.create({
       marginRight:10
     },
     boton:{
-      width: width*0.95,
+      width: width*0.94,
       height: 48,
       backgroundColor:"#56CCF2",
       borderRadius:10,

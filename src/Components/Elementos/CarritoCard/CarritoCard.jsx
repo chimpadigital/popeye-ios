@@ -130,7 +130,7 @@ const styles = StyleSheet.create({
     color: "#AEB1C1",
     width: 2,
     backgroundColor: "#AEB1C1",
-    marginHorizontal: 4,
+    marginLeft: 8,
     marginTop: 4,
   },
   colorText: {
