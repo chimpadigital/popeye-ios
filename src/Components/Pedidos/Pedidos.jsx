@@ -1,11 +1,14 @@
-import { Dimensions, ScrollView, StyleSheet, Text, View } from 'react-native'
-import React from 'react'
+import { Dimensions, ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
+import React, { useState } from 'react'
 import HeaderComponent from '../Elementos/Header/Header'
 import { Divider } from 'react-native-elements/dist/divider/Divider';
 
+import { useNavigation } from "@react-navigation/native";
 const width = Dimensions.get("window").width;
 const heigth = Dimensions.get("window").height;
 const PedidosComponent = () => {
+  const navigation = useNavigation();
+  const [open, setOpen] = useState(false) 
     const pedidos = [
         {
           nro: "12123",
@@ -83,16 +86,33 @@ const PedidosComponent = () => {
         <ScrollView showsVerticalScrollIndicator={false}>
         {pedidos.map((e) => {
           return (
-            <View style={styles.pedidosCard}>
+            <TouchableOpacity onPress={()=>{setOpen(!open)}} style={styles.pedidosCard}>
               <Text style={styles.PedNum}>Pedido #{e.nro}</Text>
               <Text style={styles.PedT}>{e.details}</Text>
               <Text style={styles.PedT}>${e.date}</Text>
               <Divider />
-            </View>
+            </TouchableOpacity>
           );
         })}
        </ScrollView>
+
       </View>
+      {
+        open&&
+        <View style={styles.CheckOut}>
+          <Divider orientation='horizontal' width={5} style={{width:130, alignSelf:"center", borderRadius:8}} color={"#ACBAC3"}/>
+          <View style={styles.butonContainer}>
+      <TouchableOpacity onPress={()=>navigation.navigate("DetallePedido")} style={styles.loginButton} ><Text style={styles.loginButtonText}>VER EL PEDIDO</Text></TouchableOpacity >
+      <TouchableOpacity style={styles.SignUpButton} ><Text style={styles.SingUpTextButton}>VOLVER A REALIZAR EL PEDIDO</Text></TouchableOpacity>
+    </View>
+   
+      
+      </View>
+      }
+
+
+
+      
     </View>
   )
 }
@@ -152,5 +172,63 @@ const styles = StyleSheet.create({
          height:70,
         justifyContent:"center",
 
+      },
+      CheckOut:{
+        display:"flex",
+        position:"absolute",
+        bottom:0,
+        zIndex:9,
+        backgroundColor:"#FFF",
+        borderTopLeftRadius: 25,
+        borderTopRightRadius: 25,
+        height:170,
+        width:width,
+        elevation:10,
+        justifyContent:"space-between",
+        padding:10
+      },  
+      loginButton: {
+        
+        width:width*0.94,
+        height:56,
+        paddingBottom:3, 
+        justifyContent:"center",
+        backgroundColor:"#0F50A7",
+        alignSelf:"center",
+        borderRadius:10,
+        display:"flex",
+        alignItems:"center"
+       
+      },
+      loginButtonText:{
+        fontSize:12,
+        lineHeight:25,
+        color:"#FFF"
+      },
+
+      SignUpButton: {
+        
+        width:width*0.94,
+        height:56,
+        paddingBottom:3, 
+        justifyContent:"center",
+        backgroundColor:"#FFF",
+        alignSelf:"center",
+        borderRadius:10,
+        display:"flex",
+        alignItems:"center",
+        borderWidth: 1.5,
+        borderColor:"#0F50A7",
+        marginTop:15
+    
+      },
+      SingUpTextButton: {
+        color:"#0F50A7",
+        fontSize:12,
+        fontWeight:"700",
+        lineHeight:25
+      },
+      butonContainer:{
+    
       }
 })

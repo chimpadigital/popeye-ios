@@ -18,6 +18,7 @@ import CatalogoNavigator from './CatalogoNavigator';
 import AsesorComponent from '../Components/Asesor/Asesor';
 import PedidosComponent from '../Components/Pedidos/Pedidos';
 import PerfilNavigator from './PerfilNavigator';
+import PedidosNavigator from './PedidosNavigation';
 const TabNavigator = () => {
     const Tab = createBottomTabNavigator();
     const Stack = createNativeStackNavigator();
@@ -66,7 +67,7 @@ const TabNavigator = () => {
             })}
           >
             <Tab.Screen name="Catalogo" component={CatalogoNavigator} />
-            <Tab.Screen name="Pedidos"  component={PedidosComponent} />
+            <Tab.Screen name="Pedidos"  component={PedidosNavigator} />
             <Tab.Screen name="Home"  component={HomeComponent} />
             <Tab.Screen name="Contacto" component={AsesorComponent} />
             <Tab.Screen name="Perfil" component={PerfilNavigator} />

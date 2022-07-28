@@ -55,7 +55,7 @@ const CheckoutComponent = () => {
        
         <TouchableOpacity
           style={styles.boton}
-          onPress={() => navigation.navigate("Checkout")}
+          onPress={() => navigation.navigate("Finalizado")}
         >
           <Icon
             name="shopping-cart"

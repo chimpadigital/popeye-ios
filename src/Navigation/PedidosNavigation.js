@@ -1,15 +1,13 @@
 import { View, Text } from 'react-native'
 import React from 'react'
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-
-import CatalogoComponent from '../Components/Catálogo/Catalogo';
 import { setCustomImage, setCustomText } from 'react-native-global-props';
 import { Provider } from "react-redux";
 import { store } from "../Redux/store";
-import CategoriaListaComponent from '../Components/CategoríaLista/CategoriaLista';
-import ProductosListaCategoriaComponent from '../Components/ProductosLista/ProductosListaCategoria';
-import DetalleProductoComponent from '../Components/DetalleProducto/DetalleProducto';
-const CatalogoNavigator = () => {
+
+import PedidosComponent from '../Components/Pedidos/Pedidos';
+import DetallePedidoComponent from '../Components/Pedidos/DetallePedido';
+const PedidosNavigator = () => {
     const Stack = createNativeStackNavigator();
     const customTextProps = {
       style: {
@@ -31,10 +29,8 @@ const CatalogoNavigator = () => {
           <Stack.Navigator   screenOptions={{
       headerShown: false
     }}>
-          <Stack.Screen Screen name="Catalogo" component={CatalogoComponent} />
-          <Stack.Screen Screen name="CategoriaLista" component={CategoriaListaComponent} />
-          <Stack.Screen Screen name="ProductosListaCategoriaComponent" component={ProductosListaCategoriaComponent} />
-          <Stack.Screen Screen name="DetalleProductoComponent" component={DetalleProductoComponent} />
+          <Stack.Screen Screen name="Pedidos" component={PedidosComponent} />
+          <Stack.Screen Screen name="DetallePedido" component={DetallePedidoComponent} />
           </Stack.Navigator>
    
       </Provider>
@@ -42,4 +38,4 @@ const CatalogoNavigator = () => {
 
 }
 
-export default CatalogoNavigator
+export default PedidosNavigator
