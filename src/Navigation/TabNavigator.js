@@ -23,7 +23,8 @@ const TabNavigator = () => {
     const Tab = createBottomTabNavigator();
     const Stack = createNativeStackNavigator();
     return (
-        <NavigationContainer>
+      <NavigationContainer>
+
           <Tab.Navigator
             screenOptions={({ route }) => ({
               tabBarIcon: ({ focused, color, size }) => {
@@ -73,8 +74,7 @@ const TabNavigator = () => {
             <Tab.Screen name="Perfil" component={PerfilNavigator} />
             
           </Tab.Navigator>
-         
-        </NavigationContainer>
+          </NavigationContainer>
       );
     }
 

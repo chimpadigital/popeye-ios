@@ -22,8 +22,8 @@ export default BienvenidoComponent
 
 const styles = StyleSheet.create({
     logo: {
-        width: 300,
-        height: 120,
+      width: 300,
+    height: 120,
       },
       container: {
         display: "flex",
@@ -34,15 +34,14 @@ const styles = StyleSheet.create({
         
       },
       Header: {
-        marginBottom: "4%",
-        height: "10%",
-        width: "100%",
-        display: "flex",
-        justifyContent: "center",
-        paddingTop: "8%",
-        paddingHorizontal: width * 0.04,
-        paddingVertical: width * 0.4,
-        alignItems: "flex-end",
+        marginBottom: 8,
+    height: 90,
+    width: "100%",
+    display: "flex",
+    justifyContent: "center",
+    paddingTop: "8%",
+    paddingHorizontal: width * 0.04,
+    alignItems: "flex-end",
       },
       ContainerText:{
         display:"flex",
@@ -83,7 +82,6 @@ const styles = StyleSheet.create({
         fontSize:12,
         lineHeight:25,
         color:"#FFF",
-        position:"absolute",
-        bottom: 20
+       
       },
 })

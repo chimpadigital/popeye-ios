@@ -4,57 +4,11 @@ import Escr from '../Catálogo/assets/escr';
 import { Card } from "react-native-elements";
 import HeaderComponent from"../Elementos/Header/Header.jsx"
 import ProductoCardComponent from '../Elementos/ProductoCard/ProductoCard';
+import {DataTemp} from "../../../dataTemo"
 const width = Dimensions.get("window").width;
 const heigth = Dimensions.get("window").height;
 const ProductosListaCategoriaComponent = ({navigation}) => {
-    const recomendados = [
-        {
-          name: "Caja de lápices Faber Castell",
-          amount: "24 unidades",
-          price: 2825,
-        },
-        {
-          name: "Tijeras Mapped antideslizan...",
-          amount: "60 unidades",
-          price: 1995,
-        },
-        {
-          name: "Fibrón Trabi multitrazo negr...",
-          amount: "12 unidades",
-          price: 805,
-        },
-        {
-            name: "Caja de lápices Faber Castell",
-            amount: "24 unidades",
-            price: 2825,
-          },
-          {
-            name: "Tijeras Mapped antideslizan...",
-            amount: "60 unidades",
-            price: 1995,
-          },
-          {
-            name: "Fibrón Trabi multitrazo negr...",
-            amount: "12 unidades",
-            price: 805,
-          },
-          {
-            name: "Caja de lápices Faber Castell",
-            amount: "24 unidades",
-            price: 2825,
-          },
-          {
-            name: "Tijeras Mapped antideslizan...",
-            amount: "60 unidades",
-            price: 1995,
-          },
-          {
-            name: "Fibrón Trabi multitrazo negr...",
-            amount: "12 unidades",
-            price: 805,
-          },
-          
-      ];
+    const recomendados = DataTemp.slice(0,20)
   return (<>
      <HeaderComponent navigation={navigation} Titulo="Catálogo" Atras={true}/>
     <ScrollView style={styles.container}>
@@ -71,7 +25,7 @@ const ProductosListaCategoriaComponent = ({navigation}) => {
       <View style={{paddingBottom:100}}>
       {recomendados.map((e) => {
           return (
-           <ProductoCardComponent name={e.name} price={e.price} amount={e.amount} navigation={navigation}/>
+           <ProductoCardComponent name={e.des_art} price={e.pre_art} amount={e.amount} navigation={navigation}/>
           );
         })}</View>
       </ScrollView></>

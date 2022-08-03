@@ -9,7 +9,8 @@ import Slide1 from "../../assets/Slide1";
 import Slide2 from "../../assets/Slide2";
 const width = Dimensions.get("window").width;
 const heigth = Dimensions.get("window").height;
-const LoginCarouselComponent = ({ dots, setDots }) => {
+const LoginCarouselComponent = ({ dots, setDots}) => {
+  
   return (
     <View style={styles.container}>
       <View style={styles.Header}>
@@ -54,7 +55,7 @@ const LoginCarouselComponent = ({ dots, setDots }) => {
           <Slide2  />
           <View style={styles.containerButton}>
             <TouchableOpacity style={styles.Button1}><Text style={styles.ButtonText}></Text></TouchableOpacity>
-            <TouchableOpacity style={styles.Button2} onPress={()=>setDots(1)}><Text style={styles.ButtonText1}>SIGUIENTE</Text></TouchableOpacity>
+            <TouchableOpacity style={styles.Button2} ><Text style={styles.ButtonText1}>SIGUIENTE</Text></TouchableOpacity>
           </View>
         </View>
       )}

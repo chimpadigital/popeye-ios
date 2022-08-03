@@ -3,9 +3,12 @@ import React from "react";
 import { TextInput } from "react-native";
 import LogoLogin from "../../assets/LogoLogin";
 
+import { user } from "../../Redux/actions";
+import { useNavigation } from "@react-navigation/native";
 const width = Dimensions.get("window").width;
 const heigth = Dimensions.get("window").height;
-const LoginComponent = ({route, navigation}) => {
+const LoginComponent = ({onSubmit}) => {
+const navigation = useNavigation()
   return (
     <View style={styles.container}>
       <View style={styles.Header}>
@@ -25,7 +28,7 @@ const LoginComponent = ({route, navigation}) => {
         <TextInput  secureTextEntry={true} placeholder= {"Ingresa tu contraseña"} style={styles.Input}></TextInput>
         <TouchableOpacity onPress={()=>navigation.navigate("ResetPass")} style={{display:"flex"}}>
         <Text style={styles.forgott}>¿Olvidaste tu contraseña?</Text></TouchableOpacity>
-        <TouchableOpacity onPress={()=>navigation.navigate("Bienvenido")} style={styles.loginButton} ><Text style={styles.loginButtonText}>INICIAR SESIÓN</Text></TouchableOpacity >
+        <TouchableOpacity  style={styles.loginButton} onPress={onSubmit} ><Text style={styles.loginButtonText}>INICIAR SESIÓN</Text></TouchableOpacity >
       </View>
       <Text style={styles.SingUpText}>¿No tenés cuenta? Registrate</Text>
       <View style={styles.SignUpButton} ><Text style={styles.SingUpTextButton}>REGISTRATE</Text></View>

@@ -69,23 +69,14 @@ const HomeComponent = ({ navigation }) => {
     {
       nro: "12123",
       details: "24 unidades",
-      date: "14/05/2021",
+      date: "Listo para retirar",
     },
     {
       nro: "128923",
       details: "15 unidades",
-      date: "19/05/2021",
+      date: "Listo para retirar",
     },
-    {
-      nro: "188923",
-      details: "4 unidades",
-      date: "02/06/2021",
-    },
-    {
-      nro: "12123",
-      details: "24 unidades",
-      date: "14/05/2021",
-    },
+    
   ];
 
   return (
@@ -110,8 +101,7 @@ const HomeComponent = ({ navigation }) => {
               <View style={styles.pedidosCard}>
                 <Text style={styles.PedNum}>Pedido #{e.nro}</Text>
                 <Text style={styles.PedT}>{e.details}</Text>
-                <Text style={styles.PedT}>${e.date}</Text>
-                <Divider />
+                <Text style={styles.PedT}>{e.date}</Text>
               </View>
             );
           })}
@@ -153,12 +143,12 @@ const styles = StyleSheet.create({
   PedidosContainer1: {
     paddingHorizontal: width * 0.04,
 
-    height: "43%",
+    height: "60%",
   },
   PedidosContainer: {
     paddingHorizontal: width * 0.04,
-
-    height: "39%",
+ 
+    height: "30%",
   },
 
   ScrollView: {
@@ -245,14 +235,17 @@ const styles = StyleSheet.create({
     maxWidth: width * 0.92,
     width: width * 0.92,
     border: 0,
+    marginVertical:5,
+    backgroundColor: "#0f50a7",
+    borderRadius: 8,
     shadowColor: "#000",
-    height: 96,
+    height: 84,
     alignSelf: "center",
     borderRadius: 12,
     display: "flex",
     justifyContent: "center",
-    marginTop: -15,
-    paddingHorizontal: width * 0.02,
+   
+    paddingHorizontal: width * 0.04,
   },
   RecName: {
     fontSize: 14,
@@ -272,6 +265,8 @@ const styles = StyleSheet.create({
   recomendadosTextCont: {
     display: "flex",
     flexDirection: "row",
+    alignItems:"center",
+ 
     justifyContent: "space-between",
   },
   VerMas: {
@@ -284,11 +279,13 @@ const styles = StyleSheet.create({
   PedNum: {
     fontSize: 14,
     fontWeight: "700",
+    color:"white"
   },
   PedT: {
     fontSize: 14,
     fontWeight: "300",
     fontStyle: "italic",
-    marginBottom: 4,
+    
+    color:"white"
   },
 });

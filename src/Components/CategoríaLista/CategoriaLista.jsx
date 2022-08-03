@@ -11,9 +11,14 @@ import Escr from "../Catálogo/assets/escr";
 import { Divider } from "react-native-elements/dist/divider/Divider";
 import { Icon } from "react-native-elements/dist/icons/Icon";
 import HeaderComponent from "../Elementos/Header/Header.jsx";
+import {Rubros} from "../../../dataTemo"
 const width = Dimensions.get("window").width;
 const heigth = Dimensions.get("window").height;
-const CategoriaListaComponent = ({ route, navigation }) => {
+const CategoriaListaComponent = ({ route, navigation,  }) => {
+  console.log("AAAAAAA" , id)
+  const { id } = route.params;
+  const filterRubros = Rubros[0].filter(e=>e.id===id)
+
   return (
     <ScrollView style={styles.container}>
       <HeaderComponent navigation={navigation} Titulo="Catálogo" Atras={true} />
@@ -24,14 +29,18 @@ const CategoriaListaComponent = ({ route, navigation }) => {
         <Text style={styles.CatTitle}>Escolar</Text>
       </View>
       <View style={styles.SubCatListCont}>
-        <TouchableOpacity
+      
+      {
+      filterRubros.map(e=>{
+        return(
+          <TouchableOpacity
           onPress={() =>
             navigation.navigate("ProductosListaCategoriaComponent")
           }
           style={styles.SubCatCont}
         >
           <View style={styles.TextCont}>
-            <Text style={styles.SubCatText}>Brillantina, lentejuelas, lupas, palitos</Text>
+            <Text style={styles.SubCatText}>{e["MARCADORES Y RESALTADORES"]}</Text>
             <Icon
               name="navigate-next"
               type="material"
@@ -42,348 +51,11 @@ const CategoriaListaComponent = ({ route, navigation }) => {
 
           <Divider />
         </TouchableOpacity>
-        <TouchableOpacity
-          onPress={() =>
-            navigation.navigate("ProductosListaCategoriaComponent")
-          }
-          style={styles.SubCatCont}
-        >
-          <View style={styles.TextCont}>
-            <Text style={styles.SubCatText}>Carpetas escolares y aros de carpeta</Text>
-            <Icon
-              name="navigate-next"
-              type="material"
-              color="#7A8D9C"
-              size={22}
-            />
-          </View>
-
-          <Divider />
-        </TouchableOpacity>
-        <TouchableOpacity
-          onPress={() =>
-            navigation.navigate("ProductosListaCategoriaComponent")
-          }
-          style={styles.SubCatCont}
-        >
-          <View style={styles.TextCont}>
-            <Text style={styles.SubCatText}>Cartucheras y canoplas</Text>
-            <Icon
-              name="navigate-next"
-              type="material"
-              color="#7A8D9C"
-              size={22}
-            />
-          </View>
-
-          <Divider />
-        </TouchableOpacity>
-        <TouchableOpacity
-          onPress={() =>
-            navigation.navigate("ProductosListaCategoriaComponent")
-          }
-          style={styles.SubCatCont}
-        >
-          <View style={styles.TextCont}>
-            <Text style={styles.SubCatText}>Cintas adhesivas y portarrollos</Text>
-            <Icon
-              name="navigate-next"
-              type="material"
-              color="#7A8D9C"
-              size={22}
-            />
-          </View>
-
-          <Divider />
-        </TouchableOpacity>
-        <TouchableOpacity
-          onPress={() =>
-            navigation.navigate("ProductosListaCategoriaComponent")
-          }
-          style={styles.SubCatCont}
-        >
-          <View style={styles.TextCont}>
-            <Text style={styles.SubCatText}>Gomas, correctores y cinta correctora</Text>
-            <Icon
-              name="navigate-next"
-              type="material"
-              color="#7A8D9C"
-              size={22}
-            />
-          </View>
-
-          <Divider />
-        </TouchableOpacity>
-        <TouchableOpacity
-          onPress={() =>
-            navigation.navigate("ProductosListaCategoriaComponent")
-          }
-          style={styles.SubCatCont}
-        >
-          <View style={styles.TextCont}>
-            <Text style={styles.SubCatText}>Láminas, tab. periódicas y diccionarios</Text>
-            <Icon
-              name="navigate-next"
-              type="material"
-              color="#7A8D9C"
-              size={22}
-            />
-          </View>
-
-          <Divider />
-        </TouchableOpacity>
-        <TouchableOpacity
-          onPress={() =>
-            navigation.navigate("ProductosListaCategoriaComponent")
-          }
-          style={styles.SubCatCont}
-        >
-          <View style={styles.TextCont}>
-            <Text style={styles.SubCatText}>Mochilas y bolsos</Text>
-            <Icon
-              name="navigate-next"
-              type="material"
-              color="#7A8D9C"
-              size={22}
-            />
-          </View>
-
-          <Divider />
-        </TouchableOpacity>
-        <TouchableOpacity
-          onPress={() =>
-            navigation.navigate("ProductosListaCategoriaComponent")
-          }
-          style={styles.SubCatCont}
-        >
-          <View style={styles.TextCont}>
-            <Text style={styles.SubCatText}>Pizarras, tableros, tizas y borradores</Text>
-            <Icon
-              name="navigate-next"
-              type="material"
-              color="#7A8D9C"
-              size={22}
-            />
-          </View>
-
-          <Divider />
-        </TouchableOpacity>
-        <TouchableOpacity
-          onPress={() =>
-            navigation.navigate("ProductosListaCategoriaComponent")
-          }
-          style={styles.SubCatCont}
-        >
-          <View style={styles.TextCont}>
-            <Text style={styles.SubCatText}>Sacapuntas, reglas, compás y set ge...</Text>
-            <Icon
-              name="navigate-next"
-              type="material"
-              color="#7A8D9C"
-              size={22}
-            />
-          </View>
-
-          <Divider />
-        </TouchableOpacity>
-        <TouchableOpacity
-          onPress={() =>
-            navigation.navigate("ProductosListaCategoriaComponent")
-          }
-          style={styles.SubCatCont}
-        >
-          <View style={styles.TextCont}>
-            <Text style={styles.SubCatText}>Separadores, etiquetas, ojalillos, asig...</Text>
-            <Icon
-              name="navigate-next"
-              type="material"
-              color="#7A8D9C"
-              size={22}
-            />
-          </View>
-
-          <Divider />
-        </TouchableOpacity>
-        <TouchableOpacity
-          onPress={() =>
-            navigation.navigate("ProductosListaCategoriaComponent")
-          }
-          style={styles.SubCatCont}
-        >
-          <View style={styles.TextCont}>
-            <Text style={styles.SubCatText}>Set de jardín y cantimploras</Text>
-            <Icon
-              name="navigate-next"
-              type="material"
-              color="#7A8D9C"
-              size={22}
-            />
-          </View>
-
-          <Divider />
-        </TouchableOpacity>
-        <TouchableOpacity
-          onPress={() =>
-            navigation.navigate("ProductosListaCategoriaComponent")
-          }
-          style={styles.SubCatCont}
-        >
-          <View style={styles.TextCont}>
-            <Text style={styles.SubCatText}>Témperas, plastlina, pinceles y acuar...</Text>
-            <Icon
-              name="navigate-next"
-              type="material"
-              color="#7A8D9C"
-              size={22}
-            />
-          </View>
-
-          <Divider />
-        </TouchableOpacity>
-        <TouchableOpacity
-          onPress={() =>
-            navigation.navigate("ProductosListaCategoriaComponent")
-          }
-          style={styles.SubCatCont}
-        >
-          <View style={styles.TextCont}>
-            <Text style={styles.SubCatText}>Tijeras y cutters</Text>
-            <Icon
-              name="navigate-next"
-              type="material"
-              color="#7A8D9C"
-              size={22}
-            />
-          </View>
-
-          <Divider />
-        </TouchableOpacity>
-        <TouchableOpacity
-          onPress={() =>
-            navigation.navigate("ProductosListaCategoriaComponent")
-          }
-          style={styles.SubCatCont}
-        >
-          <View style={styles.TextCont}>
-            <Text style={styles.SubCatText}>Una subcategoria aqui</Text>
-            <Icon
-              name="navigate-next"
-              type="material"
-              color="#7A8D9C"
-              size={22}
-            />
-          </View>
-
-          <Divider />
-        </TouchableOpacity>
-        <TouchableOpacity
-          onPress={() =>
-            navigation.navigate("ProductosListaCategoriaComponent")
-          }
-          style={styles.SubCatCont}
-        >
-          <View style={styles.TextCont}>
-            <Text style={styles.SubCatText}>Una subcategoria aqui</Text>
-            <Icon
-              name="navigate-next"
-              type="material"
-              color="#7A8D9C"
-              size={22}
-            />
-          </View>
-
-          <Divider />
-        </TouchableOpacity>
-        <TouchableOpacity
-          onPress={() =>
-            navigation.navigate("ProductosListaCategoriaComponent")
-          }
-          style={styles.SubCatCont}
-        >
-          <View style={styles.TextCont}>
-            <Text style={styles.SubCatText}>Una subcategoria aqui</Text>
-            <Icon
-              name="navigate-next"
-              type="material"
-              color="#7A8D9C"
-              size={22}
-            />
-          </View>
-
-          <Divider />
-        </TouchableOpacity>
-        <TouchableOpacity
-          onPress={() =>
-            navigation.navigate("ProductosListaCategoriaComponent")
-          }
-          style={styles.SubCatCont}
-        >
-          <View style={styles.TextCont}>
-            <Text style={styles.SubCatText}>Una subcategoria aqui</Text>
-            <Icon
-              name="navigate-next"
-              type="material"
-              color="#7A8D9C"
-              size={22}
-            />
-          </View>
-
-          <Divider />
-        </TouchableOpacity>
-        <TouchableOpacity
-          onPress={() =>
-            navigation.navigate("ProductosListaCategoriaComponent")
-          }
-          style={styles.SubCatCont}
-        >
-          <View style={styles.TextCont}>
-            <Text style={styles.SubCatText}>Una subcategoria aqui</Text>
-            <Icon
-              name="navigate-next"
-              type="material"
-              color="#7A8D9C"
-              size={22}
-            />
-          </View>
-
-          <Divider />
-        </TouchableOpacity>
-        <TouchableOpacity
-          onPress={() =>
-            navigation.navigate("ProductosListaCategoriaComponent")
-          }
-          style={styles.SubCatCont}
-        >
-          <View style={styles.TextCont}>
-            <Text style={styles.SubCatText}>Una subcategoria aqui</Text>
-            <Icon
-              name="navigate-next"
-              type="material"
-              color="#7A8D9C"
-              size={22}
-            />
-          </View>
-
-          <Divider />
-        </TouchableOpacity>
-        <TouchableOpacity
-          onPress={() =>
-            navigation.navigate("ProductosListaCategoriaComponent")
-          }
-          style={styles.SubCatCont}
-        >
-          <View style={styles.TextCont}>
-            <Text style={styles.SubCatText}>Una subcategoria aqui</Text>
-            <Icon
-              name="navigate-next"
-              type="material"
-              color="#7A8D9C"
-              size={22}
-            />
-          </View>
-
-          <Divider />
-        </TouchableOpacity>
+        )
+      })
+      
+        }
+       
       </View>
     </ScrollView>
   );

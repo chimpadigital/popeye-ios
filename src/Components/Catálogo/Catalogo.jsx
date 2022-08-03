@@ -22,55 +22,78 @@ import paper from "./assets/paper.png";
 import { Icon } from "react-native-elements/dist/icons/Icon.js";
 import { Card } from "react-native-elements/dist/card/Card.js";
 import HeaderComponent from "../Elementos/Header/Header";
+import ProductoCardComponent from "../Elementos/ProductoCard/ProductoCard.jsx";
 const width = Dimensions.get("window").width;
 const heigth = Dimensions.get("window").height;
-const CatalogoComponent = ({route, navigation}) => {
+const CatalogoComponent = ({route, navigation,search,
+  setSearch,
+  filProducts,
+  setFilProducts,}) => {
   const pedidos = [faber, maped, paper, faber, maped, paper];
   return (
     <View style={styles.container}>
     <HeaderComponent navigation={navigation} Titulo="Catálogo" Atras={false} Carrito={true} />
       <SearchBar
+         onChangeText={(e)=>setSearch(e)}
+         value={search}
         platform="android"
         inputStyle={styles.searchText}
         placeholder="Buscá tus productos de interés"
         inputContainerStyle={styles.SearchBar}
         containerStyle={styles.SearchBarC}
-      />
+      />{search.length>3?
+    <ScrollView style={{paddingBottom:100}}>
+         {filProducts.map((e) => {
+          return (
+          
+           
+           <ProductoCardComponent name={e.des_art} price={e.pre_art} amount={e.amount} navigation={navigation}/>
+     
+          );
+        })}</ScrollView>
+
+
+
+
+
+
+
+        :
       <View style={styles.CatContainer}>
         <Text style={styles.SubTitle}>Categorías</Text>
         <View style={styles.CatIconosContainer}>
           <View style={styles.CatInd}>
-            <TouchableOpacity onPress={()=>navigation.navigate("CategoriaLista")} style={styles.CatCirc}>
+            <TouchableOpacity onPress={()=>navigation.navigate("CategoriaLista", {id:1})} style={styles.CatCirc}>
               <Escr />
             </TouchableOpacity >
             <Text style={styles.CatText}>Escritura</Text>
           </View>
           <View style={styles.CatInd}>
-            <TouchableOpacity onPress={()=>navigation.navigate("CategoriaLista")} style={styles.CatCirc}>
+            <TouchableOpacity onPress={()=>navigation.navigate("CategoriaLista", {id:2})} style={styles.CatCirc}>
               <Esc />
             </TouchableOpacity >
             <Text style={styles.CatText}>Escolar</Text>
           </View>
           <View style={styles.CatInd}>
-            <TouchableOpacity onPress={()=>navigation.navigate("CategoriaLista")} style={styles.CatCirc}>
+            <TouchableOpacity onPress={()=>navigation.navigate("CategoriaLista", {id:3})} style={styles.CatCirc}>
               <Cuad />
             </TouchableOpacity >
             <Text style={styles.CatText}>Cuadernos y repuestos</Text>
           </View>
           <View style={styles.CatInd}>
-            <TouchableOpacity onPress={()=>navigation.navigate("CategoriaLista")} style={styles.CatCirc}>
+            <TouchableOpacity onPress={()=>navigation.navigate("CategoriaLista", {id:4})} style={styles.CatCirc}>
               <Com />
             </TouchableOpacity >
             <Text style={styles.CatText}>Comercial</Text>
           </View>
           <View style={styles.CatInd}>
-            <TouchableOpacity onPress={()=>navigation.navigate("CategoriaLista")} style={styles.CatCirc}>
+            <TouchableOpacity onPress={()=>navigation.navigate("CategoriaLista", {id:5})} style={styles.CatCirc}>
               <Pap />
             </TouchableOpacity >
             <Text style={styles.CatText}>Papeles, PVC y goma eva</Text>
           </View>
           <View style={styles.CatInd}>
-            <TouchableOpacity onPress={()=>navigation.navigate("CategoriaLista")} style={styles.CatCirc}>
+            <TouchableOpacity onPress={()=>navigation.navigate("CategoriaLista",{id:6})} style={styles.CatCirc}>
               <Art />
             </TouchableOpacity >
             <Text style={styles.CatText}>Artística y regalería</Text>
@@ -121,7 +144,7 @@ const CatalogoComponent = ({route, navigation}) => {
             </View>
           </Card>
         </View>
-      </View>
+      </View>}
     </View>
   );
 };
@@ -255,6 +278,6 @@ const styles = StyleSheet.create({
     display: "flex",
     justifyContent: "center",
     backgroundColor:"#FFF",
-    borderWidth:0
+    borderWidth:0,
   },
 });

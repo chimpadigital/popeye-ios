@@ -14,6 +14,7 @@ import CheckoutComponent from '../Components/Carrito/Checkout';
 import MetodoPagoComponent from '../Components/Carrito/MetodoPago';
 import MetodoEntregaComponent from '../Components/Carrito/MetodoEntrega';
 import FinalizadoComponent from '../Components/Carrito/Finalizado';
+import Catalogo from '../Controllers/Catalogo/Catalogo';
 const CatalogoNavigator = () => {
     const Stack = createNativeStackNavigator();
     const customTextProps = {
@@ -36,7 +37,7 @@ const CatalogoNavigator = () => {
           <Stack.Navigator   screenOptions={{
       headerShown: false
     }}>
-          <Stack.Screen Screen name="Catalogo" component={CatalogoComponent} />
+          <Stack.Screen Screen name="Catalogo" component={Catalogo} />
           <Stack.Screen Screen name="CategoriaLista" component={CategoriaListaComponent} />
           <Stack.Screen Screen name="ProductosListaCategoriaComponent" component={ProductosListaCategoriaComponent} />
           <Stack.Screen Screen name="DetalleProductoComponent" component={DetalleProductoComponent} />
