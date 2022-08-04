@@ -8,30 +8,43 @@ import {
 import React, { useState } from "react";
 import { Card } from "react-native-elements/dist/card/Card";
 import { Icon } from "react-native-elements/dist/icons/Icon";
-
+import { addProducto, delProducto } from "../../../Redux/actions";
+import { useDispatch } from "react-redux";
 const width = Dimensions.get("window").width;
 const heigth = Dimensions.get("window").height;
-const ProductoCardComponent = ({  navigation, name, amount, price, }) => {
+const ProductoCardComponent = ({ Producto, navigation, name, amount, price, }) => {
+  console.log(Producto)
   const [cora, setCora] = useState(false);
+  const dispatch = useDispatch()
+  const addToCart = ()=>{
+      dispatch(addProducto({
+        Producto:Producto,
+        Precio: price,
+        Nombre: name,
+        Color:"Rojo",
+        Cantidad:1
+      }))
+  }
+
   return (
     <View style={styles.container}>
       <TouchableOpacity
         style={styles.card}
-        onPress={() => navigation.navigate("DetalleProductoComponent")}
+        onPress={() => navigation.navigate("DetalleProductoComponent", {Producto:Producto})}
       >
         <View style={styles.TextCont}>
         <Text style={styles.RecName}>{name}</Text>
         <Text style={styles.RecAmount}>{amount}</Text>
         <Text style={styles.RecPrice}>${price}</Text>
         </View>
-        <View style={styles.Carrito}>
+        <TouchableOpacity onPress={addToCart} style={styles.Carrito}>
           <Icon
             name="shopping-cart"
             type="material"
             color="#0f50a7"
             size={20}
           />
-        </View>
+        </TouchableOpacity>
         <View style={styles.cora}>
           <Icon
             onPress={() => setCora(!cora)}

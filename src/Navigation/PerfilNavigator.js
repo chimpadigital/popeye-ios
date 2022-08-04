@@ -10,7 +10,7 @@ import CategoriaListaComponent from '../Components/CategoríaLista/CategoriaList
 import ProductosListaCategoriaComponent from '../Components/ProductosLista/ProductosListaCategoria';
 import DetalleProductoComponent from '../Components/DetalleProducto/DetalleProducto';
 import PerfilComponent from '../Components/Perfil/Perfil';
-import Carrito from '../Controllers/Carrito';
+import Carrito from '../Controllers/Carrito/Carrito';
 const PerfilNavigator = () => {
     const Stack = createNativeStackNavigator();
     const customTextProps = {

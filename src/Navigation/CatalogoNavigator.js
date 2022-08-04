@@ -9,7 +9,7 @@ import { store } from "../Redux/store";
 import CategoriaListaComponent from '../Components/CategoríaLista/CategoriaLista';
 import ProductosListaCategoriaComponent from '../Components/ProductosLista/ProductosListaCategoria';
 import DetalleProductoComponent from '../Components/DetalleProducto/DetalleProducto';
-import Carrito from '../Controllers/Carrito';
+import Carrito from '../Controllers/Carrito/Carrito';
 import CheckoutComponent from '../Components/Carrito/Checkout';
 import MetodoPagoComponent from '../Components/Carrito/MetodoPago';
 import MetodoEntregaComponent from '../Components/Carrito/MetodoEntrega';

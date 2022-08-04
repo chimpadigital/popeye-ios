@@ -5,15 +5,27 @@ import {
   View,
   TouchableOpacity,
 } from "react-native";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Divider } from "react-native-elements";
 import { Icon } from "react-native-elements/dist/icons/Icon";
 import { useNavigation } from "@react-navigation/native";
+import { useDispatch } from "react-redux";
+import { amoProducto, delProducto } from "../../../Redux/actions";
 const width = Dimensions.get("window").width;
 const heigth = Dimensions.get("window").height;
-const CarritoCardComponent = ({ Nombre, Precio, Color, Cantidad }) => {
+const CarritoCardComponent = ({ Nombre, Precio, Color, Cantidad, Producto, index }) => {
   const navigation = useNavigation();
+  const dispatch = useDispatch()
   const [cantidad, setCantidad] = useState(Cantidad);
+  useEffect(() => {
+    dispatch(amoProducto({index:index, cantidad:cantidad}))
+  }, [cantidad])
+  
+  const dropToCart = ()=>{
+    dispatch(delProducto(
+    Nombre
+    ))
+}
   return (
     <View style={styles.container}>
       <TouchableOpacity
@@ -43,10 +55,10 @@ const CarritoCardComponent = ({ Nombre, Precio, Color, Cantidad }) => {
             </Text>
           </View>
           <View style={styles.Row2}>
-            <View style={styles.Row1}>
+            <TouchableOpacity style={styles.Row1} onPress={dropToCart}>
               <Icon name="delete" type="material" color="#B71C46" size={20} />
               <Text style={styles.Elminar}>Eliminar</Text>
-            </View>
+            </TouchableOpacity>
             <View style={styles.CantidadContainer}>
               <TouchableOpacity
                 style={styles.botonMenos}

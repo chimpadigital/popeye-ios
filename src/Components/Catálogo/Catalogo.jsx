@@ -43,11 +43,11 @@ const CatalogoComponent = ({route, navigation,search,
         containerStyle={styles.SearchBarC}
       />{search.length>3?
     <ScrollView style={{paddingBottom:100}}>
-         {filProducts.map((e) => {
+         {filProducts.map((e, index) => {
           return (
           
            
-           <ProductoCardComponent name={e.des_art} price={e.pre_art} amount={e.amount} navigation={navigation}/>
+           <ProductoCardComponent index={index} Producto={e} name={e.des_art} price={e.pre_art} amount={e.amount} navigation={navigation}/>
      
           );
         })}</ScrollView>

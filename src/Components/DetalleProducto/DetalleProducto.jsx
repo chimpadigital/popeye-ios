@@ -9,7 +9,8 @@ const width = Dimensions.get("window").width;
 const heigth = Dimensions.get("window").height;
 
 
-const DetalleProductoComponent = ({ navigation }) => {
+const DetalleProductoComponent = ({ navigation, route }) => {
+  const { Producto } = route.params;
   const [cantidad, setCantidad] = useState(1)
   return (
     <ScrollView style={styles.container}>
@@ -20,13 +21,13 @@ const DetalleProductoComponent = ({ navigation }) => {
         </View>
         <Text  style={styles.CatTitle}>Escolar</Text>
       </View>
-      <Text numberOfLines={1} ellipsizeMode='tail' style={styles.Ubi}>Mochilas y bolsos {">"} Mochila Jansport Superbreak</Text>
+      <Text numberOfLines={1} ellipsizeMode='tail' style={styles.Ubi}>Mochilas y bolsos {">"} {Producto.des_art}</Text>
 
       <View style={styles.textContanier}>
-        <Text style={styles.Title}>Mochila Jansport Superbreak</Text>
+        <Text style={styles.Title}>{Producto.des_art}</Text>
         <Text style={styles.ID}>ART. M-315</Text>
         <Text style={styles.Lote}>Lote: 5 unidades</Text>
-        <Text style={styles.Price}>$9700</Text>
+        <Text style={styles.Price}>${Producto.pre_art}</Text>
       </View>
       <View style={styles.ContainerSelect}>
         <ColorSelectComponent />
