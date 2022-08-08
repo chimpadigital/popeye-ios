@@ -1,5 +1,5 @@
-import { Dimensions, ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
-import React from 'react'
+import { Dimensions, ScrollView, StyleSheet, Text, TouchableOpacity, View,Animated, Easing, useWindowDimensions  } from 'react-native'
+import React, { useEffect, useRef, useState } from 'react'
 import ProductoCardComponent from '../Elementos/ProductoCard/ProductoCard';
 import { useNavigation } from "@react-navigation/native";
 import HeaderComponent from '../Elementos/Header/Header';
@@ -7,6 +7,7 @@ import { Divider } from "react-native-elements";
 const width = Dimensions.get("window").width;
 const heigth = Dimensions.get("window").height;
 const DetallePedidoComponent = () => {
+
     const navigation = useNavigation();
     const recomendados = [
         {
@@ -56,6 +57,22 @@ const DetallePedidoComponent = () => {
           },
           
       ];
+      const [isVisible, setIsVisible]= useState(false)
+        const dimensions = useWindowDimensions();
+        const fontScale = isNaN(dimensions.fontScale) ? 1 : dimensions.fontScale;
+        const offset = 140 * fontScale;
+        const translateY = useRef(new Animated.Value(-200)).current;
+      
+        useEffect(() => {
+          const delayedAnimation = setTimeout(() => {
+            Animated.spring(translateY, {
+              toValue: isVisible ? 0 : offset,
+              friction: 10,
+              tension: 11,
+            }).start();
+          }, 200);
+          return () => clearTimeout(delayedAnimation);
+        }, [isVisible]);
   return (
     <View style={{height:heigth}}>
       
@@ -64,6 +81,8 @@ const DetallePedidoComponent = () => {
         <View style={styles.Circulo}/>
         <Text style={styles.Title}>Pedido #111111</Text>
      </View>
+    
+
     <ScrollView style={styles.container}>
        {recomendados.map((e) => {
           return (
@@ -72,15 +91,19 @@ const DetallePedidoComponent = () => {
         })}
  
     </ScrollView>
+<Animated.View style={{ transform: [{ translateY }] }}>
     <View style={styles.CheckOut}>
-          <Divider orientation='horizontal' width={5} style={{width:130, alignSelf:"center", borderRadius:8}} color={"#ACBAC3"}/>
+      <TouchableOpacity onPress={()=>setIsVisible(!isVisible)} style={{width:width, height:20}}>
+          <Divider orientation='horizontal' width={5} style={{width:130, alignSelf:"center", borderRadius:8}} color={"#ACBAC3"}/></TouchableOpacity>
+          
           <View style={styles.butonContainer}>
-      <TouchableOpacity onPress={()=>navigation.navigate("DetallePedido")} style={styles.loginButton} ><Text style={styles.loginButtonText}>EDITAR EL PEDIDO</Text></TouchableOpacity >
-      <TouchableOpacity style={styles.SignUpButton} ><Text style={styles.SingUpTextButton}>VOLVER A REALIZAR EL PEDIDO</Text></TouchableOpacity>
+      <TouchableOpacity onPress={()=>setIsVisible(!isVisible)} style={styles.loginButton} ><Text style={styles.loginButtonText}>EDITAR EL PEDIDO</Text></TouchableOpacity >
+      <TouchableOpacity  style={styles.SignUpButton} ><Text style={styles.SingUpTextButton}>VOLVER A REALIZAR EL PEDIDO</Text></TouchableOpacity>
     </View>
-   
-      
+ 
       </View>
+         
+       </Animated.View>
     </View>
   )
 }
@@ -88,6 +111,15 @@ const DetallePedidoComponent = () => {
 export default DetallePedidoComponent
 
 const styles = StyleSheet.create({
+  container: {
+    flex:1
+},
+square: {
+    width: 70,
+    height: 70,
+    backgroundColor: 'red',
+    marginBottom:500
+},
     Titular:{
         flexDirection:"row",
         width:width,

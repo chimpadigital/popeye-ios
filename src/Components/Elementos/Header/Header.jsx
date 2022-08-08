@@ -1,9 +1,12 @@
 import { Dimensions, StyleSheet, Text, View } from 'react-native'
 import React from 'react'
+import { useSelector } from 'react-redux';
 import { Icon } from 'react-native-elements/dist/icons/Icon';
 const width = Dimensions.get("window").width;
 const heigth = Dimensions.get("window").height;
 const HeaderComponent = ({Titulo, Carrito, Atras, navigation}) => {
+  
+  const Pedido = useSelector((state) => state.Pedido);
   return (
     <View style={styles.Header}>
         {
@@ -22,7 +25,7 @@ const HeaderComponent = ({Titulo, Carrito, Atras, navigation}) => {
         <View style={styles.Tit}>
     <Text style={styles.HeaderTitle}>{Titulo}</Text></View>
     {
-            Carrito&&  
+            Pedido.length? 
             <View style={styles.Carrito}>    
             <Icon
             onPress={()=>navigation.navigate("Carrito")}
@@ -30,7 +33,7 @@ const HeaderComponent = ({Titulo, Carrito, Atras, navigation}) => {
             type="material"
             color="#FFF"
             size={25}
-          /></View>
+          /></View>:<></>
         
         }
   </View>

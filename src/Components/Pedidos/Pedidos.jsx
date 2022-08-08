@@ -1,5 +1,5 @@
-import { Dimensions, ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
-import React, { useState } from 'react'
+import { Dimensions, ScrollView, StyleSheet, Text, TouchableOpacity, View,Animated, Easing, useWindowDimensions  } from 'react-native'
+import React, { useEffect, useRef, useState } from 'react'
 import HeaderComponent from '../Elementos/Header/Header'
 import { Divider } from 'react-native-elements/dist/divider/Divider';
 
@@ -72,6 +72,23 @@ const PedidosComponent = () => {
           },
 
       ];
+      const [isVisible, setIsVisible]= useState(true)
+             
+      const dimensions = useWindowDimensions();
+      const fontScale = isNaN(dimensions.fontScale) ? 1 : dimensions.fontScale;
+      const offset = -180 * fontScale;
+      const translateY = useRef(new Animated.Value(0)).current;
+    
+      useEffect(() => {
+        const delayedAnimation = setTimeout(() => {
+          Animated.spring(translateY, {
+            toValue: isVisible ? 0 : offset,
+            friction: 10,
+            tension: 11,
+          }).start();
+        }, 200);
+        return () => clearTimeout(delayedAnimation);
+      }, [isVisible]);
   return (
     <View style={styles.container}>
         <HeaderComponent  Titulo={"Mis Pedidos"}/>
@@ -86,7 +103,7 @@ const PedidosComponent = () => {
         <ScrollView showsVerticalScrollIndicator={false}>
         {pedidos.map((e) => {
           return (
-            <TouchableOpacity onPress={()=>{setOpen(!open)}} style={styles.pedidosCard}>
+            <TouchableOpacity onPress={()=>{setIsVisible(false)}} style={styles.pedidosCard}>
               <Text style={styles.PedNum}>Pedido #{e.nro}</Text>
               <Text style={styles.PedT}>{e.details}</Text>
               <Text style={styles.PedT}>${e.date}</Text>
@@ -97,18 +114,18 @@ const PedidosComponent = () => {
        </ScrollView>
 
       </View>
-      {
-        open&&
-        <View style={styles.CheckOut}>
-          <Divider orientation='horizontal' width={5} style={{width:130, alignSelf:"center", borderRadius:8}} color={"#ACBAC3"}/>
+  
+        <Animated.View style={{ transform: [{ translateY }] }}>
+        <View style={styles.CheckOut}><TouchableOpacity onPress={()=>setIsVisible(!isVisible)} style={{width:width, height:20}}>
+          <Divider orientation='horizontal' width={5} style={{width:130, alignSelf:"center", borderRadius:8}} color={"#ACBAC3"}/></TouchableOpacity>
           <View style={styles.butonContainer}>
       <TouchableOpacity onPress={()=>navigation.navigate("DetallePedido")} style={styles.loginButton} ><Text style={styles.loginButtonText}>VER EL PEDIDO</Text></TouchableOpacity >
       <TouchableOpacity style={styles.SignUpButton} ><Text style={styles.SingUpTextButton}>VOLVER A REALIZAR EL PEDIDO</Text></TouchableOpacity>
     </View>
    
       
-      </View>
-      }
+      </View></Animated.View>
+   
 
 
 
