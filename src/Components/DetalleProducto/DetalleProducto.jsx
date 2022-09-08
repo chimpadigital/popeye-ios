@@ -1,45 +1,43 @@
-import { Dimensions, ScrollView, StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import { Dimensions, Image, ScrollView, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import React, { useState } from "react";
 import Escr from "../Catálogo/assets/escr";
 import HeaderComponent from "../Elementos/Header/Header";
-
+import notfound from "./notfound.png"
 import ColorSelectComponent from "../Elementos/ColorSelect/ColorSelect";
 import { Icon } from "react-native-elements";
 const width = Dimensions.get("window").width;
 const heigth = Dimensions.get("window").height;
 
 
-const DetalleProductoComponent = ({ navigation, route }) => {
-  const { Producto } = route.params;
-  const [cantidad, setCantidad] = useState(1)
+const DetalleProductoComponent = ({cantidad,
+  setCantidad,
+  addToCart,
+  Producto,
+  navigation, }) => {
+
   return (
     <ScrollView style={styles.container}>
       <HeaderComponent navigation={navigation} Titulo="Producto" Atras={true} />
-      <View style={styles.CategoriaHeader}>
-        <View style={styles.CatCirc}>
-          <Escr />
-        </View>
-        <Text  style={styles.CatTitle}>Escolar</Text>
-      </View>
-      <Text numberOfLines={1} ellipsizeMode='tail' style={styles.Ubi}>Mochilas y bolsos {">"} {Producto.des_art}</Text>
-
+      <Image source={Producto.image?Producto.image:notfound} style={styles.image}/>
       <View style={styles.textContanier}>
-        <Text style={styles.Title}>{Producto.des_art}</Text>
-        <Text style={styles.ID}>ART. M-315</Text>
-        <Text style={styles.Lote}>Lote: 5 unidades</Text>
-        <Text style={styles.Price}>${Producto.pre_art}</Text>
+        <Text style={styles.Title}>{Producto.name}</Text>
+        <Text style={styles.ID}>ART. {Producto.id}</Text>
+       
+  
+      <Text numberOfLines={1} ellipsizeMode='tail' style={styles.Ubi}>{Producto?.rubros[0].name} {">"} {Producto?.subrubros[0].name}</Text>
+        <Text style={styles.Price}>${parseFloat(Producto.price).toFixed(2)*cantidad}</Text>
       </View>
-      <View style={styles.ContainerSelect}>
+      {/* <View style={styles.ContainerSelect}>
         <ColorSelectComponent />
         <ColorSelectComponent />
-      </View>
-      <Text style={styles.desc}>Paragraphs are the building blocks of papers. Many students define paragraphs in terms of length: a paragraph is a group of at least five sentences, a paragraph is half a page long, etc.</Text>
+      </View> */}
+      {/* <Text style={styles.desc}>Paragraphs are the building blocks of papers. Many students define paragraphs in terms of length: a paragraph is a group of at least five sentences, a paragraph is half a page long, etc.</Text> */}
       <View style={styles.CantidadContainer}>
                 <TouchableOpacity style={styles.botonMenos} onPress={()=>setCantidad(cantidad>0?cantidad-1:0)}><Text style={styles.CantidadMenos}>-</Text></TouchableOpacity>
         <TouchableOpacity style={styles.botonCantidad}><Text style={styles.Cantidad}>{cantidad}</Text></TouchableOpacity>
         <TouchableOpacity style={styles.botonMas} onPress={()=>setCantidad(cantidad+1)}><Text style={styles.CantidadMas}>+</Text></TouchableOpacity>
       </View>
-      <TouchableOpacity style={styles.boton}>
+      <TouchableOpacity onPress={addToCart} style={styles.boton}>
       <Icon
             
             name="shopping-cart"
@@ -59,7 +57,7 @@ const styles = StyleSheet.create({
     display: "flex",
     flexDirection: "column",
     backgroundColor: "#fff",
-    minHeight: "100%",
+    minHeight: heigth,
     
     paddingBottom: 100,
   },
@@ -91,17 +89,20 @@ const styles = StyleSheet.create({
     color:"#2D9CDB",
     fontSize:16,
     fontWeight:"400",
-  
-    paddingHorizontal: width * 0.05,
- 
+    textTransform:"capitalize",
+
+    marginTop:14
     
   },
   Title:{
     fontSize:24,
     fontWeight:"700",
+    color:"#0F50A7",
+    textTransform:"capitalize"
     },
     ID:{
-        fontSize:12,
+      color:"#0071BC",
+        fontSize:13,
         fontWeight:"300"
     },
     Lote:{
@@ -111,9 +112,10 @@ const styles = StyleSheet.create({
     },
     Price:{
         color:"#2F80ED",
-        fontSize:24,
+        fontSize:32,
         fontWeight:"700",
-        marginTop:14
+        marginTop:8
+       
     },
     textContanier:{
         paddingTop:20,
@@ -207,11 +209,16 @@ const styles = StyleSheet.create({
       justifyContent:"center",
       flexDirection:"row",
       alignSelf:"center",
-      marginTop:heigth*0.08
+      marginTop:heigth*0.12
+      
     },
     botonText:{
       fontSize:14,
       color: "#322843",
       marginLeft:10
+    },
+    image:{
+      minWidth:width,
+      maxHeight:260
     }
 });

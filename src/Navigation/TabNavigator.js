@@ -32,31 +32,31 @@ const TabNavigator = () => {
     
                 if (route.name === 'Home') {
                   
-                return(
-                focused?<TabHomeS />:<TabHome/>
-                )
-                } 
-                else if (route.name === 'Pedidos') {
-                    return(
-                  focused?<TabPedidosS />:<TabPedidos />
+                  return(
+                    focused?<TabHomeS />:<TabHome/>//<View style={{width:20, height:20, backgroundColor:"purple"}}/>
                   )
-                }
-                else if (route.name === 'Catalogo') {
-                    return(
-                  focused?<TabCatalogoS />:<TabCatalogo/>
-                  )
-                }
-                else if (route.name === 'Contacto') {
-                    return(
-                  focused?<TabContactoS />:<TabContacto/>
-                  )
-                }
-                else if (route.name === 'Perfil') {
-                    return(
-                  focused?<TabPerfilS />:<TabPerfil/>
-                  )
-                }
-                
+                  } 
+                  else if (route.name === 'Pedidos') {
+                      return(
+                      focused?<TabPedidosS />:<TabPedidos />//<View style={{width:20, height:20, backgroundColor:"purple"}}/>
+                    )
+                  }
+                  else if (route.name === 'Catalogo') {
+                      return(
+                      focused?<TabCatalogoS />:<TabCatalogo/>//<View style={{width:20, height:20, backgroundColor:"purple"}}/>
+                    )
+                  }
+                  else if (route.name === 'Contacto') {
+                      return(
+                      focused?<TabContactoS />:<TabContacto/>//<View style={{width:20, height:20, backgroundColor:"purple"}}/>
+                    )
+                  }
+                  else if (route.name === 'Perfil') {
+                      return(
+                      focused?<TabPerfilS />:<TabPerfil/>//<View style={{width:20, height:20, backgroundColor:"purple"}}/>
+                    )
+                  }
+
     
                 // You can return any component that you like here!
         
@@ -81,3 +81,6 @@ const TabNavigator = () => {
 export default TabNavigator
 
 const styles = StyleSheet.create({})
+
+
+      

@@ -14,10 +14,9 @@ import HeaderComponent from "../Elementos/Header/Header.jsx";
 import {Rubros} from "../../../dataTemo"
 const width = Dimensions.get("window").width;
 const heigth = Dimensions.get("window").height;
-const CategoriaListaComponent = ({ route, navigation,  }) => {
-  console.log("AAAAAAA" , id)
-  const { id } = route.params;
-  const filterRubros = Rubros[0].filter(e=>e.id===id)
+const CategoriaListaComponent = ({ route, navigation,  cat}) => {
+
+  
 
   return (
     <ScrollView style={styles.container}>
@@ -26,21 +25,23 @@ const CategoriaListaComponent = ({ route, navigation,  }) => {
         <TouchableOpacity style={styles.CatCirc}>
           <Escr />
         </TouchableOpacity>
-        <Text style={styles.CatTitle}>Escolar</Text>
+        <Text style={styles.CatTitle}>{cat.name}</Text>
       </View>
       <View style={styles.SubCatListCont}>
       
       {
-      filterRubros.map(e=>{
+      cat.subrubros.map(e=>{
+       
         return(
           <TouchableOpacity
-          onPress={() =>
-            navigation.navigate("ProductosListaCategoriaComponent")
+          onPress={() =>{
+            navigation.navigate("ProductosCategoria",
+            {subCat:e, cat:cat})}
           }
           style={styles.SubCatCont}
         >
           <View style={styles.TextCont}>
-            <Text style={styles.SubCatText}>{e["MARCADORES Y RESALTADORES"]}</Text>
+            <Text style={styles.SubCatText}>{e.name}</Text>
             <Icon
               name="navigate-next"
               type="material"
@@ -126,6 +127,7 @@ const styles = StyleSheet.create({
     fontSize: 16,
     fontWeight: "600",
     fontStyle: "normal",
+    textTransform:"capitalize"
   },
   TextCont: {
     display: "flex",

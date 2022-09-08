@@ -13,7 +13,7 @@ import { useDispatch } from "react-redux";
 import { amoProducto, delProducto } from "../../../Redux/actions";
 const width = Dimensions.get("window").width;
 const heigth = Dimensions.get("window").height;
-const CarritoCardComponent = ({ Nombre, Precio, Color, Cantidad, Producto, index }) => {
+const CarritoCardComponent = ({ Nombre, Precio,  Cantidad, Producto, index }) => {
   const navigation = useNavigation();
   const dispatch = useDispatch()
   const [cantidad, setCantidad] = useState(Cantidad);
@@ -30,29 +30,29 @@ const CarritoCardComponent = ({ Nombre, Precio, Color, Cantidad, Producto, index
     <View style={styles.container}>
       <TouchableOpacity
         style={styles.card}
-        onPress={() => navigation.navigate("DetalleProductoComponent")}
+        onPress={() => navigation.navigate("DetalleProducto",{Producto:Producto, navigation:navigation})}
       >
         <View style={styles.TextCont}>
           <Text style={styles.RecName}>{Nombre}</Text>
           <View style={styles.Row1}>
-            <Text style={styles.RecPrice}>${Precio}</Text>
+            <Text style={styles.RecPrice}>${parseFloat(Precio).toFixed(2)}</Text>
             <Divider
               height={18}
               orientation="vertical"
               style={styles.divider}
             />
-            <View
+            {/* <View
               style={{
                 marginHorizontal: 8,
                 height: 15,
                 width: 15,
-                backgroundColor: Color,
+                background Color,
                 borderRadius: 3,
               }}
             />
             <Text style={styles.colorText}>
               {Color.toUpperCase()[0] + Color.slice(1, Color.length)}
-            </Text>
+            </Text> */}
           </View>
           <View style={styles.Row2}>
             <TouchableOpacity style={styles.Row1} onPress={dropToCart}>

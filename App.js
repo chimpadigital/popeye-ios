@@ -6,6 +6,8 @@ import { useFonts } from "expo-font";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import TabNavigator from "./src/Navigation/TabNavigator";
 import Root from "./Root";
+import { LogBox } from 'react-native';
+LogBox.ignoreAllLogs()
 export default function App() {
   let [fontsLoaded] = useFonts({
     "Roboto-Bold": require("./assets/fonts/Roboto-Bold.ttf"),

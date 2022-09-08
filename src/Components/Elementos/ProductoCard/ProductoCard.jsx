@@ -12,16 +12,15 @@ import { addProducto, delProducto } from "../../../Redux/actions";
 import { useDispatch } from "react-redux";
 const width = Dimensions.get("window").width;
 const heigth = Dimensions.get("window").height;
-const ProductoCardComponent = ({ Producto, navigation, name, amount, price, }) => {
+const ProductoCardComponent = ({ Producto, navigation,cat,subCat}) => {
   console.log(Producto)
   const [cora, setCora] = useState(false);
   const dispatch = useDispatch()
   const addToCart = ()=>{
       dispatch(addProducto({
         Producto:Producto,
-        Precio: price,
-        Nombre: name,
-        Color:"Rojo",
+        Precio: Producto.price,
+        Nombre: Producto.name,
         Cantidad:1
       }))
   }
@@ -30,12 +29,12 @@ const ProductoCardComponent = ({ Producto, navigation, name, amount, price, }) =
     <View style={styles.container}>
       <TouchableOpacity
         style={styles.card}
-        onPress={() => navigation.navigate("DetalleProductoComponent", {Producto:Producto})}
+      onPress={() => navigation.navigate("DetalleProducto", {Producto:Producto, navigation:navigation})}
       >
         <View style={styles.TextCont}>
-        <Text style={styles.RecName}>{name}</Text>
-        <Text style={styles.RecAmount}>{amount}</Text>
-        <Text style={styles.RecPrice}>${price}</Text>
+        <Text style={styles.RecName}>{Producto.name?Producto.name:Producto.articles.name}</Text>
+        {Producto.quantity?<Text style={styles.RecAmount}>Catidad: {Producto.quantity}</Text>:<Text style={styles.RecAmount}></Text>}
+        <Text style={styles.RecPrice}>${Producto.price?parseFloat(Producto.price).toFixed(2):parseFloat(Producto.price_total).toFixed(2)}</Text>
         </View>
         <TouchableOpacity onPress={addToCart} style={styles.Carrito}>
           <Icon
@@ -66,6 +65,7 @@ const styles = StyleSheet.create({
     fontSize: 14,
     fontWeight: "700",
     color: "#333542",
+    maxWidth:"80%"
   },
   RecAmount: {
     color: "#333542",

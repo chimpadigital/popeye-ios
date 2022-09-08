@@ -11,6 +11,7 @@ import ProductosListaCategoriaComponent from '../Components/ProductosLista/Produ
 import DetalleProductoComponent from '../Components/DetalleProducto/DetalleProducto';
 import PerfilComponent from '../Components/Perfil/Perfil';
 import Carrito from '../Controllers/Carrito/Carrito';
+import ModificarUser from '../Controllers/ModificarUser/ModificarUser';
 const PerfilNavigator = () => {
     const Stack = createNativeStackNavigator();
     const customTextProps = {
@@ -34,6 +35,7 @@ const PerfilNavigator = () => {
       headerShown: false
     }}>
           <Stack.Screen Screen name="Perfil" component={PerfilComponent} />
+          <Stack.Screen Screen name="ModificarUser" component={ModificarUser} />
           <Stack.Screen Screen name="Carrito" component={Carrito} />
           </Stack.Navigator>
    

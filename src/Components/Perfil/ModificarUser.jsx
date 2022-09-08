@@ -4,6 +4,7 @@ import {
   ScrollView,
   StyleSheet,
   Text,
+  TextInput,
   TouchableOpacity,
   View,
 } from "react-native";
@@ -11,47 +12,53 @@ import React from "react";
 import HeaderComponent from "../Elementos/Header/Header";
 import Avatar from "./Avatar.jpg";
 import { useSelector } from "react-redux";
+import { useNavigation } from "@react-navigation/native";
+import { Button } from "react-native";
 const width = Dimensions.get("window").width;
 const heigth = Dimensions.get("window").height;
+const ModificarUserComponent = ({image,pickImage, form, setForm, onSubmit, User, navigation }) => {
 
-function PerfilComponent({ navigation }) {
-  const User = useSelector((state)=>state.User)
-  console.log(User)
+
   return (
     <ScrollView style={styles.container}>
       <HeaderComponent
-      Carrito={true}
+        Carrito={true}
         navigation={navigation}
         Titulo="Asesor Comercial"
         Atras={true}
       />
-      <View style={styles.imagenContainer}>
-        <Image style={styles.imagen} source={Avatar} />
-      </View>
+      <TouchableOpacity onPress={pickImage} style={styles.imagenContainer}>
+      {form.image ? <Image source={{ uri: form.image }} style={styles.imagen} />:<Image source={Avatar} style={styles.imagen} />}
+      
+      </TouchableOpacity>
 
-      <Text style={styles.Name}>{`${User.name} ${User.last_name}`}</Text>
+      <TextInput placeholder={`${User.name} ${User.last_name}`} onChange={(e=>setForm({...form, name:e.target.value}))} style={styles.Name}></TextInput>
       <View style={styles.DatosContainer}>
         <View style={styles.SubContainer}>
-          <Text style={styles.Title}>Email</Text>
+          <Text style={styles.Title}>Email </Text>
           <Text style={styles.SubTitle}>{User.email}</Text>
         </View>
         <View style={styles.SubContainer}>
           <Text style={styles.Title}>Teléfono</Text>
-          <Text style={styles.SubTitle}>{User.phone?User.phone:"No definido"}</Text>
+          <TextInput placeholder={User.phone ? User.phone : "No definido"} onChange={(e=>setForm({...form, phone:e.target.value}))} style={styles.SubTitle}>
+            
+          </TextInput>
         </View>
         <View style={styles.SubContainer}>
           <Text style={styles.Title}>Dirección</Text>
-          <Text style={styles.SubTitle}>
-          {User.address?User.address:"No definido"}
-          </Text>
+          <TextInput placeholder={User.address ? User.address : "No definido"} onChange={(e=>setForm({...form, address:e.target.value}))} style={styles.SubTitle}>
+           
+          </TextInput>
         </View>
-        <TouchableOpacity style={styles.Boton} onPress={()=>navigation.navigate("ModificarUser") }>
-          <Text style={styles.BotonText}>MODIFICAR DATOS DEL PERFIL</Text>
+        <TouchableOpacity style={styles.Boton} onPress={onSubmit}>
+          <Text style={styles.BotonText}>Modificar</Text>
         </TouchableOpacity>
       </View>
     </ScrollView>
   );
-}
+};
+
+export default ModificarUserComponent;
 
 const styles = StyleSheet.create({
   container: {
@@ -72,12 +79,14 @@ const styles = StyleSheet.create({
     height: heigth * 0.3,
     justifyContent: "flex-end",
     paddingBottom: "8%",
+    paddingTop:220,
+  
   },
   Name: {
     fontSize: 24,
     alignSelf: "center",
     fontWeight: "600",
-    textTransform:"capitalize"
+    textTransform: "capitalize",
   },
   Contacto: {
     fontSize: 20,
@@ -111,9 +120,8 @@ const styles = StyleSheet.create({
     color: "#FFF",
     alignSelf: "center",
   },
-  SubContainer:{
-    height:"11%",
-    justifyContent:"space-between"
-  }
+  SubContainer: {
+    height: "11%",
+    justifyContent: "space-between",
+  },
 });
-export default PerfilComponent;

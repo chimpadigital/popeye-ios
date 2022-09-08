@@ -12,7 +12,8 @@ const Root = () => {
   
   if (User==null) {
     return (    <LoginNavigator />);
-  } else return (     <TabNavigator/>);
+  } else 
+  return (     <TabNavigator/>);
 };
 
 export default Root;

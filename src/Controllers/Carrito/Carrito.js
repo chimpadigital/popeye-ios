@@ -6,6 +6,8 @@ import { useSelector } from "react-redux";
 import { useNavigation } from "@react-navigation/native";
 
 const Carrito = () => {
+  const paymentMethod = useSelector(e=>e.PaymentMethod)
+  const shippingMethod = useSelector(e=>e.ShippingMethod)
   const navigation = useNavigation();
   const Pedido = useSelector((state) => state.Pedido);
   const [total, setTotal]= useState()
@@ -17,10 +19,23 @@ const Carrito = () => {
     setTotal(temp)
   }, [Pedido])
   
+  const onSubmitCarrito = () =>{
+    if(!paymentMethod.length){
+      navigation.navigate("MetodosComponent")
+    }
+    else if (!shippingMethod){
+      navigation.navigate("MetodoEntrega")
+    }
+    else navigation.navigate("Checkout")
+  }
+
   return (
     <>
       <HeaderComponent Atras Titulo="Pedido"  navigation={navigation}/>
-      <CarritoComponent navigation={navigation} Pedido={Pedido} total={total}/>
+      <CarritoComponent navigation={navigation} Pedido={Pedido} total={total} 
+      
+      onSubmitCarrito={onSubmitCarrito}
+      />
     </>
   );
 };

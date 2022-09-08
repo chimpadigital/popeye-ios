@@ -12,7 +12,7 @@ import React from "react";
 import { TextInput } from "react-native";
 import LogoLogin from "../../assets/LogoLogin";
 import { Icon } from "react-native-elements/dist/icons/Icon";
-import { useNavigation } from "@react-navigation/native";
+
 import Transfer from "./assets/Transfer";
 import CueCo from "./assets/CueCo";
 import Efec from "./assets/Efec";
@@ -21,8 +21,8 @@ import Tarj from "./assets/Tarj";
 
 const width = Dimensions.get("window").width;
 const heigth = Dimensions.get("window").height;
-const MetodoPagoComponent = () => {
-  const navigation = useNavigation();
+const MetodoPagoComponent = ({method1, setMethod1, onSubmit,navigation}) => {
+
   return (
     <View style={styles.container}>
       <View style={styles.Header}>
@@ -44,43 +44,43 @@ const MetodoPagoComponent = () => {
         </Text>
       </View>
       <View style={styles.checkboxContainer}>
-        <View style={styles.checkboxRow}>
-          <TouchableOpacity style={styles.CheckBox}></TouchableOpacity>
-          <View er style={styles.IconCheck}>
-            <Transfer />
+          <View style={styles.checkboxRow}>
+            <TouchableOpacity style={(!method1||(method1[0].id!==2))?styles.CheckBox:styles.CheckBoxS} onPress={()=>setMethod1([{id:2}])}></TouchableOpacity>
+            <View er style={styles.IconCheck}>
+              <Transfer />
+            </View>
+            <Text style={styles.CheckBoxText} >Transferencia bancaria</Text>
           </View>
-          <Text style={styles.CheckBoxText}>Transferencia bancaria</Text>
-        </View>
-        <View style={styles.checkboxRow}>
-          <TouchableOpacity style={styles.CheckBox}></TouchableOpacity>
-          <View style={styles.IconCheck}>
-            <Efec  />
+          <View style={styles.checkboxRow}>
+            <TouchableOpacity style={(!method1||(method1[0].id!==1))?styles.CheckBox:styles.CheckBoxS}  onPress={()=>setMethod1([{id:1}])}></TouchableOpacity>
+            <View style={styles.IconCheck}>
+              <Efec  />
+            </View>
+            <Text style={styles.CheckBoxText}>Efectivo</Text>
           </View>
-          <Text style={styles.CheckBoxText}>Efectivo</Text>
-        </View>
-        <View style={styles.checkboxRow}>
-          <TouchableOpacity style={styles.CheckBox}></TouchableOpacity>
-          <View style={styles.IconCheck}>
-            <Tarj  />
+          <View style={styles.checkboxRow}>
+            <TouchableOpacity style={(!method1||(method1[0].id!==3))?styles.CheckBox:styles.CheckBoxS} onPress={()=>setMethod1([{id:3}])}></TouchableOpacity>
+            <View style={styles.IconCheck}>
+              <Tarj  />
+            </View>
+            <Text style={styles.CheckBoxText}>Tarjeta de crédito o débito</Text>
           </View>
-          <Text style={styles.CheckBoxText}>Tarjeta de crédito o débito</Text>
-        </View>
-        <View style={styles.checkboxRow}>
-          <TouchableOpacity style={styles.CheckBox}></TouchableOpacity>
-          <View style={styles.IconCheck}>
-            <Cheq />
+          <View style={styles.checkboxRow}>
+            <TouchableOpacity style={(!method1||(method1[0].id!==4))?styles.CheckBox:styles.CheckBoxS} onPress={()=>setMethod1([{id:4}])}></TouchableOpacity>
+            <View style={styles.IconCheck}>
+              <Cheq />
+            </View>
+            <Text style={styles.CheckBoxText}>Cheque</Text>
           </View>
-          <Text style={styles.CheckBoxText}>Cheque</Text>
-        </View>
-        <View style={styles.checkboxRow}>
-          <TouchableOpacity style={styles.CheckBox}></TouchableOpacity>
-          <View style={styles.IconCheck}>
-            <CueCo />
+          <View style={styles.checkboxRow}>
+            <TouchableOpacity style={(!method1||(method1[0].id!==5))?styles.CheckBox:styles.CheckBoxS} onPress={()=>setMethod1([{id:5}])}></TouchableOpacity>
+            <View style={styles.IconCheck}>
+              <CueCo />
+            </View>
+            <Text style={styles.CheckBoxText}>Cuenta corriente</Text>
           </View>
-          <Text style={styles.CheckBoxText}>Cuenta corriente</Text>
         </View>
-      </View>
-      <TouchableOpacity onPress={()=>navigation.goBack()} style={styles.loginButton} ><Text style={styles.loginButtonText}>VOLVER AL PEDIDO</Text></TouchableOpacity >
+      <TouchableOpacity onPress={onSubmit} style={styles.loginButton} ><Text style={styles.loginButtonText}>SIGUIENTE</Text></TouchableOpacity >
     </View>
   );
 };
@@ -178,6 +178,14 @@ const styles = StyleSheet.create({
   CheckBox: {
     borderRadius: 100,
 
+    borderWidth: 1,
+    borderColor: "#D1D1D6",
+    height: 20,
+    width: 20,
+  },
+  CheckBoxS: {
+    borderRadius: 100,
+    backgroundColor: "#0F50A7",
     borderWidth: 1,
     borderColor: "#D1D1D6",
     height: 20,

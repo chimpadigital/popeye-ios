@@ -5,10 +5,13 @@ import { Card } from "react-native-elements";
 import HeaderComponent from"../Elementos/Header/Header.jsx"
 import ProductoCardComponent from '../Elementos/ProductoCard/ProductoCard';
 import {DataTemp} from "../../../dataTemo"
+import { Image } from 'react-native';
+import { Icon } from 'react-native-elements/dist/icons/Icon';
 const width = Dimensions.get("window").width;
 const heigth = Dimensions.get("window").height;
-const ProductosListaCategoriaComponent = ({navigation}) => {
-    const recomendados = DataTemp.slice(0,20)
+const ProductosCategoriaComponent = ({navigation, route,Prod,cat,Pagination, setPagination,
+  subCat}) => {
+  
   return (<>
      <HeaderComponent navigation={navigation} Titulo="Catálogo" Atras={true}/>
     <ScrollView style={styles.container}>
@@ -20,19 +23,45 @@ const ProductosListaCategoriaComponent = ({navigation}) => {
         >
           <Escr />
         </TouchableOpacity>
-        <Text style={styles.CatTitle}>Escolar {'>'} Mochilas y bolsos</Text>
+        <Text style={styles.CatTitle}>{cat} {'>'} {subCat}</Text>
       </View>
-      <View style={{paddingBottom:100}}>
-      {recomendados.map((e) => {
+      <View >
+      {Prod?.data?
+      Prod.data.map((e) => {
           return (
-           <ProductoCardComponent name={e.des_art} price={e.pre_art} amount={e.amount} navigation={navigation}/>
+           <ProductoCardComponent Producto={e} navigation={navigation} cat={cat} subCat={subCat}/>
           );
-        })}</View>
+        })
+      :
+      <Image source={{uri: "https://gifimage.net/wp-content/uploads/2018/04/loading-bar-animated-gif-transparent-background-6.gif"}}  
+      style={{width: 300, height:300, alignSelf:"center"}} />}
+      </View>
+      {Prod?.data?
+      <View style={styles.PaginationBox}>
+        <View style={styles.GoBack}>
+        <Icon
+            onPress={() => {Pagination>1&&setPagination(Pagination-1)}}
+            name="arrow-back"
+            type="material"
+            color={Pagination>1?"#0F50A7": "grey"}
+            size={25}
+          />
+        </View>
+        <View style={styles.GoFo}>
+        <Icon
+            onPress={() =>setPagination(Pagination+1)}
+            name="arrow-forward"
+            type="material"
+            color="#0F50A7"
+            size={25}
+          />
+        </View>  
+      </View> :<></>}
       </ScrollView></>
   )
 }
 
-export default ProductosListaCategoriaComponent
+export default ProductosCategoriaComponent
 
 const styles = StyleSheet.create({
     Header: {
@@ -57,7 +86,7 @@ const styles = StyleSheet.create({
         display: "flex",
         flexDirection: "column",
         backgroundColor: "#fff",
-        minHeight: "100%",
+        
    
       },
       CategoriaHeader: {
@@ -83,6 +112,7 @@ const styles = StyleSheet.create({
         fontSize: 16,
         color: "#0F50A7",
         fontWeight: "700",
+        maxWidth:"80%"
       },
       RecName: {
         fontSize: 14,
@@ -110,4 +140,35 @@ const styles = StyleSheet.create({
         justifyContent: "center",
       
       },
+      PaginationBox:{
+        width:"100%",
+        height:50,
+   
+        display:"flex",
+        flexDirection:"row",
+        justifyContent:"space-between",
+        alignItems:"center",
+        paddingHorizontal: width * 0.04,
+        marginVertical:15
+      },
+      GoFo:{
+        width:40,
+        height:40,
+        borderRadius:8,
+        backgroundColor:"white",
+        elevation:5,
+        display:"flex",
+        justifyContent:"center"
+        
+      },
+       GoBack:{
+        width:40,
+        height:40,
+        borderRadius:8,
+        backgroundColor:"white",
+        elevation:5,
+        display:"flex",
+        justifyContent:"center"
+        
+      }
 })

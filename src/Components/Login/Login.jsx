@@ -1,4 +1,4 @@
-import { Button, Dimensions, Image, StyleSheet, Text, TouchableOpacity, View,  } from "react-native";
+import { Button, Dimensions, Image, StyleSheet, Text, TouchableOpacity, View, Modal  } from "react-native";
 import React from "react";
 import { TextInput } from "react-native";
 import LogoLogin from "../../assets/LogoLogin";
@@ -7,7 +7,13 @@ import { user } from "../../Redux/actions";
 import { useNavigation } from "@react-navigation/native";
 const width = Dimensions.get("window").width;
 const heigth = Dimensions.get("window").height;
-const LoginComponent = ({onSubmit}) => {
+const LoginComponent = ({onSubmit, form, setForm,Email,error,
+  setEmail,
+  Password,
+  setPassword,
+  modalVisible,
+  setModalVisible,
+  Message}) => {
 const navigation = useNavigation()
   return (
     <View style={styles.container}>
@@ -23,15 +29,39 @@ const navigation = useNavigation()
       </View>
       <View style={styles.Form}>
         <Text style={styles.formText}>Email o nombre de usuario</Text>
-        <TextInput placeholder= {"Ingresa tu email"} style={styles.Input}></TextInput>
+        <TextInput value={Email} placeholder= {"Ingresa tu email"}  style={styles.Input} autoCapitalize="none" onChangeText={setEmail}></TextInput>
         <Text style={styles.formText}>Contraseña</Text>
-        <TextInput  secureTextEntry={true} placeholder= {"Ingresa tu contraseña"} style={styles.Input}></TextInput>
+        <TextInput value={Password} onChangeText={setPassword} secureTextEntry={false} placeholder= {"Ingresa tu contraseña"} style={styles.Input}></TextInput>
+    
         <TouchableOpacity onPress={()=>navigation.navigate("ResetPass")} style={{display:"flex"}}>
         <Text style={styles.forgott}>¿Olvidaste tu contraseña?</Text></TouchableOpacity>
         <TouchableOpacity  style={styles.loginButton} onPress={onSubmit} ><Text style={styles.loginButtonText}>INICIAR SESIÓN</Text></TouchableOpacity >
       </View>
       <Text style={styles.SingUpText}>¿No tenés cuenta? Registrate</Text>
       <View style={styles.SignUpButton} ><Text style={styles.SingUpTextButton}>REGISTRATE</Text></View>
+      <View    style={styles.centeredView}>
+      <Modal
+        animationType="slide"
+        transparent={true}
+     
+        visible={modalVisible}
+        onRequestClose={() => {
+        
+          setModalVisible(!modalVisible);
+        }}
+      >
+        <View style={styles.centeredView}>
+          <View style={styles.modalView}>
+            <Text style={styles.TitleModal}>{Message}</Text>
+            <TouchableOpacity
+              style={[styles.modalButton]}
+              onPress={() => setModalVisible(!modalVisible)}
+            >
+              <Text style={styles.loginButtonText}>Reintentar</Text>
+            </TouchableOpacity>
+          </View>
+        </View>
+      </Modal></View>
     </View>
   );
 };
@@ -39,6 +69,19 @@ const navigation = useNavigation()
 export default LoginComponent;
 
 const styles = StyleSheet.create({
+  centeredView: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+    alignSelf:"center",
+    marginTop: 280,
+    maxHeight:200,
+    width:"70%",
+    backgroundColor:"white",
+    borderWidth:1,
+    borderColor:"#0F50A7",
+    borderRadius:8
+  },
   logo: {
     width: 300,
     height: 120,
@@ -59,6 +102,7 @@ const styles = StyleSheet.create({
     paddingTop: "8%",
     paddingHorizontal: width * 0.04,
     alignItems: "flex-end",
+    
   },
   Text: {
     display: "flex",
@@ -68,6 +112,13 @@ const styles = StyleSheet.create({
   },
   Title: {
     fontSize: 32,
+    lineHeight: 35,
+    color: "#322843",
+    fontWeight: "600",
+    fontFamily:"Roboto-Regular"
+  },
+  TitleModal: {
+    fontSize: 22,
     lineHeight: 35,
     color: "#322843",
     fontWeight: "600",
@@ -118,6 +169,21 @@ const styles = StyleSheet.create({
     alignItems:"center"
    
   },
+  modalButton: {
+    marginVertical:30,
+    width:width*0.4,
+    height:56,
+    paddingBottom:3, 
+    justifyContent:"center",
+    backgroundColor:"#0F50A7",
+    alignSelf:"center",
+    borderRadius:10,
+    display:"flex",
+    alignItems:"center",
+    marginBottom:-5
+   
+  },
+  
   loginButtonText:{
     fontSize:12,
     lineHeight:25,

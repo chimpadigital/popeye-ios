@@ -7,6 +7,7 @@ import { store } from "../Redux/store";
 
 import PedidosComponent from '../Components/Pedidos/Pedidos';
 import DetallePedidoComponent from '../Components/Pedidos/DetallePedido';
+import Pedidos from '../Controllers/Pedidos/Pedidos';
 const PedidosNavigator = () => {
     const Stack = createNativeStackNavigator();
     const customTextProps = {
@@ -29,7 +30,7 @@ const PedidosNavigator = () => {
           <Stack.Navigator   screenOptions={{
       headerShown: false
     }}>
-          <Stack.Screen Screen name="Pedidos" component={PedidosComponent} />
+          <Stack.Screen Screen name="Pedidos" component={Pedidos} />
           <Stack.Screen Screen name="DetallePedido" component={DetallePedidoComponent} />
           </Stack.Navigator>
    

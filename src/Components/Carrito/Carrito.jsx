@@ -14,7 +14,7 @@ const width = Dimensions.get("window").width;
 const heigth = Dimensions.get("window").height;
 import { Divider } from "react-native-elements";
 
-const CarritoComponent = ({ Pedido, navigation, total }) => {
+const CarritoComponent = ({ Pedido, navigation, total,onSubmitCarrito }) => {
 
 
   return (
@@ -51,7 +51,7 @@ const CarritoComponent = ({ Pedido, navigation, total }) => {
         <Text style={styles.FormaPago}>Modificar forma de pago</Text>
         <TouchableOpacity
           style={styles.boton}
-          onPress={() => navigation.navigate("Checkout")}
+          onPress={onSubmitCarrito}
         >
           <Icon
             name="shopping-cart"
