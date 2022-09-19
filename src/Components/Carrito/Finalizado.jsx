@@ -1,9 +1,12 @@
 import { Dimensions, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import React from 'react'
 import Envi from "./assets/Envi"
+import { useNavigation } from "@react-navigation/native";
 const width = Dimensions.get("window").width;
 const heigth = Dimensions.get("window").height;
+
 const FinalizadoComponent = () => {
+  const navigation = useNavigation();
   return (
     <View style={styles.container}>
       <Text style={styles.Titulo}>¡El pedido fue realizado con éxito!</Text>

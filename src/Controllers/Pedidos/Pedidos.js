@@ -1,7 +1,7 @@
 import { View, Text } from 'react-native'
 import React, { useEffect, useState } from 'react'
 import PedidosComponent from '../../Components/Pedidos/Pedidos'
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 export default function Pedidos() {
     const [pedidoS, setPedidoS] = useState({})
@@ -16,13 +16,13 @@ export default function Pedidos() {
             },
           }).then(async (res) => {
              const jsonRes = await res.json();
-             setPedidos(jsonRes.data.data.reverse());
-             console.log(jsonRes.data.data[2].status)
+             setPedidos(jsonRes.data.reverse());
+             
           })
        
     }, [hash])
 
-
+    const dispatch = useDispatch()
 
 
   return (
@@ -31,6 +31,7 @@ export default function Pedidos() {
      setPedidos={setPedidos}
 pedidoS={pedidoS}
      setPedidoS={setPedidoS}
+     dispatch={dispatch}
     />
   )
 }

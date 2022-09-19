@@ -14,9 +14,10 @@ import HeaderComponent from "../Elementos/Header/Header";
 import { Divider } from "react-native-elements/dist/divider/Divider";
 
 import { useNavigation } from "@react-navigation/native";
+import { addPedido } from "../../Redux/actions";
 const width = Dimensions.get("window").width;
 const heigth = Dimensions.get("window").height;
-const PedidosComponent = ({ pedidos, pedidoS, setPedidoS }) => {
+const PedidosComponent = ({ pedidos, pedidoS, setPedidoS ,dispatch}) => {
   const navigation = useNavigation();
   const [open, setOpen] = useState(false);
 
@@ -39,30 +40,31 @@ const PedidosComponent = ({ pedidos, pedidoS, setPedidoS }) => {
   }, [isVisible]);
   return (
     <View style={styles.container}>
-      <HeaderComponent Titulo={"Mis Pedidos"} />
+      <HeaderComponent Titulo={"Mis Pedidos"}navigation={navigation}/>
       <View style={styles.PedidosContainer}>
         <Text style={styles.SubTitleP}>Pedidos Actuales</Text>
         <View style={styles.ViewCatch}>
           {pedidos.filter((e) => e.status.id == 1).length ? (
             pedidos
               .filter((e) => e.status.id == 1)
-              .map((e) => {
-                return (
-                  <View style={styles.pedidosCard1}  onPress={() => {
-                    setPedidoS(e);
-                    setIsVisible(false);
-                  }}>
-                    <Text style={styles.PedNum1}>Pedido #{e.id}</Text>
-                    <Text style={styles.PedT1}>
-                      {e.reports.length == 1
-                        ? "1 unidad"
-                        : e.reports.length + " unidades"}
-                    </Text>
-                    <Text style={styles.PedT1}>
-                      {e.created_at.substring(0, 10)}
-                    </Text>
-                  </View>
-                );
+              .map((e, i) => {
+                if (i < 2) {
+                  return (
+                    <TouchableOpacity
+                      style={styles.pedidosCard1}
+                      onPress={() => { navigation.navigate("DetallePedido", { Pedido: e })
+                      }}
+                    >
+                      <Text style={styles.PedNum1}>Pedido #{e.id}</Text>
+                      <Text style={styles.PedT1}>
+                        {e.reports.length == 1
+                          ? "1 unidad"
+                          : e.reports.length + " unidades"}
+                      </Text>
+                      <Text style={styles.PedT1}>{e.status.name}</Text>
+                    </TouchableOpacity>
+                  );
+                }
               })
           ) : (
             <Text style={styles.catch}>No tenés pedidos actuales</Text>
@@ -133,7 +135,7 @@ const PedidosComponent = ({ pedidos, pedidoS, setPedidoS }) => {
             >
               <Text style={styles.loginButtonText}>VER EL PEDIDO</Text>
             </TouchableOpacity>
-            <TouchableOpacity style={styles.SignUpButton}>
+            <TouchableOpacity style={styles.SignUpButton} onPress={()=>{pedidoS&&dispatch(addPedido(pedidoS.reports)); setPedidoS([]); setIsVisible(!isVisible)}}>
               <Text style={styles.SingUpTextButton}>
                 VOLVER A REALIZAR EL PEDIDO
               </Text>
@@ -172,7 +174,7 @@ const styles = StyleSheet.create({
     width: width * 0.92,
     border: 0,
     shadowColor: "#000",
-    height: 96,
+    height: 90,
     alignSelf: "center",
     borderRadius: 12,
     display: "flex",
@@ -187,7 +189,7 @@ const styles = StyleSheet.create({
     border: 0,
     backgroundColor: "#d1def0",
 
-    height: 96,
+    height: 90,
     alignSelf: "center",
     borderRadius: 12,
     display: "flex",
@@ -215,9 +217,9 @@ const styles = StyleSheet.create({
   catch: {
     alignSelf: "center",
     fontStyle: "italic",
+    marginVertical: heigth * 0.05,
   },
   ViewCatch: {
-
     justifyContent: "center",
   },
   CheckOut: {

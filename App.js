@@ -1,15 +1,18 @@
 import React from "react";
 import { StyleSheet, View } from "react-native";
-import { Provider, } from "react-redux";
-import { store } from "./src/Redux/store";
+import { Provider } from "react-redux";
+
 import { useFonts } from "expo-font";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import TabNavigator from "./src/Navigation/TabNavigator";
 import Root from "./Root";
-import { LogBox } from 'react-native';
-LogBox.ignoreAllLogs()
+import { PersistGate } from "redux-persist/integration/react";
+import { store, persistor } from "./src/Redux/store";
+import { LogBox } from "react-native";
+LogBox.ignoreAllLogs();
 export default function App() {
   let [fontsLoaded] = useFonts({
+    "Roboto-Medium": require("./assets/fonts/Roboto-Medium.ttf"),
     "Roboto-Bold": require("./assets/fonts/Roboto-Bold.ttf"),
     "Roboto-Light": require("./assets/fonts/Roboto-Light.ttf"),
     "Roboto-Regular": require("./assets/fonts/Roboto-Regular.ttf"),
@@ -31,12 +34,14 @@ export default function App() {
     width: "100%",
     height: "100%",
   };
-
- return(
+  console.log(persistor, store)
+  return (
     <Provider store={store}>
-        <Root/>
+      <PersistGate loading={<></>} persistor={persistor}>
+        <Root />
+      </PersistGate>
     </Provider>
-  )
+  );
 }
 
 const styles = StyleSheet.create({

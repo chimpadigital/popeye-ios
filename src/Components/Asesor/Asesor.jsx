@@ -2,9 +2,12 @@ import { Dimensions, Image, ScrollView, StyleSheet, Text, TouchableOpacity, View
 import React from 'react'
 import HeaderComponent from '../Elementos/Header/Header'
 import Avatar from "./Avatar.png"
+import { useSelector } from 'react-redux';
+
 const width = Dimensions.get("window").width;
 const heigth = Dimensions.get("window").height;
 const AsesorComponent = ({navigation}) => {
+    const User = useSelector((e) => e.User);
   return (
     <ScrollView style={styles.container}>
     <HeaderComponent navigation={navigation} Titulo="Asesor Comercial" Atras={true} />
@@ -13,7 +16,7 @@ const AsesorComponent = ({navigation}) => {
     
     </View>
     <View style={styles.ContactoContainer}>
-    <Text style={styles.Name}>Alicia Di Genaro</Text>
+    <Text style={styles.Name}>{User?.sellers?.name}</Text>
     <Text style={styles.Contacto}>Contacto</Text>
     <TouchableOpacity style={styles.MailBoton}><Text style={styles.textMailBoton}>CONTACTAR POR MAIL</Text></TouchableOpacity>
     <TouchableOpacity style={styles.TelBoton}><Text style={styles.textTelBoton}>CONTACTAR POR TELÉFONO</Text></TouchableOpacity>
@@ -45,7 +48,8 @@ const styles = StyleSheet.create({
     Name:{
         fontSize:24,
         alignSelf:"center",
-        fontWeight:"600"
+        fontWeight:"600",
+        textTransform:"capitalize"
     }, 
     Contacto:{
         fontSize:20,

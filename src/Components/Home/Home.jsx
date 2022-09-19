@@ -8,7 +8,7 @@ import {
   View,
 } from "react-native";
 import React from "react";
-import avatar from "../../assets/Temporal/avatar.png";
+import avatar from "../../assets/NoAvatar.png";
 import { Card } from "react-native-elements";
 import { Icon } from "react-native-elements/dist/icons/Icon";
 import { Divider } from "react-native-elements/dist/divider/Divider";
@@ -17,78 +17,25 @@ import HeaderComponent from "../Elementos/Header/Header.jsx";
 const width = Dimensions.get("window").width;
 const heigth = Dimensions.get("window").height;
 
-const HomeComponent = ({ navigation }) => {
-  const recomendados = [
-    {
-      name: "Caja de lápices Faber Castell",
-      amount: "24 unidades",
-      price: 2825,
-    },
-    {
-      name: "Tijeras Mapped antideslizan...",
-      amount: "60 unidades",
-      price: 1995,
-    },
-    {
-      name: "Fibrón Trabi multitrazo negr...",
-      amount: "12 unidades",
-      price: 805,
-    },
-    {
-      name: "Caja de lápices Faber Castell",
-      amount: "24 unidades",
-      price: 2825,
-    },
-    {
-      name: "Tijeras Mapped antideslizan...",
-      amount: "60 unidades",
-      price: 1995,
-    },
-    {
-      name: "Fibrón Trabi multitrazo negr...",
-      amount: "12 unidades",
-      price: 805,
-    },
-    {
-      name: "Caja de lápices Faber Castell",
-      amount: "24 unidades",
-      price: 2825,
-    },
-    {
-      name: "Tijeras Mapped antideslizan...",
-      amount: "60 unidades",
-      price: 1995,
-    },
-    {
-      name: "Fibrón Trabi multitrazo negr...",
-      amount: "12 unidades",
-      price: 805,
-    },
-  ];
-  const pedidos = [
-    {
-      nro: "12123",
-      details: "24 unidades",
-      date: "Listo para retirar",
-    },
-    {
-      nro: "128923",
-      details: "15 unidades",
-      date: "Listo para retirar",
-    },
-    
-  ];
+import spinner from "../../assets/spinner.gif"
+const HomeComponent = ({ navigation, User,
+  hash,
+  pedidos,
+  products,
+  setPedidos,
+  setProducts, }) => {
+
 
   return (
     <View style={styles.container}>
       <HeaderComponent navigation={navigation} Titulo="Popeye App" />
 
       <View style={styles.Perfil}>
-        <Image source={avatar} style={styles.avatar} />
+        <Image source={User.image?{ uri: `https://devtesting.gq/backend/storage/app/public/usuarios/${User.image.substring(1,User.image.length)}` }:avatar} style={styles.avatar} />
         <View>
-          <Text style={styles.Hola}>¡Hola, Ricardo!</Text>
+          <Text style={styles.Hola}>¡Hola, {User.name}!</Text>
           <Text style={styles.Bienvenida}>
-            Te damos la bienvendia de nuevo.
+            Te damos la bienvenida de nuevo.
           </Text>
         </View>
       </View>
@@ -96,22 +43,35 @@ const HomeComponent = ({ navigation }) => {
       <View style={styles.PedidosContainer}>
         <Text style={styles.SubTitleP}>Pedidos Actuales</Text>
         <ScrollView style={styles.ScrollView}>
-          {pedidos.map((e) => {
-            return (
-              <View style={styles.pedidosCard}>
-                <Text style={styles.PedNum}>Pedido #{e.nro}</Text>
-                <Text style={styles.PedT}>{e.details}</Text>
-                <Text style={styles.PedT}>{e.date}</Text>
-              </View>
-            );
-          })}
+        {pedidos.filter((e) => e.status.id == 1).length ? (
+            pedidos
+              .filter((e) => e.status.id == 1)
+              .map((e,i) => {
+                if(i<2){
+                return (
+                  <TouchableOpacity style={styles.pedidosCard1}   onPress={() => { navigation.navigate("DetallePedido", { Pedido: e })}}>
+                    <Text style={styles.PedNum1}>Pedido #{e.id}</Text>
+                    <Text style={styles.PedT1}>
+                      {e.reports.length == 1
+                        ? "1 unidad"
+                        : e.reports.length + " unidades"}
+                    </Text>
+                    <Text style={styles.PedT1}>
+                      {e.status.name}
+                    </Text>
+                  </TouchableOpacity>
+                );}
+              })
+          ) : (
+            <Text style={styles.catch}>No tenés pedidos actuales</Text>
+          )}
         </ScrollView>
       </View>
       <View style={styles.PedidosContainer1}>
         <View style={styles.recomendadosTextCont}>
-          <Text style={styles.SubTitleP}>Recomendados</Text>
+          <Text style={styles.SubTitleP1}>Recomendados</Text>
 
-          <View style={styles.recomendadosTextCont}>
+          {/* <View style={styles.recomendadosTextCont}>
             <Text style={styles.VerMas}>Ver más</Text>
             <Icon
               name="navigate-next"
@@ -119,10 +79,11 @@ const HomeComponent = ({ navigation }) => {
               color="#7A8D9C"
               size={22}
             />
-          </View>
+          </View> */}
         </View>
         <ScrollView style={styles.ScrollView}>
-          {recomendados.map((e) => {
+          {products.data?
+          products.data.map((e) => {
             return (
               <Card containerStyle={styles.card}>
                 <Text style={styles.RecName}>{e.name}</Text>
@@ -130,7 +91,12 @@ const HomeComponent = ({ navigation }) => {
                 <Text style={styles.RecPrice}>${e.price}</Text>
               </Card>
             );
-          })}
+          }):(
+            <Image
+              source={spinner}
+              style={{ width: 400, height: 400, alignSelf: "center" }}
+            />
+          )}
         </ScrollView>
       </View>
     </View>
@@ -142,13 +108,15 @@ export default HomeComponent;
 const styles = StyleSheet.create({
   PedidosContainer1: {
     paddingHorizontal: width * 0.04,
-
-    height: "60%",
+    
+    minHeight: "100%",
+    flex:1,
+   
   },
   PedidosContainer: {
     paddingHorizontal: width * 0.04,
  
-    height: "30%",
+    height: "32%",
   },
 
   ScrollView: {
@@ -171,6 +139,13 @@ const styles = StyleSheet.create({
     color: "#333542",
     paddingVertical: width * 0.04,
   },
+  SubTitleP1: {
+    fontSize: 20,
+    fontWeight: "700",
+    color: "#333542",
+    marginTop:10,
+    paddingVertical: width * 0.04,
+  },
   logo: {
     width: 300,
     height: 120,
@@ -185,6 +160,7 @@ const styles = StyleSheet.create({
   Hola: {
     fontSize: 32,
     fontWeight: "400",
+    textTransform:"capitalize"
   },
   Bienvenida: {
     lineHeight: 18.75,
@@ -220,6 +196,7 @@ const styles = StyleSheet.create({
   avatar: {
     width: 66,
     height: 66,
+    borderRadius:100
   },
   card: {
     width: width * 0.92,
@@ -287,5 +264,38 @@ const styles = StyleSheet.create({
     fontStyle: "italic",
     
     color:"white"
+  },
+  pedidosCard1: {
+    maxWidth: width * 0.92,
+    width: width * 0.92,
+    border: 0,
+    marginVertical: 5,
+    backgroundColor: "#0f50a7",
+    borderRadius: 8,
+    shadowColor: "#000",
+    height: 84,
+    alignSelf: "center",
+    borderRadius: 12,
+    display: "flex",
+    justifyContent: "center",
+
+    paddingHorizontal: width * 0.04,
+  },
+  PedNum1: {
+    fontSize: 14,
+    fontWeight: "700",
+    color: "white",
+  },
+  PedT1: {
+    fontSize: 14,
+    fontWeight: "300",
+    fontStyle: "italic",
+
+    color: "white",
+  },
+  catch: {
+    alignSelf: "center",
+    fontStyle: "italic",
+    marginTop:heigth*0.05
   },
 });

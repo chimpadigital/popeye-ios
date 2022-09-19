@@ -11,13 +11,14 @@ const Carrito = () => {
   const navigation = useNavigation();
   const Pedido = useSelector((state) => state.Pedido);
   const [total, setTotal]= useState()
+  const [temp, setTemp]=useState(1)
   useEffect(() => {
     let temp = 0
     Pedido.map(e => {
       temp = temp + (e.Precio*e.Cantidad)
     })
     setTotal(temp)
-  }, [Pedido])
+  }, [Pedido, temp])
   
   const onSubmitCarrito = () =>{
     if(!paymentMethod.length){
@@ -33,7 +34,8 @@ const Carrito = () => {
     <>
       <HeaderComponent Atras Titulo="Pedido"  navigation={navigation}/>
       <CarritoComponent navigation={navigation} Pedido={Pedido} total={total} 
-      
+      temp={temp}
+      setTemp={setTemp}
       onSubmitCarrito={onSubmitCarrito}
       />
     </>

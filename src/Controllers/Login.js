@@ -6,14 +6,15 @@ import { SessionHash, user } from "../Redux/actions";
 
 const Login = () => {
   const [form, setForm] = useState({});
-  const [Email, setEmail] = useState("caro_locatelli@hotmail.com");
-  const [Password, setPassword] = useState("CAROLINA");
+  const [Email, setEmail] = useState("baldo.olga@gmail.com");
+  const [Password, setPassword] = useState("BALBO OLGA");
   const [error, setError]= useState(false)
   const [Message, setMessage]= useState("")
   const dispatch = useDispatch();
   const [modalVisible, setModalVisible] = useState(false);
-
+  const [fetching, setFetching] = useState(false);
   const onSubmit = () => {
+    setFetching(true)
   console.log({email:Email, password:Password})
     fetch(`https://devtesting.gq/backend/public/api/Login`, {
       method: "POST",
@@ -27,7 +28,7 @@ const Login = () => {
      
       try {
         const jsonRes = await response.json();
-        if (response.status !== 200) {setError(true); setMessage("Credenciales Invalidas");setModalVisible(true)}
+        if (response.status !== 200) {setFetching(false);setError(true); setMessage("Credenciales Invalidas");setModalVisible(true);}
         else {
          
           dispatch(SessionHash(jsonRes.data));
@@ -41,10 +42,11 @@ const Login = () => {
             const jsonRes = await res.json();
             
             dispatch(user(jsonRes.data));
+            setFetching(false)
           });
         }
       } catch {
-        (err) => console.log(error);
+        (err) => {console.log(error);    setFetching(false)}
       }
     });
   };
@@ -58,6 +60,7 @@ error={error}
 modalVisible={modalVisible}
 setModalVisible={setModalVisible}
 Message={Message}
+fetching={fetching}
 />;
 };
 

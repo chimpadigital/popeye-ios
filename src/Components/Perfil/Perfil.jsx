@@ -9,7 +9,7 @@ import {
 } from "react-native";
 import React from "react";
 import HeaderComponent from "../Elementos/Header/Header";
-import Avatar from "./Avatar.jpg";
+import avatar from "../../assets/NoAvatar.png";
 import { useSelector } from "react-redux";
 const width = Dimensions.get("window").width;
 const heigth = Dimensions.get("window").height;
@@ -26,10 +26,10 @@ function PerfilComponent({ navigation }) {
         Atras={true}
       />
       <View style={styles.imagenContainer}>
-        <Image style={styles.imagen} source={Avatar} />
+      {User.image ? <Image source={{ uri: `https://devtesting.gq/backend/storage/app/public/usuarios/${User.image.substring(1,User.image.length)}` }} style={styles.imagen} />:<Image source={avatar} style={styles.imagen} />}
       </View>
 
-      <Text style={styles.Name}>{`${User.name} ${User.last_name}`}</Text>
+      <Text style={styles.Name}>{`${User.name}`}</Text>
       <View style={styles.DatosContainer}>
         <View style={styles.SubContainer}>
           <Text style={styles.Title}>Email</Text>
@@ -101,11 +101,14 @@ const styles = StyleSheet.create({
     color: "#333542",
   },
   Boton: {
-    width: "100%",
-    height: 50,
+  
+    width:width*0.94,
+    height:56,
+    alignSelf:"center",
     backgroundColor: "#0F50A7",
     borderRadius: 10,
     justifyContent: "center",
+    marginBottom:-42
   },
   BotonText: {
     color: "#FFF",

@@ -1,15 +1,19 @@
 import {
   USER,
   ADD_PRODUCTO,
+  RESET_USER,
+  ADDED,
   DEL_PRODUCTO,
   AMO_PRODUCTO,
   SESSION_HASH,
   PAYMENT_METHOD,
   DEL_PAYMENT_METHOD,
   SHIPPING_METHOD,
+  ADD_PEDIDO
 } from "./actions";
 
 const initialState = {
+  Added: false,
   Pedido: [],
   User: null,
   SessionHash: null,
@@ -24,6 +28,17 @@ export default function reducer(state = initialState, action) {
         ...state,
         User: action.payload,
       };
+    case RESET_USER:
+      return {
+        ...state,
+        User: null,
+      };
+    case ADDED:
+      return {
+        ...state,
+        Added: action.payload,
+      };
+
     case ADD_PRODUCTO:
       if (
         !state.Pedido.filter(
@@ -76,7 +91,25 @@ export default function reducer(state = initialState, action) {
         ShippingMethod: action.payload,
       };
     }
-
+    case ADD_PEDIDO:
+      let temp = state.Pedido
+      console.log("aaaaaaaaaaaaaaaaaaaa", temp)
+      action.payload.map(e=>{
+        if (
+          !state.Pedido.filter(
+            (f) => f.Producto?.name ==e.name
+          ).length
+        ){
+          temp.push({Producto:e,
+            Precio: e.price_unit,
+            Nombre: e.name,
+            Cantidad:e.price_total/e.price_unit})
+        }
+      })
+        return {
+          ...state,
+          Pedido: temp,
+        };
     default:
       return state;
   }

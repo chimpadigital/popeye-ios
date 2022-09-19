@@ -16,7 +16,7 @@ import { Icon } from "react-native-elements/dist/icons/Icon";
 import Casa from "./assets/Casa";
 import Local from "./assets/Local";
 import Deli from "./assets/Deli";
-
+import { useNavigation } from "@react-navigation/native";
 const width = Dimensions.get("window").width;
 const heigth = Dimensions.get("window").height;
 const MetodoEntregaComponent = ({

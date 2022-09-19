@@ -10,6 +10,7 @@ const Catalogo = ({navigation, route}) => {
     // const { id } = route.params;
     const [Cat, setCat]=useState([])
     const hash = useSelector(state=>state.SessionHash)
+    const Added = useSelector(state=>state.Added)
     useEffect(() => {
         fetch(`https://devtesting.gq/backend/public/api/Auth/Rubros`, {
             method: "GET",
@@ -25,7 +26,7 @@ const Catalogo = ({navigation, route}) => {
     }, [hash])
 
     useEffect(()=>{
-      search.length>3&&
+      search.length>=2&&
       fetch(`https://devtesting.gq/backend/public/api/Auth/Productos?pagination=10&search=${search}`, {
             method: "GET",
             headers: {
@@ -37,12 +38,14 @@ const Catalogo = ({navigation, route}) => {
              setProducts(jsonRes.data);
           })
     },[search])
+
   return (
     <CatalogoComponent search={search}
     navigation={navigation}
     setSearch={setSearch}
     products={products}
     Cat={Cat}
+    Added={Added}
     />
   )
 }

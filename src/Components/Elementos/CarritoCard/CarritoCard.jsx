@@ -13,12 +13,13 @@ import { useDispatch } from "react-redux";
 import { amoProducto, delProducto } from "../../../Redux/actions";
 const width = Dimensions.get("window").width;
 const heigth = Dimensions.get("window").height;
-const CarritoCardComponent = ({ Nombre, Precio,  Cantidad, Producto, index }) => {
+const CarritoCardComponent = ({ Nombre, Precio,  Cantidad, Producto, index, setTemp, temp}) => {
   const navigation = useNavigation();
   const dispatch = useDispatch()
   const [cantidad, setCantidad] = useState(Cantidad);
   useEffect(() => {
     dispatch(amoProducto({index:index, cantidad:cantidad}))
+    setTemp(temp+1)
   }, [cantidad])
   
   const dropToCart = ()=>{
@@ -90,6 +91,7 @@ const styles = StyleSheet.create({
     fontSize: 16,
     fontWeight: "700",
     color: "#333542",
+    textTransform:"capitalize"
   },
   RecAmount: {
     color: "#333542",

@@ -10,14 +10,25 @@ import {
 } from "react-native";
 import React from "react";
 import HeaderComponent from "../Elementos/Header/Header";
-import Avatar from "./Avatar.jpg";
+import avatar from "../../assets/NoAvatar.png";
 import { useSelector } from "react-redux";
 import { useNavigation } from "@react-navigation/native";
 import { Button } from "react-native";
 const width = Dimensions.get("window").width;
 const heigth = Dimensions.get("window").height;
-const ModificarUserComponent = ({image,pickImage, form, setForm, onSubmit, User, navigation }) => {
-
+const ModificarUserComponent = ({image,pickImage,  setForm, onSubmit, User, navigation ,name,
+ setEmail,
+ email,
+  setLast_name,
+  address,
+  setAddress,
+  phone,
+  setPhone,}) => {
+    const validate = (email) => {
+      const expression = /(?!.*\.{2})^([a-z\d!#$%&'*+\-\/=?^_`{|}~\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]+(\.[a-z\d!#$%&'*+\-\/=?^_`{|}~\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]+)*|"((([\t]*\r\n)?[\t]+)?([\x01-\x08\x0b\x0c\x0e-\x1f\x7f\x21\x23-\x5b\x5d-\x7e\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]|\\[\x01-\x09\x0b\x0c\x0d-\x7f\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]))*(([\t]*\r\n)?[\t]+)?")@(([a-z\d\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]|[a-z\d\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF][a-z\d\-._~\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]*[a-z\d\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])\.)+([a-z\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]|[a-z\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF][a-z\d\-._~\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]*[a-z\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])\.?$/i;
+  
+      return expression.test(String(email).toLowerCase())
+  }
 
   return (
     <ScrollView style={styles.container}>
@@ -28,29 +39,35 @@ const ModificarUserComponent = ({image,pickImage, form, setForm, onSubmit, User,
         Atras={true}
       />
       <TouchableOpacity onPress={pickImage} style={styles.imagenContainer}>
-      {form.image ? <Image source={{ uri: form.image }} style={styles.imagen} />:<Image source={Avatar} style={styles.imagen} />}
-      
+      {User.image ? <Image source={{ uri: `https://devtesting.gq/backend/storage/app/public/usuarios/${User.image.substring(1,User.image.length)}` }} style={styles.imagen} />
+      :
+      image?
+      <Image source={{ uri: image }} style={styles.imagen} />:
+
+      <Image source={avatar} style={styles.imagen} />}
+      <View style={styles.ButtonFoto}><Text style={styles.ButtonFotoT}>+</Text></View>
       </TouchableOpacity>
 
-      <TextInput placeholder={`${User.name} ${User.last_name}`} onChange={(e=>setForm({...form, name:e.target.value}))} style={styles.Name}></TextInput>
+      <Text style={styles.Name}>{`${User.name} ${User.last_name?User.last_name:""}`}</Text>
       <View style={styles.DatosContainer}>
         <View style={styles.SubContainer}>
           <Text style={styles.Title}>Email </Text>
-          <Text style={styles.SubTitle}>{User.email}</Text>
+          <TextInput placeholder={User.email ? User.email : "No definido"} onChangeText={setEmail} style={styles.SubTitle}></TextInput>
+          {validate(email)!==true?<Text>Ingrese un email valido</Text>:<Text></Text>}
         </View>
         <View style={styles.SubContainer}>
           <Text style={styles.Title}>Teléfono</Text>
-          <TextInput placeholder={User.phone ? User.phone : "No definido"} onChange={(e=>setForm({...form, phone:e.target.value}))} style={styles.SubTitle}>
+          <TextInput placeholder={User.phone ? User.phone : "No definido"} onChangeText={setPhone} style={styles.SubTitle}>
             
           </TextInput>
         </View>
         <View style={styles.SubContainer}>
           <Text style={styles.Title}>Dirección</Text>
-          <TextInput placeholder={User.address ? User.address : "No definido"} onChange={(e=>setForm({...form, address:e.target.value}))} style={styles.SubTitle}>
+          <TextInput placeholder={User.address ? User.address : "No definido"} onChangeText={setAddress} style={styles.SubTitle}>
            
           </TextInput>
         </View>
-        <TouchableOpacity style={styles.Boton} onPress={onSubmit}>
+        <TouchableOpacity   style={styles.Boton} onPress={onSubmit}>
           <Text style={styles.BotonText}>Modificar</Text>
         </TouchableOpacity>
       </View>
@@ -110,11 +127,14 @@ const styles = StyleSheet.create({
     color: "#333542",
   },
   Boton: {
-    width: "100%",
-    height: 50,
+   
+    width:width*0.94,
+    height:56,
+    alignSelf:"center",
     backgroundColor: "#0F50A7",
     borderRadius: 10,
     justifyContent: "center",
+    marginBottom:-42
   },
   BotonText: {
     color: "#FFF",
@@ -124,4 +144,22 @@ const styles = StyleSheet.create({
     height: "11%",
     justifyContent: "space-between",
   },
+  ButtonFoto: {
+    backgroundColor:"#0F50A7",
+    width:48,
+    height:48,
+    borderRadius:100,
+    alignItems:"center",
+    justifyContent:"center",
+    position:"absolute",
+    bottom:heigth*0.05,
+    left:width*0.6
+  },
+  ButtonFotoT:{
+    fontSize:27,
+    color:"white",
+    fontWeight:"600",
+    marginBottom:2,
+   
+  }
 });

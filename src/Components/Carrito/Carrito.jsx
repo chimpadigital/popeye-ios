@@ -14,7 +14,11 @@ const width = Dimensions.get("window").width;
 const heigth = Dimensions.get("window").height;
 import { Divider } from "react-native-elements";
 
-const CarritoComponent = ({ Pedido, navigation, total,onSubmitCarrito }) => {
+import spinner from "../../assets/spinner.gif"
+import { Image } from "react-native";
+
+const CarritoComponent = ({ Pedido, navigation, total,onSubmitCarrito ,temp,
+  setTemp,}) => {
 
 
   return (
@@ -30,11 +34,13 @@ const CarritoComponent = ({ Pedido, navigation, total,onSubmitCarrito }) => {
               navigation={navigation}
               Producto={e.Producto}
               index={index}
+              setTemp={setTemp}
+              temp={temp}
             />)
         })
          
       : (
-          <Text>asdsada</Text>
+       <Text style={{textAlign:"center"}}>Agrega productos</Text>
         )}
       </ScrollView>
       <View style={styles.CheckOut}>
@@ -74,7 +80,7 @@ const styles = StyleSheet.create({
     flex: 1,
     flexDirection: "column",
     backgroundColor: "#fff",
-
+    paddingTop:20,
     paddingBottom: 200,
   },
   boton: {

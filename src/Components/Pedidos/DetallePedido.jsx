@@ -15,8 +15,11 @@ import { useNavigation } from "@react-navigation/native";
 import HeaderComponent from "../Elementos/Header/Header";
 import { Divider } from "react-native-elements";
 const width = Dimensions.get("window").width;
+import { addPedido } from "../../Redux/actions";
+import { useDispatch } from "react-redux";
 const heigth = Dimensions.get("window").height;
 const DetallePedidoComponent = ({route}) => {
+  const dispatch	= useDispatch()
   const navigation = useNavigation();
   const { Pedido } = route.params;
   
@@ -75,12 +78,13 @@ const DetallePedidoComponent = ({route}) => {
 
           <View style={styles.butonContainer}>
             <TouchableOpacity
+            
               onPressOut={() => setIsVisible(!isVisible)}
               style={styles.loginButton}
             >
               <Text style={styles.loginButtonText}>EDITAR EL PEDIDO</Text>
             </TouchableOpacity>
-            <TouchableOpacity style={styles.SignUpButton}>
+            <TouchableOpacity style={styles.SignUpButton} onPress={()=>{Pedido&&dispatch(addPedido(Pedido.reports)); setIsVisible(!isVisible)}}>
               <Text style={styles.SingUpTextButton}>
                 VOLVER A REALIZAR EL PEDIDO
               </Text>

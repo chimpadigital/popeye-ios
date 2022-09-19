@@ -10,6 +10,7 @@ const heigth = Dimensions.get("window").height;
 const LoginComponent = ({onSubmit, form, setForm,Email,error,
   setEmail,
   Password,
+  fetching,
   setPassword,
   modalVisible,
   setModalVisible,
@@ -31,11 +32,11 @@ const navigation = useNavigation()
         <Text style={styles.formText}>Email o nombre de usuario</Text>
         <TextInput value={Email} placeholder= {"Ingresa tu email"}  style={styles.Input} autoCapitalize="none" onChangeText={setEmail}></TextInput>
         <Text style={styles.formText}>Contraseña</Text>
-        <TextInput value={Password} onChangeText={setPassword} secureTextEntry={false} placeholder= {"Ingresa tu contraseña"} style={styles.Input}></TextInput>
+        <TextInput  value={Password} onChangeText={setPassword} secureTextEntry={true} placeholder= {"Ingresa tu contraseña"} style={styles.Input}></TextInput>
     
         <TouchableOpacity onPress={()=>navigation.navigate("ResetPass")} style={{display:"flex"}}>
         <Text style={styles.forgott}>¿Olvidaste tu contraseña?</Text></TouchableOpacity>
-        <TouchableOpacity  style={styles.loginButton} onPress={onSubmit} ><Text style={styles.loginButtonText}>INICIAR SESIÓN</Text></TouchableOpacity >
+        <TouchableOpacity  style={styles.loginButton} onPress={onSubmit} ><Text style={styles.loginButtonText}>{fetching?"...":"INICIAR SESIÓN"}</Text></TouchableOpacity >
       </View>
       <Text style={styles.SingUpText}>¿No tenés cuenta? Registrate</Text>
       <View style={styles.SignUpButton} ><Text style={styles.SingUpTextButton}>REGISTRATE</Text></View>

@@ -8,7 +8,7 @@ import {
 import React, { useState } from "react";
 import { Card } from "react-native-elements/dist/card/Card";
 import { Icon } from "react-native-elements/dist/icons/Icon";
-import { addProducto, delProducto } from "../../../Redux/actions";
+import { Added, addProducto, delProducto } from "../../../Redux/actions";
 import { useDispatch } from "react-redux";
 const width = Dimensions.get("window").width;
 const heigth = Dimensions.get("window").height;
@@ -23,6 +23,10 @@ const ProductoCardComponent = ({ Producto, navigation,cat,subCat}) => {
         Nombre: Producto.name,
         Cantidad:1
       }))
+      dispatch(Added(true))
+      setTimeout(()=>{
+        dispatch(Added(false))
+      },4000)
   }
 
   return (

@@ -7,9 +7,10 @@ import ProductoCardComponent from '../Elementos/ProductoCard/ProductoCard';
 import {DataTemp} from "../../../dataTemo"
 import { Image } from 'react-native';
 import { Icon } from 'react-native-elements/dist/icons/Icon';
+import spinner from "../../assets/spinner.gif"
 const width = Dimensions.get("window").width;
 const heigth = Dimensions.get("window").height;
-const ProductosCategoriaComponent = ({navigation, route,Prod,cat,Pagination, setPagination,
+const ProductosCategoriaComponent = ({navigation, route,Prod,cat,Pagination, setPagination,Added,
   subCat}) => {
   
   return (<>
@@ -33,10 +34,12 @@ const ProductosCategoriaComponent = ({navigation, route,Prod,cat,Pagination, set
           );
         })
       :
-      <Image source={{uri: "https://gifimage.net/wp-content/uploads/2018/04/loading-bar-animated-gif-transparent-background-6.gif"}}  
-      style={{width: 300, height:300, alignSelf:"center"}} />}
+      <Image
+      source={spinner}
+      style={{ width: 400, height: 400, alignSelf: "center" }}
+    />}
       </View>
-      {Prod?.data?
+      {Prod?.data?.length==10?
       <View style={styles.PaginationBox}>
         <View style={styles.GoBack}>
         <Icon
@@ -57,7 +60,17 @@ const ProductosCategoriaComponent = ({navigation, route,Prod,cat,Pagination, set
           />
         </View>  
       </View> :<></>}
-      </ScrollView></>
+      </ScrollView>
+      {Added && (
+        <View style={styles.AddedCont}>
+          <Text style={styles.AddedContText}>
+            ¡El producto ha sido agregado al pedido con éxito!
+          </Text>
+          <TouchableOpacity onPress={() => navigation.navigate("Carrito")}>
+            <Text style={styles.AddedContBut}>IR AL PEDIDO</Text>
+          </TouchableOpacity>
+        </View>
+      )}</>
   )
 }
 
@@ -170,5 +183,27 @@ const styles = StyleSheet.create({
         display:"flex",
         justifyContent:"center"
         
-      }
+      },
+      AddedCont: {
+        backgroundColor: "rgba(0, 0, 0, 0.87)",
+        width: width,
+        height: 74,
+        position: "absolute",
+        bottom: heigth*0.1,
+        display: "flex",
+        flexDirection: "row",
+        justifyContent: "space-between",
+        paddingHorizontal: width * 0.05,
+        alignItems: "center",
+      },
+      AddedContText: {
+        color: "white",
+        maxWidth: "54%",
+        LetterSpacing: 0.25,
+        lineHeight: 20,
+      },
+      AddedContBut: {
+        color: "#56CCF2",
+        fontWeight: "700",
+      },
 })

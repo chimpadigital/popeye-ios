@@ -6,16 +6,13 @@ import {
   StyleSheet,
   Text,
   TouchableOpacity,
+  
   View,
 } from "react-native";
 import React from "react";
-import { SearchBar } from "react-native-elements";
-import Art from "./assets/art.jsx";
-import Escr from "./assets/escr.jsx";
-import Esc from "./assets/esc.jsx";
-import Com from "./assets/com.jsx";
-import Pap from "./assets/pap.jsx";
-import Cuad from "./assets/cuad.jsx";
+
+
+
 import faber from "./assets/faber.png";
 import maped from "./assets/maped.png";
 import paper from "./assets/paper.png";
@@ -32,11 +29,11 @@ import Ocho from "./assets/8.jsx";
 import Nueve from "./assets/9.jsx";
 
 
+import spinner from "../../assets/spinner.gif"
 
-import { Icon } from "react-native-elements/dist/icons/Icon.js";
-import { Card } from "react-native-elements/dist/card/Card.js";
 import HeaderComponent from "../Elementos/Header/Header";
 import ProductoCardComponent from "../Elementos/ProductoCard/ProductoCard.jsx";
+import { SearchBar } from "react-native-elements";
 const width = Dimensions.get("window").width;
 const heigth = Dimensions.get("window").height;
 const CatalogoComponent = ({
@@ -44,6 +41,7 @@ const CatalogoComponent = ({
   navigation,
   search,
   setSearch,
+  Added,
   products,
   Cat,
 }) => {
@@ -55,7 +53,7 @@ const CatalogoComponent = ({
         navigation={navigation}
         Titulo="Catálogo"
         Atras={false}
-        Carrito={true}
+       
       />
       <ScrollView style={styles.container}>
         <SearchBar
@@ -68,7 +66,7 @@ const CatalogoComponent = ({
           inputContainerStyle={styles.SearchBar}
           containerStyle={styles.SearchBarC}
         />
-        {search.length > 4 ? (
+        {search.length >= 2 ? (
           <ScrollView style={{ paddingBottom: 100 }}>
             {products?.data?.length ? (
               products?.data?.map((e, index) => {
@@ -80,10 +78,8 @@ const CatalogoComponent = ({
               })
             ) : (
               <Image
-                source={{
-                  uri: "https://gifimage.net/wp-content/uploads/2018/04/loading-bar-animated-gif-transparent-background-6.gif",
-                }}
-                style={{ width: 300, height: 300, alignSelf: "center" }}
+                source={spinner}
+                style={{ width: 400, height: 400, alignSelf: "center" }}
               />
             )}
           </ScrollView>
@@ -92,10 +88,11 @@ const CatalogoComponent = ({
             <View style={styles.CatContainer}>
               <Text style={styles.SubTitle}>Categorías</Text>
               <View style={styles.CatIconosContainer}>
-                {Cat ? (
+                {Cat.data ? (
+
                   Cat.data?.map((e,i) => {
              
-                    console.log(i, "aaa");
+                    console.log(i, e.name);
                     if (e.name !== "PARA DESCARTAR")
                       return (
                         <View style={styles.CatInd}>
@@ -113,8 +110,8 @@ const CatalogoComponent = ({
                               i==3?<Seis/>:
                               i==4?<Ocho/>:
                               i==5?<Cuatro/>:
-                              i==8?<Uno/>:
-                              i==7?<Dos/>:
+                              i==7?<Uno/>:
+                              i==8?<Tres/>:
                               i==9?<Nueve/>:
                               <Siete/>
                             }
@@ -127,18 +124,21 @@ const CatalogoComponent = ({
                   })
                 ) : (
                   <Image
-                    source={{
-                      uri: "https://gifimage.net/wp-content/uploads/2018/04/loading-bar-animated-gif-transparent-background-6.gif",
-                    }}
-                    style={{ width: 300, height: 300, alignSelf: "center" }}
+                    source={spinner}
+                    style={{ width: width*0.92, height: 400, marginBottom:-65  }}
                   />
                 )}
               </View>
             </View>
-            <TouchableOpacity  style={styles.loginButton} ><Text style={styles.loginButtonText}>DESCARGAR CATÁLOGO (.csv)</Text></TouchableOpacity >
           </>
         )}
+      <TouchableOpacity  style={styles.loginButton} ><Text style={styles.loginButtonText}>DESCARGAR CATÁLOGO (.csv)</Text></TouchableOpacity >
       </ScrollView>
+{Added&&<View style={styles.AddedCont}>
+  <Text style={styles.AddedContText}>¡El producto ha sido agregado al pedido con éxito!</Text>
+  <TouchableOpacity onPress={()=>navigation.navigate("Carrito")}>
+  <Text style={styles.AddedContBut}>IR AL PEDIDO</Text></TouchableOpacity>
+  </View>}
     </>
   );
 };
@@ -173,9 +173,10 @@ const styles = StyleSheet.create({
     display: "flex",
     flexDirection: "column",
     backgroundColor: "#fff",
-    minHeight: "100%",
+    minHeight: heigth,
     paddingBottom: 100,
     flex: 1,
+  
   },
   container1: {
     display: "flex",
@@ -184,15 +185,18 @@ const styles = StyleSheet.create({
     minHeight: "100%",
     justifyContent: "flex-start",
     maxHeight: heigth * 0.3,
+    
   },
   loginButton: {
-    marginVertical:30,
+    
+    marginTop:"38%",
     width:width*0.94,
     height:56,
-    paddingBottom:3, 
+ 
     justifyContent:"center",
     backgroundColor:"#0F50A7",
     alignSelf:"center",
+    
     borderRadius:10,
     display:"flex",
     alignItems:"center"
@@ -214,6 +218,7 @@ const styles = StyleSheet.create({
   SearchBarC: {
     backgroundColor: "white",
     fontSize: 8,
+    paddingTop:20,
     paddingHorizontal: width * 0.04,
     width: "100%",
   },
@@ -222,7 +227,8 @@ const styles = StyleSheet.create({
   },
   SubTitle: {
     fontSize: 20,
-    fontWeight: "600",
+    fontFamily:"Roboto-Medium",
+    fontWeight:"00",
     color: "#333542",
   },
   CatContainer: {
@@ -303,5 +309,27 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     backgroundColor: "#FFF",
     borderWidth: 0,
+  },
+  AddedCont:{
+    backgroundColor:"rgba(0, 0, 0, 0.87)",
+    width:width,
+    height:74,
+    position:"absolute",
+    bottom:heigth*0.1,
+    display:"flex",
+    flexDirection:"row",
+    justifyContent:"space-between",
+    paddingHorizontal:width*0.05,
+    alignItems:"center"
+  },
+AddedContText:{
+  color:"white",
+  maxWidth:"54%",
+  LetterSpacing: 0.25,
+  lineHeight:20
+}
+ , AddedContBut:{
+  color:"#56CCF2",
+  fontWeight:"700"
   },
 });

@@ -6,6 +6,7 @@ import {
   TouchableOpacity,
   Dimensions,
   Modal,
+  ScrollView,
   KeyboardAvoidingView
 } from "react-native";
 import React from "react";
@@ -13,6 +14,7 @@ import { useNavigation } from "@react-navigation/native";
 import HeaderComponent from "../Elementos/Header/Header";
 import EditIcon from "./assets/EditIcon";
 import { Divider, Icon } from "react-native-elements";
+
 const width = Dimensions.get("window").width;
 const heigth = Dimensions.get("window").height;
 const CheckoutComponent = ({
@@ -33,8 +35,11 @@ const CheckoutComponent = ({
   const navigation = useNavigation();
   return (
     <View style={styles.container}>
+ 
       <HeaderComponent Atras Titulo="Finalizar Pedido" navigation={navigation} />
-      <View style={styles.OptionContainer}>
+
+      <ScrollView style={{minHeight:heigth*0.85, paddingBottom:50 }}>
+    <View style={styles.OptionContainer}>
         <View>
           <Text style={styles.Title}>Método de pago</Text>
           <TouchableOpacity
@@ -86,9 +91,10 @@ const CheckoutComponent = ({
             <EditIcon />
           </TouchableOpacity>
         </View>
+        <KeyboardAvoidingView behavior="padding" keyboardVerticalOffset={0}>
         <View>
           <Text style={styles.Title}>Observaciones</Text>
-          <KeyboardAvoidingView behavior='position' keyboardVerticalOffset={0}>
+          
           <TextInput
             value={observation}
             onChangeText={setObservation}
@@ -96,9 +102,12 @@ const CheckoutComponent = ({
             multiline
             numberOfLines={10}
             style={styles.TexTarea}
-          ></TextInput></KeyboardAvoidingView>
-        </View>
+          ></TextInput>
+        </View>  
+        </KeyboardAvoidingView>
       </View>
+    
+        </ScrollView>
       <View style={styles.CheckOut}>
         <View style={styles.Row1}>
           <Text style={styles.PrecioSubTitle}>Precio total</Text>
@@ -143,6 +152,7 @@ const CheckoutComponent = ({
           </View>
         </View>
       </Modal></View>
+
 
 
     </View>
@@ -195,10 +205,10 @@ const styles = StyleSheet.create({
     display: "flex",
     flexDirection: "column",
     backgroundColor: "#fff",
-    minHeight: "100%",
-    maxHeight: "100%",
-    paddingBottom: 100,
-  },
+    minHeight: heigth*0.96,
+    maxHeight: heigth*0.96,
+    flex:1
+      },
   Title: {
     fontSize: 16,
     color: "#0F50A7",
@@ -240,10 +250,11 @@ const styles = StyleSheet.create({
   },
   OptionContainer: {
     justifyContent: "space-between",
-    height: "75%",
+    height: heigth*0.65,
     width: width * 0.94,
     alignSelf: "center",
     paddingTop: heigth * 0.04,
+
   },
 
   CheckOut: {
@@ -289,6 +300,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     flexDirection: "row",
     alignSelf: "center",
+    marginBottom:heigth*0.01
   },
   botonText: {
     fontSize: 14,
