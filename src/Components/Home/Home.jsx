@@ -81,7 +81,8 @@ const HomeComponent = ({ navigation, User,
             />
           </View> */}
         </View>
-        <ScrollView style={styles.ScrollView}>
+        <ScrollView style={styles.ScrollView1}>
+          <View style={{ paddingBottom:40}}>
           {products.data?
           products.data.map((e) => {
             return (
@@ -96,7 +97,7 @@ const HomeComponent = ({ navigation, User,
               source={spinner}
               style={{ width: 400, height: 400, alignSelf: "center" }}
             />
-          )}
+          )}</View>
         </ScrollView>
       </View>
     </View>
@@ -108,7 +109,7 @@ export default HomeComponent;
 const styles = StyleSheet.create({
   PedidosContainer1: {
     paddingHorizontal: width * 0.04,
-    
+ 
     minHeight: "100%",
     flex:1,
    
@@ -123,7 +124,16 @@ const styles = StyleSheet.create({
     flex: 1,
     display: "flex",
     minHeight: heigth * 0.25,
-    paddingBottom: 15,
+    
+    width: width,
+    paddingBottom: 150,
+    alignSelf: "center",
+  },
+  ScrollView1: {
+    flex: 1,
+    display: "flex",
+    minHeight: heigth * 0.35,
+    
     width: width,
     paddingBottom: 150,
     alignSelf: "center",
@@ -199,7 +209,7 @@ const styles = StyleSheet.create({
     borderRadius:100
   },
   card: {
-    width: width * 0.92,
+    width: width * 0.91,
     elevation: 4,
     shadowColor: "#000",
     height: 96,

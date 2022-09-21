@@ -1,14 +1,14 @@
 {
   "expo": {
-    "name": "popeye-front",
-    "slug": "popeye-front",
-    "version": "1.0.2",
+    "name": "Popeye-App",
+    "slug": "Popeye-App",
+    "version": "1.0.3",
     "orientation": "portrait",
     "icon": "./assets/ico1.png",
     "userInterfaceStyle": "light",
     "splash": {
       "image": "./assets/splash1.png",
-      "resizeMode": "contain",
+      "resizeMode": "cover",
       "backgroundColor": "#0F50A7"
     },
     "updates": {

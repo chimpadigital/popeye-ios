@@ -6,6 +6,7 @@ import {
   DEL_PRODUCTO,
   AMO_PRODUCTO,
   SESSION_HASH,
+  RESET_ADDED,
   PAYMENT_METHOD,
   DEL_PAYMENT_METHOD,
   SHIPPING_METHOD,
@@ -38,7 +39,11 @@ export default function reducer(state = initialState, action) {
         ...state,
         Added: action.payload,
       };
-
+      case RESET_ADDED:
+        return {
+          ...state,
+          Added: false,
+        };
     case ADD_PRODUCTO:
       if (
         !state.Pedido.filter(

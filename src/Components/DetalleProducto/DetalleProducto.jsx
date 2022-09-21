@@ -13,7 +13,9 @@ import HeaderComponent from "../Elementos/Header/Header";
 import notfound from "./notfound.png";
 import ColorSelectComponent from "../Elementos/ColorSelect/ColorSelect";
 import NoPhoto from "../../assets/NoPhoto";
+import FULL from "./FULL.png";
 import { Icon } from "react-native-elements";
+import { TouchableHighlight } from "react-native";
 const width = Dimensions.get("window").width;
 const heigth = Dimensions.get("window").height;
 
@@ -23,6 +25,8 @@ const DetalleProductoComponent = ({
   Added,
   addToCart,
   Producto,
+  FS,
+  setFS,
   navigation,
 }) => {
   return (
@@ -34,13 +38,21 @@ const DetalleProductoComponent = ({
           Atras={true}
         />
         {Producto.image ? (
-          <Image source={Producto.image} style={styles.image} />
+          <Image
+            source={{
+              uri: `https://devtesting.gq/assets/image/articles/${Producto.image.substring(
+                1,
+                Producto.image.length
+              )}`,
+            }}
+            style={styles.image}
+          />
         ) : (
           <View
             style={{
               backgroundColor: "#979797",
               width: width,
-              height: heigth * 0.2,
+              height: heigth * 0.25,
               display: "flex",
               alignItems: "center",
               justifyContent: "center",
@@ -49,6 +61,12 @@ const DetalleProductoComponent = ({
             <NoPhoto />
           </View>
         )}
+        <TouchableOpacity
+          style={{ position: "absolute", top: heigth * 0.287, right: 10 }}
+          onPress={() => setFS(!FS)}
+        >
+          <Image source={FULL} />
+        </TouchableOpacity>
 
         <View style={styles.textContanier}>
           <Text style={styles.Title}>{Producto.name}</Text>
@@ -108,6 +126,24 @@ const DetalleProductoComponent = ({
           </TouchableOpacity>
         </View>
       )}
+      {FS && (
+        <View style={styles.FullContainer}>
+          <TouchableHighlight style={styles.close} onPress={() => setFS(!FS)}>
+            <Text style={{ color: "#0F50A7", fontWeight: "700", fontSize: 20 }}>
+              X
+            </Text>
+          </TouchableHighlight>
+          <Image
+            source={{
+              uri: `https://devtesting.gq/assets/image/articles/${Producto.image.substring(
+                1,
+                Producto.image.length
+              )}`,
+            }}
+            style={styles.FullImage}
+          />
+        </View>
+      )}
     </View>
   );
 };
@@ -115,10 +151,39 @@ const DetalleProductoComponent = ({
 export default DetalleProductoComponent;
 
 const styles = StyleSheet.create({
+  close: {
+    position: "absolute",
+    top: 40,
+    right: 20,
+    backgroundColor: "white",
+    width: 35,
+    height: 35,
+    borderRadius: 50,
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    zIndex:99
+  },
+  FullImage: {
+    width: width,
+    height: heigth,
+
+    resizeMode: "contain",
+  },
+  FullContainer: {
+    position: "absolute",
+    height: heigth,
+    width: width,
+    backgroundColor: "rgba(0, 0, 0, 0.274)",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    top: 0,
+  },
   container: {
     display: "flex",
     flexDirection: "column",
- 
+
     minHeight: heigth,
 
     paddingBottom: 100,
@@ -238,7 +303,7 @@ const styles = StyleSheet.create({
     borderRadius: 6,
     alignItems: "center",
     justifyContent: "center",
-    marginHorizontal:5
+    marginHorizontal: 5,
   },
 
   CantidadMenos: {
@@ -275,14 +340,20 @@ const styles = StyleSheet.create({
   },
   image: {
     minWidth: width,
-    maxHeight: heigth * 0.2,
+    minHeight: heigth * 0.25,
+    maxHeight: heigth * 0.25,
+  },
+  full: {
+    position: "absolute",
+    top: heigth * 0.287,
+    right: 10,
   },
   AddedCont: {
     backgroundColor: "rgba(0, 0, 0, 0.87)",
     width: width,
     height: 74,
     position: "absolute",
-    bottom: heigth*0.1,
+    bottom: heigth * 0.1,
     display: "flex",
     flexDirection: "row",
     justifyContent: "space-between",

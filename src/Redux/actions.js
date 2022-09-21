@@ -8,6 +8,7 @@ export const PAYMENT_METHOD = "PAYMENT_METHOD";
 export const DEL_PAYMENT_METHOD = "DEL_PAYMENT_METHOD";
 export const SHIPPING_METHOD = "SHIPPING_METHOD";
 export const ADDED = "ADDED";
+export const RESET_ADDED = "RESET_ADDED";
 export const RESET_USER = "RESET_USER"
 export const ADD_PEDIDO = "ADD_PEDIDO"
 
@@ -33,6 +34,12 @@ export function Added(payload) {
   return {
     type: ADDED,
     payload: payload,
+  };
+}
+export function resetAdded() {
+  return {
+    type: RESET_ADDED,
+    
   };
 }
 

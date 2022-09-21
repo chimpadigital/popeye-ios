@@ -7,6 +7,7 @@ import { useDispatch, useSelector } from 'react-redux';
 
 const DetalleProducto = ({route}) => {
     const { Producto, navigation} = route.params;
+    const [FS, setFS] = useState(false)
       const [cantidad, setCantidad] = useState(1)
       const dispatch = useDispatch()
       const Added = useSelector(state=>state.Added)
@@ -15,7 +16,7 @@ const DetalleProducto = ({route}) => {
           Producto:Producto,
           Precio: Producto.price,
           Nombre: Producto.name,
-          Cantidad:1
+          Cantidad:cantidad
         }))
         dispatch(ADD(true))
         setTimeout(()=>{
@@ -30,6 +31,8 @@ const DetalleProducto = ({route}) => {
     Producto={Producto}
     navigation={navigation}
     Added={Added}
+    FS={FS}
+setFS={setFS}
     />
   )
 }
