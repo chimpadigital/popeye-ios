@@ -24,7 +24,7 @@ const ProductosCategoriaComponent = ({navigation, route,Prod,cat,Pagination, set
         >
           <Escr />
         </TouchableOpacity>
-        <Text style={styles.CatTitle}>{cat} {'>'} {subCat}</Text>
+        <Text style={styles.CatTitle} numberOfLines={2}>{cat} {'>'} {subCat}</Text>
       </View>
       <View >
       {Prod?.data?
@@ -122,10 +122,12 @@ const styles = StyleSheet.create({
         justifyContent: "center",
       },
       CatTitle: {
+        paddingRight:40,
         fontSize: 16,
         color: "#0F50A7",
         fontWeight: "700",
-        maxWidth:"80%"
+        maxWidth:"80%",
+        
       },
       RecName: {
         fontSize: 14,

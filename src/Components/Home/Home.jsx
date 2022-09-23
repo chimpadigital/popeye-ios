@@ -86,10 +86,10 @@ const HomeComponent = ({ navigation, User,
           {products.data?
           products.data.map((e) => {
             return (
-              <Card containerStyle={styles.card}>
+              <Card containerStyle={styles.card} >
                 <Text style={styles.RecName}>{e.name}</Text>
                 <Text style={styles.RecAmount}>{e.amount}</Text>
-                <Text style={styles.RecPrice}>${e.price}</Text>
+                <Text style={styles.RecPrice}>${parseFloat(e.price).toFixed(2)}</Text>
               </Card>
             );
           }):(

@@ -10,6 +10,7 @@ import {
   PAYMENT_METHOD,
   DEL_PAYMENT_METHOD,
   SHIPPING_METHOD,
+  ONBOARD,
   ADD_PEDIDO
 } from "./actions";
 
@@ -20,6 +21,7 @@ const initialState = {
   SessionHash: null,
   PaymentMethod: [],
   ShippingMethod: null,
+  OnBoard:true
 };
 
 export default function reducer(state = initialState, action) {
@@ -29,6 +31,11 @@ export default function reducer(state = initialState, action) {
         ...state,
         User: action.payload,
       };
+      case ONBOARD:
+        return {
+          ...state,
+          OnBoard: false,
+        };
     case RESET_USER:
       return {
         ...state,

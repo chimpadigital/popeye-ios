@@ -10,19 +10,22 @@ import {
 import React from "react";
 import HeaderComponent from "../Elementos/Header/Header";
 import avatar from "../../assets/NoAvatar.png";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { resetUser } from "../../Redux/actions";
+
 const width = Dimensions.get("window").width;
 const heigth = Dimensions.get("window").height;
 
 function PerfilComponent({ navigation }) {
   const User = useSelector((state)=>state.User)
+  const dispatch = useDispatch();
   console.log(User)
   return (
     <ScrollView style={styles.container}>
       <HeaderComponent
       Carrito={true}
         navigation={navigation}
-        Titulo="Asesor Comercial"
+        Titulo="Perfil"
         Atras={true}
       />
       <View style={styles.imagenContainer}>
@@ -47,6 +50,9 @@ function PerfilComponent({ navigation }) {
         </View>
         <TouchableOpacity style={styles.Boton} onPress={()=>navigation.navigate("ModificarUser") }>
           <Text style={styles.BotonText}>MODIFICAR DATOS DEL PERFIL</Text>
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.Boton1} onPress={()=>dispatch(resetUser()) }>
+          <Text style={styles.BotonText}>CERRAR SESION</Text>
         </TouchableOpacity>
       </View>
     </ScrollView>
@@ -102,6 +108,16 @@ const styles = StyleSheet.create({
   },
   Boton: {
   
+    width:width*0.94,
+    height:56,
+    alignSelf:"center",
+    backgroundColor: "#0F50A7",
+    borderRadius: 10,
+    justifyContent: "center",
+    marginBottom:-42
+  },
+  Boton1: {
+    marginTop:25,
     width:width*0.94,
     height:56,
     alignSelf:"center",

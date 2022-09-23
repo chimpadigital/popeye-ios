@@ -78,7 +78,7 @@ const DetallePedidoComponent = ({route}) => {
 
           <View style={styles.butonContainer}>
             <TouchableOpacity
-            
+            onPress={()=>{Pedido&&dispatch(addPedido(Pedido.reports));navigation.navigate("Carrito") }}
               onPressOut={() => setIsVisible(!isVisible)}
               style={styles.loginButton}
             >

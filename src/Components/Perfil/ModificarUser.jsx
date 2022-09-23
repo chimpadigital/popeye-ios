@@ -35,20 +35,18 @@ const ModificarUserComponent = ({image,pickImage,  setForm, onSubmit, User, navi
       <HeaderComponent
         Carrito={true}
         navigation={navigation}
-        Titulo="Asesor Comercial"
+        Titulo="Perfil"
         Atras={true}
       />
       <TouchableOpacity onPress={pickImage} style={styles.imagenContainer}>
-      {User.image ? <Image source={{ uri: `https://devtesting.gq/backend/storage/app/public/usuarios/${User.image.substring(1,User.image.length)}` }} style={styles.imagen} />
-      :
-      image?
+      {image?
       <Image source={{ uri: image }} style={styles.imagen} />:
 
-      <Image source={avatar} style={styles.imagen} />}
+      <Image source={{ uri: `https://devtesting.gq/backend/storage/app/public/usuarios/${User.image.substring(1,User.image.length)}` }} style={styles.imagen} />}
       <View style={styles.ButtonFoto}><Text style={styles.ButtonFotoT}>+</Text></View>
       </TouchableOpacity>
 
-      <Text style={styles.Name}>{`${User.name} ${User.last_name?User.last_name:""}`}</Text>
+      <Text style={styles.Name}>{`${User.name}`}</Text>
       <View style={styles.DatosContainer}>
         <View style={styles.SubContainer}>
           <Text style={styles.Title}>Email </Text>

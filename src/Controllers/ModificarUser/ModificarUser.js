@@ -9,7 +9,7 @@ import { Constants, DocumentPicker } from "expo";
 const ModificarUser = () => {
   const User = useSelector((state) => state.User);
   const navigation = useNavigation();
-  const [image, setImage] = useState( User.image?`https://devtesting.gq/backend/storage/app/public/usuarios/${User.image.substring(1,User.image.length)}`:"");
+  const [image, setImage] = useState( User.image?User.image:"");
   const [name, setName] = useState(User.name);
   const [last_name, setLast_name] = useState(User.last_name);
   const [address, setAddress] = useState(User.address);
@@ -22,7 +22,7 @@ const ModificarUser = () => {
   const onSubmit = async () => {
     // let temp = form.name.split(" ");
     // setForm({ ...form, name: temp[0], last_name: temp[1] });
-  
+  console.log({ phone:phone, address:address, image_64:image, type_image:type_image})
     try {
       fetch(`https://devtesting.gq/backend/public/api/Auth/Me/Actualizar`, {
         method: "POST",
@@ -35,8 +35,11 @@ const ModificarUser = () => {
       })
         .then(async (res) => {
           const jsonRes = await res.json();
+          res.status==200?
+          
 
-           dispatch(user(jsonRes.data));
+           dispatch(user(jsonRes.data)):
+           navigation.navigate("Perfil");
         })
         
         
@@ -59,6 +62,7 @@ const ModificarUser = () => {
       allowsEditing: true,
       aspect: [4, 4],
       quality: 1,
+      base64:true
     });
 
     console.log(result);
@@ -67,17 +71,17 @@ const ModificarUser = () => {
       // Convert URI to a Blob via XHTML request, and actually upload it to the network
     
         let type 
-        result.uri.substring(11,14)=="jpe"?
+        result.uri.substring(result.uri.length-3,result.uri.length)=="jpe"?
         type = "jpeg":
-        type =  result.uri.substring(11,14)
+        type =  result.uri.substring(result.uri.length-3,result.uri.length)
 
-        setImage(result.uri)
+        setImage(result.base64)
         setType_image(type)
     
     }
 
   };
-
+console.log("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",image)
   return (
     <ModificarUserComponent
       pickImage={pickImage}

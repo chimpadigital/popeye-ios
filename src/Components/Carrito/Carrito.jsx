@@ -54,7 +54,7 @@ const CarritoComponent = ({ Pedido, navigation, total,onSubmitCarrito ,temp,
           <Text style={styles.PrecioSubTitle}>Precio total</Text>
           <Text style={styles.PrecioTitle}>${total?total.toFixed(2):0}</Text>
         </View>
-        <Text style={styles.FormaPago}>Modificar forma de pago</Text>
+        <TouchableOpacity onPress={navigation.navigate("MetodosComponent")}><Text style={styles.FormaPago}>Modificar forma de pago</Text></TouchableOpacity>
         <TouchableOpacity
           style={styles.boton}
           onPress={onSubmitCarrito}

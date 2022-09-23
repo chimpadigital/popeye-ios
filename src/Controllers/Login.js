@@ -3,8 +3,9 @@ import React, { useState } from "react";
 import LoginComponent from "../Components/Login/Login";
 import { useDispatch } from "react-redux";
 import { SessionHash, user } from "../Redux/actions";
-
+import { useNavigation } from "@react-navigation/native";
 const Login = () => {
+  const navigation = useNavigation()
   const [form, setForm] = useState({});
   const [Email, setEmail] = useState("baldo.olga@gmail.com");
   const [Password, setPassword] = useState("BALBO OLGA");
@@ -15,7 +16,7 @@ const Login = () => {
   const [fetching, setFetching] = useState(false);
   const onSubmit = () => {
     setFetching(true)
-  console.log({email:Email, password:Password})
+
     fetch(`https://devtesting.gq/backend/public/api/Login`, {
       method: "POST",
       headers: {
@@ -48,7 +49,11 @@ const Login = () => {
       } catch {
         (err) => {console.log(error);    setFetching(false)}
       }
-    });
+    }
+    
+    ).then((e)=>{
+      navigation.navigate("Bienvenido")
+    })
   };
 
   return <LoginComponent form={form} setForm={setForm} onSubmit={onSubmit} 

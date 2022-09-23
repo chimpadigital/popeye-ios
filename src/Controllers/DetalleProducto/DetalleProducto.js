@@ -16,7 +16,7 @@ const DetalleProducto = ({route}) => {
           Producto:Producto,
           Precio: Producto.price,
           Nombre: Producto.name,
-          Cantidad:cantidad
+          Cantidad:cantidad 
         }))
         dispatch(ADD(true))
         setTimeout(()=>{

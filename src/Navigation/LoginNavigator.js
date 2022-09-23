@@ -11,6 +11,8 @@ import ResetCodeComponent from '../Components/ResetCode/ResetCode';
 import BienvenidoComponent from '../Components/Bienvenido/Bienvenido';
 import LoginCarousel from '../Controllers/LoginCarousel/LoginCarousel';
 import { NavigationContainer } from '@react-navigation/native';
+import MetodoPago from '../Controllers/Metodos/MetodoPago';
+import MetodoEntrega from '../Controllers/Metodos/MetodoEntrega';
 const LoginNavigator = () => {
     const Stack = createNativeStackNavigator();
     const customTextProps = {
@@ -39,6 +41,8 @@ const LoginNavigator = () => {
           <Stack.Screen Screen name="ResetPass" component={ResetPassComponent} />
           <Stack.Screen Screen name="ResetCode" component={ResetCodeComponent} />
           <Stack.Screen Screen name="Bienvenido" component={BienvenidoComponent} />
+          <Stack.Screen Screen name="MetodoPago" component={MetodoPago} />
+          <Stack.Screen Screen name="MetodoEntrega" component={MetodoEntrega} />
           </Stack.Navigator>
    
 </NavigationContainer>
