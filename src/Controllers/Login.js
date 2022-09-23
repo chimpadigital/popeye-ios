@@ -52,7 +52,8 @@ const Login = () => {
     }
     
     ).then((e)=>{
-      navigation.navigate("Bienvenido")
+      setTimeout(()=>{   navigation.navigate("Bienvenido")},500)
+   
     })
   };
 

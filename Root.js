@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import LoginNavigator from "./src/Navigation/LoginNavigator";
 import TabNavigator from "./src/Navigation/TabNavigator";
 import { NavigationContainer } from "@react-navigation/native";
-import { resetAdded, resetUser } from "./src/Redux/actions";
+import { initial, resetAdded, resetUser } from "./src/Redux/actions";
 import RecepcionNavigator from "./src/Navigation/RecepcionNavigator";
 
 const Root = () => {
@@ -15,7 +15,7 @@ const Root = () => {
   const ShippingMethod = useSelector(state=>state.ShippingMethod)
   const dispatch = useDispatch();
   useEffect(async () => {
-
+        dispatch(initial(null))
         dispatch(resetUser());
         dispatch(resetAdded())
 

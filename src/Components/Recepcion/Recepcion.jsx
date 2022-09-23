@@ -14,9 +14,10 @@ import Dots2 from "../../assets/Dots2";
 import Dots33 from "../../assets/Dots33";
 import ofer1 from "./ofer1.png";
 import ofer2 from "./ofer2.png";
+import { initial } from "../../Redux/actions";
 const width = Dimensions.get("window").width;
 const heigth = Dimensions.get("window").height;
-const RecepcionComponent = ({ User, navigation }) => {
+const RecepcionComponent = ({ User, navigation, dispatch }) => {
   console.log(User);
   return (
     <View style={styles.container}>
@@ -35,15 +36,15 @@ const RecepcionComponent = ({ User, navigation }) => {
       <View style={styles.Perfil}>
         <Image
           source={
-            avatar
-            // User.image
-            //   ? {
-            //       uri: `https://devtesting.gq/backend/storage/app/public/usuarios/${User?.image?.substring(
-            //         1,
-            //         User?.image?.length
-            //       )}`,
-            //     }
-            //   : avatar
+          
+            User.image
+              ? {
+                  uri: `https://devtesting.gq/backend/storage/app/public/usuarios/${User?.image?.substring(
+                    1,
+                    User?.image?.length
+                  )}`,
+                }
+              : avatar
           }
           style={styles.avatar}
         />
@@ -56,11 +57,11 @@ const RecepcionComponent = ({ User, navigation }) => {
       </View>
 
       <View style={styles.containerButton}>
-        <TouchableOpacity style={styles.Button}>
+        <TouchableOpacity style={styles.Button} onPress={()=>dispatch(initial("Pedidos"))}>
           <Dots11 />
-          <Text style={styles.ButtonText}>REALIZAR UN PEDIDO</Text>
+          <Text style={styles.ButtonText}>REVISAR TUS PEDIDOS</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.Button}>
+        <TouchableOpacity style={styles.Button} onPress={()=>dispatch(initial("Catalogo"))}>
           <Dots33 />
           <Text style={styles.ButtonText}>REVISAR EL CATÁLOGO DE PRECIOS</Text>
         </TouchableOpacity>
@@ -126,24 +127,29 @@ const styles = StyleSheet.create({
   Button: {
     width: width * 0.45,
     backgroundColor: "#fff",
+    paddingHorizontal: width * 0.02 ,
     borderRadius: 10,
     elevation: 10,
-    justifyContent: "space-between",
+    justifyContent:"space-between",
     alignItems: "center",
     display: "flex",
-    maxHeight:width * 0.55
+    height:width * 0.45,
+    paddingTop: heigth*0.02,
+    paddingBottom: heigth*0.007
   },
   ButtonText: {
     color: "#0F50A7",
     textAlign: "center",
     fontFamily: "Roboto-Medium",
+    minHeight:38,
+    
   },
   oferContainer: {
     height: heigth * 0.5,
 
     display: "flex",
     justifyContent: "space-between",
-    paddingVertical: heigth * 0.02,
+    paddingVertical: heigth * 0.04,
   },
   ofer: {
     width: width * 0.9,

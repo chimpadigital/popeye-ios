@@ -1,6 +1,7 @@
 
 export const USER = "USER";
 export const ONBOARD = "ONBOARD";
+export const INITIAL = "INITIAL";
 export const ADD_PRODUCTO = "ADD_PRODUCTO";
 export const DEL_PRODUCTO = "DEL_PRODUCTO";
 export const AMO_PRODUCTO = "AMO_PRODUCTO";
@@ -17,6 +18,12 @@ export function user(user) {
   return {
     type: USER,
     payload: user,
+  };
+}
+export function initial(payload) {
+  return {
+    type: INITIAL,
+    payload: payload,
   };
 }
 export function resetUser() {
