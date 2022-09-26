@@ -14,6 +14,7 @@ const Checkout = () => {
   const [error, setError] = useState(false);
   const [Message, setMessage] = useState("");
   const [total, setTotal] = useState(0);
+  const [openTerm, setOpenTerm] = useState(false)
   useEffect(() => {
     let temp = 0;
     Pedido.map((e) => {
@@ -75,6 +76,8 @@ const Checkout = () => {
       setModalVisible={setModalVisible}
       setError={setError}
       setMessage={setMessage}
+openTerm={openTerm}
+      setOpenTerm={setOpenTerm}
     />
   );
 };

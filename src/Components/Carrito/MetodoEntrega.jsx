@@ -85,7 +85,7 @@ const MetodoEntregaComponent = ({
         ></TextInput>
       </View>
       <TouchableOpacity onPress={onSubmit} style={styles.loginButton}>
-        <Text style={styles.loginButtonText}>VOLVER AL PEDIDO</Text>
+        <Text style={styles.loginButtonText}>CONTINUAR</Text>
       </TouchableOpacity>
     </View>
   );
