@@ -26,9 +26,11 @@ const MetodosComponent = () => {
       <View style={styles.Text}>
         <Text style={styles.Title}>Selecccioná el método de pago</Text>
         <Text style={styles.SubTitle}>
-          Elegí el método de pago que vas a estar utilizando en esta sesión
+        No te preocupes, podrás modificar el método de pago más adelante
         </Text>
       </View>
+ 
+
       <TouchableOpacity  style={styles.loginButton} onPress={() => navigation.navigate("MetodoPago")} ><Text style={styles.loginButtonText}>UN MEDIO DE PAGO</Text></TouchableOpacity >
       <TouchableOpacity style={styles.SignUpButton} onPress={() => navigation.navigate("DividirPago")}><Text style={styles.SingUpTextButton}>DIVIDIR EL PAGO</Text></TouchableOpacity>
     </View>

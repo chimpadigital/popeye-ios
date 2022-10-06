@@ -9,11 +9,12 @@ import React, { useEffect, useState } from "react";
 import { Divider } from "react-native-elements";
 import { Icon } from "react-native-elements/dist/icons/Icon";
 import { useNavigation } from "@react-navigation/native";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { amoProducto, delProducto } from "../../../Redux/actions";
 const width = Dimensions.get("window").width;
 const heigth = Dimensions.get("window").height;
 const CarritoCardComponent = ({ Nombre, Precio,  Cantidad, Producto, index, setTemp, temp}) => {
+  const COE = useSelector(e=>e.Coeficiente)
   const navigation = useNavigation();
   const dispatch = useDispatch()
   const [cantidad, setCantidad] = useState(Cantidad);
@@ -36,7 +37,7 @@ const CarritoCardComponent = ({ Nombre, Precio,  Cantidad, Producto, index, setT
         <View style={styles.TextCont}>
           <Text style={styles.RecName}>{Nombre}</Text>
           <View style={styles.Row1}>
-            <Text style={styles.RecPrice}>${parseFloat(Precio).toFixed(2)}</Text>
+            <Text style={styles.RecPrice}>${Number(Precio)+(COE*Number(Precio))}</Text>
             <Divider
               height={18}
               orientation="vertical"

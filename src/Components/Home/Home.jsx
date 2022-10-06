@@ -67,6 +67,7 @@ const HomeComponent = ({ navigation, User,
           )}
         </ScrollView>
       </View>
+      <TouchableOpacity  style={styles.loginButton} onPress={()=> navigation.navigate("Catalogo")}><Text style={styles.loginButtonText}>IR AL CATÁLOGO</Text></TouchableOpacity >
       <View style={styles.PedidosContainer1}>
         <View style={styles.recomendadosTextCont}>
           <Text style={styles.SubTitleP1}>Recomendados</Text>
@@ -109,17 +110,41 @@ export default HomeComponent;
 const styles = StyleSheet.create({
   PedidosContainer1: {
     paddingHorizontal: width * 0.04,
- 
+
     minHeight: "100%",
     flex:1,
    
   },
   PedidosContainer: {
     paddingHorizontal: width * 0.04,
- 
+
     height: "32%",
   },
 
+  loginButton: {
+    
+    marginTop:"10%",
+    width:width*0.94,
+    height:56,
+    paddingBottom:3, 
+    justifyContent:"center",
+    backgroundColor:"#FFF",
+    alignSelf:"center",
+    borderRadius:10,
+    display:"flex",
+    alignItems:"center",
+    borderWidth: 1.5,
+    borderColor:"#0F50A7",
+  
+    alignItems:"center"
+   
+  },
+  loginButtonText:{
+    fontSize:12,
+    fontFamily:"Roboto-Medium",
+    lineHeight:25,
+    color:"#0F50A7",
+  },
   ScrollView: {
     flex: 1,
     display: "flex",

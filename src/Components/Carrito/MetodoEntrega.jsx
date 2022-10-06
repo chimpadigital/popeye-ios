@@ -42,40 +42,40 @@ const MetodoEntregaComponent = ({
       <View style={styles.Text}>
         <Text style={styles.Title}>Selecccioná el método de retiro</Text>
         <Text style={styles.SubTitle}>
-          Elegí el método de pago que vas a estar utilizando en esta sesión
+        No te preocupes, podrás modificar el método de entrega más adelante
         </Text>
       </View>
       <View style={styles.checkboxContainer}>
-        <View style={styles.checkboxRow}>
+        <TouchableOpacity  onPress={() => setMethod(1)} style={styles.checkboxRow}>
           <TouchableOpacity
-            onPress={() => setMethod(1)}
+           
             style={!method || method !== 1 ? styles.CheckBox : styles.CheckBoxS}
           ></TouchableOpacity>
           <View er style={styles.IconCheck}>
             <Casa />
           </View>
           <Text style={styles.CheckBoxText}>Entrega a Domicilio</Text>
-        </View>
-        <View style={styles.checkboxRow}>
-          <TouchableOpacity
+        </TouchableOpacity>
+        <TouchableOpacity onPress={() => setMethod(2)} style={styles.checkboxRow}>
+          <TouchableOpacity  
             style={!method || method !== 2 ? styles.CheckBox : styles.CheckBoxS}
-            onPress={() => setMethod(2)}
+           
           ></TouchableOpacity>
           <View style={styles.IconCheck}>
             <Local />
           </View>
           <Text style={styles.CheckBoxText}>Envío por trasporte </Text>
-        </View>
-        <View style={styles.checkboxRow}>
-          <TouchableOpacity
+        </TouchableOpacity>
+        <TouchableOpacity onPress={() => setMethod(3)} style={styles.checkboxRow}>
+          <TouchableOpacity  
             style={!method || method !== 3 ? styles.CheckBox : styles.CheckBoxS}
-            onPress={() => setMethod(3)}
+           
           ></TouchableOpacity>
           <View style={styles.IconCheck}>
             <Deli />
           </View>
           <Text style={styles.CheckBoxText}>Retiro en el local </Text>
-        </View>
+        </TouchableOpacity>
 
         <TextInput
           placeholder="Observaciones..."

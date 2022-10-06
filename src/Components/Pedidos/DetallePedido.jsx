@@ -84,7 +84,7 @@ const DetallePedidoComponent = ({route}) => {
             >
               <Text style={styles.loginButtonText}>EDITAR EL PEDIDO</Text>
             </TouchableOpacity>
-            <TouchableOpacity style={styles.SignUpButton} onPress={()=>{Pedido&&dispatch(addPedido(Pedido.reports)); setIsVisible(!isVisible)}}>
+            <TouchableOpacity style={styles.SignUpButton} onPress={()=>{Pedido&&dispatch(addPedido(Pedido.reports));navigation.navigate("Checkout") }}>
               <Text style={styles.SingUpTextButton}>
                 VOLVER A REALIZAR EL PEDIDO
               </Text>

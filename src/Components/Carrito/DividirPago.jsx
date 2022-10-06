@@ -57,41 +57,41 @@ setPage,method1,
           </Text>
         </View>
         <View style={styles.checkboxContainer}>
-          <View style={styles.checkboxRow}>
-            <TouchableOpacity style={(!method1||(method1[0].id!==2))?styles.CheckBox:styles.CheckBoxS} onPress={()=>setMethod1([{id:2}])}></TouchableOpacity>
+          <TouchableOpacity style={styles.checkboxRow} onPress={()=>setMethod1([{id:2}])}>
+            <TouchableOpacity style={(!method1||(method1[0].id!==2))?styles.CheckBox:styles.CheckBoxS} ></TouchableOpacity>
             <View er style={styles.IconCheck}>
               <Transfer />
             </View>
             <Text style={styles.CheckBoxText} >Transferencia bancaria</Text>
-          </View>
-          <View style={styles.checkboxRow}>
-            <TouchableOpacity style={(!method1||(method1[0].id!==1))?styles.CheckBox:styles.CheckBoxS}  onPress={()=>setMethod1([{id:1}])}></TouchableOpacity>
+          </TouchableOpacity>
+          <TouchableOpacity style={styles.checkboxRow} onPress={()=>setMethod1([{id:1}])}>
+            <TouchableOpacity style={(!method1||(method1[0].id!==1))?styles.CheckBox:styles.CheckBoxS}  ></TouchableOpacity>
             <View style={styles.IconCheck}>
               <Efec  />
             </View>
             <Text style={styles.CheckBoxText}>Efectivo</Text>
-          </View>
-          <View style={styles.checkboxRow}>
-            <TouchableOpacity style={(!method1||(method1[0].id!==3))?styles.CheckBox:styles.CheckBoxS} onPress={()=>setMethod1([{id:3}])}></TouchableOpacity>
+          </TouchableOpacity>
+          <TouchableOpacity style={styles.checkboxRow} onPress={()=>setMethod1([{id:3}])}>
+            <TouchableOpacity style={(!method1||(method1[0].id!==3))?styles.CheckBox:styles.CheckBoxS} ></TouchableOpacity>
             <View style={styles.IconCheck}>
               <Tarj  />
             </View>
             <Text style={styles.CheckBoxText}>Tarjeta de crédito o débito</Text>
-          </View>
-          <View style={styles.checkboxRow}>
-            <TouchableOpacity style={(!method1||(method1[0].id!==4))?styles.CheckBox:styles.CheckBoxS} onPress={()=>setMethod1([{id:4}])}></TouchableOpacity>
+          </TouchableOpacity>
+          <TouchableOpacity style={styles.checkboxRow} onPress={()=>setMethod1([{id:4}])}>
+            <TouchableOpacity style={(!method1||(method1[0].id!==4))?styles.CheckBox:styles.CheckBoxS} ></TouchableOpacity>
             <View style={styles.IconCheck}>
               <Cheq />
             </View>
             <Text style={styles.CheckBoxText}>Cheque</Text>
-          </View>
-          <View style={styles.checkboxRow}>
-            <TouchableOpacity style={(!method1||(method1[0].id!==5))?styles.CheckBox:styles.CheckBoxS} onPress={()=>setMethod1([{id:5}])}></TouchableOpacity>
+          </TouchableOpacity>
+          <TouchableOpacity style={styles.checkboxRow} onPress={()=>setMethod1([{id:5}])}>
+            <TouchableOpacity style={(!method1||(method1[0].id!==5))?styles.CheckBox:styles.CheckBoxS} ></TouchableOpacity>
             <View style={styles.IconCheck}>
               <CueCo />
             </View>
             <Text style={styles.CheckBoxText}>Cuenta corriente</Text>
-          </View>
+          </TouchableOpacity>
         </View>
         <TouchableOpacity onPress={onSubmit1} style={styles.loginButton} ><Text style={styles.loginButtonText}>SIGUIENTE</Text></TouchableOpacity ></>
         
@@ -104,41 +104,41 @@ setPage,method1,
       </Text>
     </View>
     <View style={styles.checkboxContainer}>
-          <View style={styles.checkboxRow}>
-            <TouchableOpacity style={(!method2||(method2[0].id!==2))?styles.CheckBox:styles.CheckBoxS} onPress={()=>setMethod2([{id:2}])}></TouchableOpacity>
+          <TouchableOpacity onPress={()=>setMethod2([{id:2}])} style={styles.checkboxRow}>
+            <TouchableOpacity style={(!method2||(method2[0].id!==2))?styles.CheckBox:styles.CheckBoxS} ></TouchableOpacity>
             <View er style={styles.IconCheck}>
               <Transfer />
             </View>
             <Text style={styles.CheckBoxText} >Transferencia bancaria</Text>
-          </View>
-          <View style={styles.checkboxRow}>
-            <TouchableOpacity style={(!method2||(method2[0].id!==1))?styles.CheckBox:styles.CheckBoxS}  onPress={()=>setMethod2([{id:1}])}></TouchableOpacity>
+          </TouchableOpacity>
+          <TouchableOpacity onPress={()=>setMethod2([{id:1}])} style={styles.checkboxRow}>
+            <TouchableOpacity style={(!method2||(method2[0].id!==1))?styles.CheckBox:styles.CheckBoxS}  ></TouchableOpacity>
             <View style={styles.IconCheck}>
               <Efec  />
             </View>
             <Text style={styles.CheckBoxText}>Efectivo</Text>
-          </View>
-          <View style={styles.checkboxRow}>
-            <TouchableOpacity style={(!method2||(method2[0].id!==3))?styles.CheckBox:styles.CheckBoxS} onPress={()=>setMethod2([{id:3}])}></TouchableOpacity>
+          </TouchableOpacity>
+          <TouchableOpacity onPress={()=>setMethod2([{id:3}])} style={styles.checkboxRow}>
+            <TouchableOpacity style={(!method2||(method2[0].id!==3))?styles.CheckBox:styles.CheckBoxS} ></TouchableOpacity>
             <View style={styles.IconCheck}>
               <Tarj  />
             </View>
             <Text style={styles.CheckBoxText}>Tarjeta de crédito o débito</Text>
-          </View>
-          <View style={styles.checkboxRow}>
-            <TouchableOpacity style={(!method2||(method2[0].id!==4))?styles.CheckBox:styles.CheckBoxS} onPress={()=>setMethod2([{id:4}])}></TouchableOpacity>
+          </TouchableOpacity>
+          <TouchableOpacity onPress={()=>setMethod2([{id:4}])} style={styles.checkboxRow}>
+            <TouchableOpacity style={(!method2||(method2[0].id!==4))?styles.CheckBox:styles.CheckBoxS} ></TouchableOpacity>
             <View style={styles.IconCheck}>
               <Cheq />
             </View>
             <Text style={styles.CheckBoxText}>Cheque</Text>
-          </View>
-          <View style={styles.checkboxRow}>
-            <TouchableOpacity style={(!method2||(method2[0].id!==5))?styles.CheckBox:styles.CheckBoxS} onPress={()=>setMethod2([{id:5}])}></TouchableOpacity>
+          </TouchableOpacity>
+          <TouchableOpacity onPress={()=>setMethod2([{id:5}])} style={styles.checkboxRow}>
+            <TouchableOpacity style={(!method2||(method2[0].id!==5))?styles.CheckBox:styles.CheckBoxS} ></TouchableOpacity>
             <View style={styles.IconCheck}>
               <CueCo />
             </View>
             <Text style={styles.CheckBoxText}>Cuenta corriente</Text>
-          </View>
+          </TouchableOpacity>
         </View>
     <TouchableOpacity onPress={onSubmit2} style={styles.loginButton} ><Text style={styles.loginButtonText}>SIGUIENTE</Text></TouchableOpacity ></>
     }

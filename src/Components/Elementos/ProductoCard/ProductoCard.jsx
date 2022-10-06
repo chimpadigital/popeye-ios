@@ -9,11 +9,12 @@ import React, { useState } from "react";
 import { Card } from "react-native-elements/dist/card/Card";
 import { Icon } from "react-native-elements/dist/icons/Icon";
 import { Added, addProducto, delProducto } from "../../../Redux/actions";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 const width = Dimensions.get("window").width;
 const heigth = Dimensions.get("window").height;
 const ProductoCardComponent = ({ Producto, navigation,cat,subCat}) => {
-  console.log(Producto)
+  const COE = useSelector(e=>e.Coeficiente)
+  console.log(COE)
   const [cora, setCora] = useState(false);
   const dispatch = useDispatch()
   const addToCart = ()=>{
@@ -38,7 +39,7 @@ const ProductoCardComponent = ({ Producto, navigation,cat,subCat}) => {
         <View style={styles.TextCont}>
         <Text style={styles.RecName}>{Producto.name?Producto.name:Producto.articles.name}</Text>
         {Producto.quantity?<Text style={styles.RecAmount}>Catidad: {Producto.quantity}</Text>:<Text style={styles.RecAmount}></Text>}
-        <Text style={styles.RecPrice}>${Producto.price?parseFloat(Producto.price).toFixed(2):parseFloat(Producto.price_total).toFixed(2)}</Text>
+        <Text style={styles.RecPrice}>${Producto.price?Number(Producto.price)+(COE*Number(Producto.price)):Number(Producto.price_total)+(COE*Number(Producto.price_total))}</Text>
         </View>
         <TouchableOpacity onPress={addToCart} style={styles.Carrito}>
           <Icon

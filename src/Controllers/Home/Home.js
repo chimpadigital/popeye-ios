@@ -11,7 +11,7 @@ const Home = () => {
     const [products, setProducts] = useState([])
     useEffect(()=>{
      
-        fetch(`https://devtesting.gq/backend/public/api/Auth/Productos?pagination=5`, {
+        fetch(`https://devtesting.gq/backend/public/api/Auth/Productos?pagination=2`, {
               method: "GET",
               headers: {
                 "Content-Type": "application/json",

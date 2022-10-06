@@ -29,6 +29,7 @@ const Login = () => {
      
       try {
         const jsonRes = await response.json();
+        console.log(response)
         if (response.status !== 200) {setFetching(false);setError(true); setMessage("Credenciales Invalidas");setModalVisible(true);}
         else {
          
@@ -44,6 +45,7 @@ const Login = () => {
             
             dispatch(user(jsonRes.data));
             setFetching(false)
+            setTimeout(()=>{   navigation.navigate("Bienvenido")},500)
           });
         }
       } catch {
@@ -51,10 +53,8 @@ const Login = () => {
       }
     }
     
-    ).then((e)=>{
-      setTimeout(()=>{   navigation.navigate("Bienvenido")},500)
-   
-    })
+    )
+
   };
 
   return <LoginComponent form={form} setForm={setForm} onSubmit={onSubmit} 

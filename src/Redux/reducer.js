@@ -9,6 +9,8 @@ import {
   RESET_ADDED,
   PAYMENT_METHOD,
   DEL_PAYMENT_METHOD,
+  CLEAR_CARRO,
+  COEFICIENTE,
   SHIPPING_METHOD,
   ONBOARD,
   ADD_PEDIDO,
@@ -19,6 +21,7 @@ const initialState = {
   Added: false,
   Pedido: [],
   User: null,
+  Coeficiente: null,
   SessionHash: null,
   PaymentMethod: [],
   ShippingMethod: null,
@@ -28,10 +31,20 @@ const initialState = {
 
 export default function reducer(state = initialState, action) {
   switch (action.type) {
+    case COEFICIENTE:
+      return {
+        ...state,
+        Coeficiente: action.payload,
+      };
     case USER:
       return {
         ...state,
         User: action.payload,
+      };
+      case CLEAR_CARRO:
+      return {
+        ...state,
+        Pedido: [],
       };
       case INITIAL:
         return {

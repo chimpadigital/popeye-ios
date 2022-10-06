@@ -9,7 +9,7 @@ import Root from "./Root";
 import { PersistGate } from "redux-persist/integration/react";
 import { store, persistor } from "./src/Redux/store";
 import { LogBox } from "react-native";
-LogBox.ignoreAllLogs();
+// LogBox.ignoreAllLogs();
 export default function App() {
   let [fontsLoaded] = useFonts({
     "Roboto-Medium": require("./assets/fonts/Roboto-Medium.ttf"),

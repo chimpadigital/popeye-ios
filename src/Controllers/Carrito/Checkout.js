@@ -1,9 +1,11 @@
 import { StyleSheet, Text, View } from "react-native";
 import React, { useEffect, useState } from "react";
 import CheckoutComponent from "../../Components/Carrito/Checkout";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigation } from "@react-navigation/native";
+import { clearCarro } from "../../Redux/actions";
 const Checkout = () => {
+  const dispatch = useDispatch()
   const navigation = useNavigation();
   const paymentMethod = useSelector((e) => e.PaymentMethod);
   const shippingMethod = useSelector((e) => e.ShippingMethod);
@@ -51,6 +53,7 @@ const Checkout = () => {
           setMessage(jsonRes?.msg);
           setModalVisible(true);
         } else {
+          dispatch(clearCarro())
         navigation.navigate("Finalizado")
         }
       } catch {

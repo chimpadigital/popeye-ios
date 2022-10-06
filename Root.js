@@ -9,23 +9,28 @@ import RecepcionNavigator from "./src/Navigation/RecepcionNavigator";
 
 const Root = () => {
   const User = useSelector((state) => state.User);
+  
+  const Initial = useSelector((state) => state.Initial);
   const Hash = useSelector((state) => state.SessionHash);
   const OnBoard = useSelector((state) => state.OnBoard);
   const PaymentMethod = useSelector(state=>state.PaymentMethod)
   const ShippingMethod = useSelector(state=>state.ShippingMethod)
   const dispatch = useDispatch();
   useEffect(async () => {
-        dispatch(initial(null))
+        dispatch(initial(false))
         dispatch(resetUser());
         dispatch(resetAdded())
 
   }, []);
 
-
+ 
   if (User == null || OnBoard == true || !PaymentMethod.length || !ShippingMethod) {
     return <LoginNavigator />;
-  } else
-   return <TabNavigator />;
+  } else{
+    if(Initial){
+   return <TabNavigator />}
+      else return <RecepcionNavigator/>
+   ;}
 }
 
 export default Root;

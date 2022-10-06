@@ -16,11 +16,12 @@ import { Divider } from "react-native-elements";
 
 import spinner from "../../assets/spinner.gif"
 import { Image } from "react-native";
+import { useSelector } from "react-redux";
 
 const CarritoComponent = ({ Pedido, navigation, total,onSubmitCarrito ,temp,
   setTemp,}) => {
 
-
+    const COE = useSelector(e=>e.Coeficiente)
   return (
     <>
       <ScrollView style={styles.container}>
@@ -52,9 +53,9 @@ const CarritoComponent = ({ Pedido, navigation, total,onSubmitCarrito ,temp,
         />
         <View style={styles.Row1}>
           <Text style={styles.PrecioSubTitle}>Precio total</Text>
-          <Text style={styles.PrecioTitle}>${total?total.toFixed(2):0}</Text>
+          <Text style={styles.PrecioTitle}>${total?Number(total)+(COE*Number(total)):0}</Text>
         </View>
-        <TouchableOpacity onPress={navigation.navigate("MetodosComponent")}><Text style={styles.FormaPago}>Modificar forma de pago</Text></TouchableOpacity>
+        <TouchableOpacity onPress={()=>navigation.navigate("MetodosComponent")}><Text style={styles.FormaPago}>Modificar forma de pago</Text></TouchableOpacity>
         <TouchableOpacity
           style={styles.boton}
           onPress={onSubmitCarrito}

@@ -13,6 +13,8 @@ export const ADDED = "ADDED";
 export const RESET_ADDED = "RESET_ADDED";
 export const RESET_USER = "RESET_USER"
 export const ADD_PEDIDO = "ADD_PEDIDO"
+export const CLEAR_CARRO = "CLEAR_CARRO"
+export const COEFICIENTE = "COEFICIENTE"
 
 export function user(user) {
   return {
@@ -26,13 +28,24 @@ export function initial(payload) {
     payload: payload,
   };
 }
+export function coeficiente(payload) {
+  return {
+    type: COEFICIENTE,
+    payload: payload,
+  };
+}
 export function resetUser() {
   return {
     type: RESET_USER,
     
   };
 }
-
+export function clearCarro() {
+  return {
+    type: CLEAR_CARRO,
+    
+  };
+}
 export function onBoard() {
   return {
     type: ONBOARD,

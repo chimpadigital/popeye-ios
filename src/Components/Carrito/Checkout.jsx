@@ -14,6 +14,7 @@ import { useNavigation } from "@react-navigation/native";
 import HeaderComponent from "../Elementos/Header/Header";
 import EditIcon from "./assets/EditIcon";
 import { Divider, Icon } from "react-native-elements";
+import { useSelector } from "react-redux";
 
 const width = Dimensions.get("window").width;
 const heigth = Dimensions.get("window").height;
@@ -36,6 +37,7 @@ const CheckoutComponent = ({
   setMessage,
 }) => {
   const navigation = useNavigation();
+  const COE = useSelector(e=>e.Coeficiente)
   return (
     <View style={styles.container}>
       <HeaderComponent
@@ -117,7 +119,7 @@ const CheckoutComponent = ({
         <View style={styles.Row1}>
           <Text style={styles.PrecioSubTitle}>Precio total</Text>
           <Text style={styles.PrecioTitle}>
-            ${parseFloat(total).toFixed(2)}
+            ${Number(total)+(COE*Number(total))}
           </Text>
         </View>
 

@@ -25,7 +25,7 @@ const PedidosComponent = ({ pedidos, pedidoS, setPedidoS ,dispatch}) => {
 
   const dimensions = useWindowDimensions();
   const fontScale = isNaN(dimensions.fontScale) ? 1 : dimensions.fontScale;
-  const offset = -180 * fontScale;
+  const offset = -80 * fontScale;
   const translateY = useRef(new Animated.Value(0)).current;
 
   useEffect(() => {
@@ -111,7 +111,7 @@ const PedidosComponent = ({ pedidos, pedidoS, setPedidoS ,dispatch}) => {
         style={{
           transform: [{ translateY }],
           position: "absolute",
-          bottom: -180,
+          bottom: -80,
         }}
       >
         <View style={styles.CheckOut}>
@@ -135,11 +135,7 @@ const PedidosComponent = ({ pedidos, pedidoS, setPedidoS ,dispatch}) => {
             >
               <Text style={styles.loginButtonText}>VER EL PEDIDO</Text>
             </TouchableOpacity>
-            <TouchableOpacity style={styles.SignUpButton} onPress={()=>{pedidoS&&dispatch(addPedido(pedidoS.reports)); setPedidoS([]); setIsVisible(!isVisible)}}>
-              <Text style={styles.SingUpTextButton}>
-                VOLVER A REALIZAR EL PEDIDO
-              </Text>
-            </TouchableOpacity>
+         
           </View>
         </View>
       </Animated.View>
@@ -230,7 +226,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#FFF",
     borderTopLeftRadius: 25,
     borderTopRightRadius: 25,
-    height: 170,
+    height: 114,
     width: width,
     elevation: 10,
     justifyContent: "space-between",
@@ -273,7 +269,12 @@ const styles = StyleSheet.create({
     fontWeight: "700",
     lineHeight: 25,
   },
-  butonContainer: {},
+  butonContainer: {
+
+    height:"100%",
+    paddingBottom:8,
+    justifyContent:"center"
+  },
   pedidosCard1: {
     maxWidth: width * 0.92,
     width: width * 0.92,

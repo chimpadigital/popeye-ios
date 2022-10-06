@@ -34,13 +34,13 @@ const navigation = useNavigation()
         <Text style={styles.formText}>Contraseña</Text>
         <TextInput  value={Password} onChangeText={setPassword} secureTextEntry={true} placeholder= {"Ingresa tu contraseña"} style={styles.Input}></TextInput>
     
-        <TouchableOpacity onPress={()=>navigation.navigate("ResetPass")} style={{display:"flex"}}>
-        <Text style={styles.forgott}>¿Olvidaste tu contraseña?</Text></TouchableOpacity>
-        <TouchableOpacity  style={styles.loginButton} onPress={onSubmit} ><Text style={styles.loginButtonText}>{fetching?"...":"INICIAR SESIÓN"}</Text></TouchableOpacity >
+        {/* <TouchableOpacity onPress={()=>navigation.navigate("ResetPass")} style={{display:"flex"}}>
+        <Text style={styles.forgott}>¿Olvidaste tu contraseña?</Text></TouchableOpacity> */}
       </View>
-      <Text style={styles.SingUpText}>¿No tenés cuenta? Registrate</Text>
-      <View style={styles.SignUpButton} ><Text style={styles.SingUpTextButton}>REGISTRATE</Text></View>
-      <View    style={styles.centeredView}>
+      {/* <Text style={styles.SingUpText}>¿No tenés cuenta? Registrate</Text>
+      <View style={styles.SignUpButton} ><Text style={styles.SingUpTextButton}>REGISTRATE</Text></View> */}
+      <TouchableOpacity  style={styles.loginButton} onPress={onSubmit} ><Text style={styles.loginButtonText}>{fetching?"...":"INICIAR SESIÓN"}</Text></TouchableOpacity >
+     { modalVisible?
       <Modal
         animationType="slide"
         transparent={true}
@@ -62,7 +62,7 @@ const navigation = useNavigation()
             </TouchableOpacity>
           </View>
         </View>
-      </Modal></View>
+      </Modal>:<></>}
     </View>
   );
 };
@@ -167,7 +167,9 @@ const styles = StyleSheet.create({
     alignSelf:"center",
     borderRadius:10,
     display:"flex",
-    alignItems:"center"
+    position:"absolute",
+    bottom:8,
+    alignItems:"center",
    
   },
   modalButton: {
