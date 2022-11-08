@@ -37,7 +37,7 @@ const CarritoCardComponent = ({ Nombre, Precio,  Cantidad, Producto, index, setT
         <View style={styles.TextCont}>
           <Text style={styles.RecName}>{Nombre}</Text>
           <View style={styles.Row1}>
-            <Text style={styles.RecPrice}>${Number(Precio)+(COE*Number(Precio))}</Text>
+            <Text style={styles.RecPrice}>${(Number(Precio)+(COE*Number(Precio))).toFixed(2)}</Text>
             <Divider
               height={18}
               orientation="vertical"

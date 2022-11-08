@@ -2,10 +2,11 @@
   "expo": {
     "name": "Popeye-App",
     "slug": "Popeye-App",
-    "version": "1.0.3",
+    "version": "1.0.8",
     "orientation": "portrait",
     "icon": "./assets/ico1.png",
     "userInterfaceStyle": "light",
+   
     "splash": {
       "image": "./assets/splash1.png",
       "resizeMode": "contain",
@@ -21,15 +22,21 @@
       "supportsTablet": true
     },
     "android": {
+      "permissions": [],
       "adaptiveIcon": {
         "foregroundImage": "./assets/ico1.png",
         "backgroundColor": "#FFFFFF"
       },
-      "versionCode": 1,
+      "versionCode": 6,
       "package": "com.peedro008.popeyefront"
     },
     "web": {
       "favicon": "./assets/favicon.png"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "3eea346d-6388-4445-89c9-f5be0e8805c4"
+      }
     }
   }
 }

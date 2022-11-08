@@ -14,35 +14,43 @@ const width = Dimensions.get("window").width;
 const heigth = Dimensions.get("window").height;
 import { Divider } from "react-native-elements";
 
-import spinner from "../../assets/spinner.gif"
+import spinner from "../../assets/spinner.gif";
 import { Image } from "react-native";
 import { useSelector } from "react-redux";
 
-const CarritoComponent = ({ Pedido, navigation, total,onSubmitCarrito ,temp,
-  setTemp,}) => {
-
-    const COE = useSelector(e=>e.Coeficiente)
+const CarritoComponent = ({
+  Pedido,
+  navigation,
+  total,
+  onSubmitCarrito,
+  temp,
+  setTemp,
+}) => {
+  const COE = useSelector((e) => e.Coeficiente);
   return (
     <>
       <ScrollView style={styles.container}>
-        {Pedido.length ? 
-        Pedido.map((e, index)=>{
-          return( <CarritoCardComponent
-              Nombre={e.Nombre}
-              Color={"red"}
-              Precio={e.Precio}
-              Cantidad={e.Cantidad}
-              navigation={navigation}
-              Producto={e.Producto}
-              index={index}
-              setTemp={setTemp}
-              temp={temp}
-            />)
-        })
-         
-      : (
-       <Text style={{textAlign:"center"}}>Agrega productos</Text>
-        )}
+        <View style={{marginBottom:100}}>
+          {Pedido.length ? (
+            Pedido.map((e, index) => {
+              return (
+                <CarritoCardComponent
+                  Nombre={e.Nombre}
+                  Color={"red"}
+                  Precio={e.Precio}
+                  Cantidad={e.Cantidad}
+                  navigation={navigation}
+                  Producto={e.Producto}
+                  index={index}
+                  setTemp={setTemp}
+                  temp={temp}
+                />
+              );
+            })
+          ) : (
+            <Text style={{ textAlign: "center" }}>Agrega productos</Text>
+          )}
+        </View>
       </ScrollView>
       <View style={styles.CheckOut}>
         <Divider
@@ -53,13 +61,16 @@ const CarritoComponent = ({ Pedido, navigation, total,onSubmitCarrito ,temp,
         />
         <View style={styles.Row1}>
           <Text style={styles.PrecioSubTitle}>Precio total</Text>
-          <Text style={styles.PrecioTitle}>${total?Number(total)+(COE*Number(total)):0}</Text>
+          <Text style={styles.PrecioTitle}>
+            ${total ? (Number(total) + COE * Number(total)).toFixed(2) : 0}
+          </Text>
         </View>
-        <TouchableOpacity onPress={()=>navigation.navigate("MetodosComponent")}><Text style={styles.FormaPago}>Modificar forma de pago</Text></TouchableOpacity>
         <TouchableOpacity
-          style={styles.boton}
-          onPress={onSubmitCarrito}
+          onPress={() => navigation.navigate("MetodosComponent")}
         >
+          <Text style={styles.FormaPago}>Modificar forma de pago</Text>
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.boton} onPress={onSubmitCarrito}>
           <Icon
             name="shopping-cart"
             type="material"
@@ -81,8 +92,10 @@ const styles = StyleSheet.create({
     flex: 1,
     flexDirection: "column",
     backgroundColor: "#fff",
-    paddingTop:20,
-    paddingBottom: 200,
+    paddingTop: 20,
+    marginBottom: 100,
+    overflow: "scroll",
+    maxHeight: heigth * 0.8,
   },
   boton: {
     width: width * 0.94,

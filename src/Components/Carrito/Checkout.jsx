@@ -119,7 +119,7 @@ const CheckoutComponent = ({
         <View style={styles.Row1}>
           <Text style={styles.PrecioSubTitle}>Precio total</Text>
           <Text style={styles.PrecioTitle}>
-            ${Number(total)+(COE*Number(total))}
+            ${(Number(total)+(COE*Number(total))).toFixed(2)}
           </Text>
         </View>
 

@@ -23,6 +23,8 @@ const DetalleProducto = ({route}) => {
           dispatch(ADD(false))
         },4000)
     }
+
+    console.log(Producto)
   return (
     <DetalleProductoComponent
     cantidad={cantidad}

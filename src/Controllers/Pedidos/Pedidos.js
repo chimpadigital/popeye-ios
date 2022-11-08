@@ -8,7 +8,7 @@ export default function Pedidos() {
     const hash = useSelector((e) => e.SessionHash);
     const [pedidos, setPedidos]= useState([])
     useEffect(() => {
-        fetch(`https://devtesting.gq/backend/public/api/Pedidos?pagination=10`, {
+        fetch(`https://api.popeyemayorista.com.ar/backend/public/api/Pedidos?pagination=10`, {
             method: "GET",
             headers: {
               "Content-Type": "application/json",
@@ -16,7 +16,7 @@ export default function Pedidos() {
             },
           }).then(async (res) => {
              const jsonRes = await res.json();
-             setPedidos(jsonRes.data.reverse());
+             setPedidos(jsonRes.data.filter(e=>e.status_id!==6).reverse());
              
           })
        

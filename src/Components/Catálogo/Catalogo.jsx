@@ -93,12 +93,12 @@ const CatalogoComponent = ({
                   Cat.data?.map((e,i) => {
              
                     console.log(i, e.name);
-                    if (e.name !== "PARA DESCARTAR")
+                    if (!e.name.includes("PARA DESCARTAR"))
                       return (
                         <View style={styles.CatInd}>
                           <TouchableOpacity
                             onPress={() =>
-                              navigation.navigate("CategoriaLista", { cat: e })
+                              navigation.navigate("CategoriaLista", { cat: e, i:i })
                             }
                             style={styles.CatCirc}
                           >

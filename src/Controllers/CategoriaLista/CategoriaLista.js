@@ -4,12 +4,12 @@ import CategoriaListaComponent from '../../Components/CategoríaLista/CategoriaL
 import { useSelector } from 'react-redux';
 
 const CategoriaLista = ({ route, navigation,  }) => {
-    const { cat } = route.params;
+    const { cat, i } = route.params;
     const [subCat, setSubCat]=useState([])
    
     
   return (
-    <CategoriaListaComponent cat={cat} navigation={navigation}/>
+    <CategoriaListaComponent cat={cat} i={i} navigation={navigation}/>
   )
 }
 

@@ -12,7 +12,7 @@ const MetodoPago = () => {
   const hash = useSelector((e) => e.SessionHash);
   const [Coefi, setCoefi]= useState(null)
   useEffect(() => {
-      fetch(`https://devtesting.gq/backend/public/api/Auth/MetodosDePago`, {
+      fetch(`https://api.popeyemayorista.com.ar/backend/public/api/Auth/MetodosDePago`, {
           method: "GET",
           headers: {
             "Content-Type": "application/json",

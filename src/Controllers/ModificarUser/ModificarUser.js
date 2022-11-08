@@ -15,6 +15,7 @@ const ModificarUser = () => {
   const [address, setAddress] = useState(User.address);
   const [email, setEmail] = useState(User.email);
   const [phone, setPhone] = useState(User.phone);
+  const [Uri, setUri] = useState("");
   const [type_image, setType_image] = useState(null);
   const hash = useSelector((state) => state.SessionHash);
   const dispatch = useDispatch();
@@ -24,7 +25,7 @@ const ModificarUser = () => {
     // setForm({ ...form, name: temp[0], last_name: temp[1] });
   console.log({ phone:phone, address:address, image_64:image, type_image:type_image})
     try {
-      fetch(`https://devtesting.gq/backend/public/api/Auth/Me/Actualizar`, {
+      fetch(`https://api.popeyemayorista.com.ar/backend/public/api/Auth/Me/Actualizar`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -74,14 +75,14 @@ const ModificarUser = () => {
         result.uri.substring(result.uri.length-3,result.uri.length)=="jpe"?
         type = "jpeg":
         type =  result.uri.substring(result.uri.length-3,result.uri.length)
-
+        setUri(result.uri)
         setImage(result.base64)
         setType_image(type)
     
     }
 
   };
-console.log("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",image)
+
   return (
     <ModificarUserComponent
       pickImage={pickImage}
@@ -102,7 +103,7 @@ console.log("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",image)
       phone={phone}
       setPhone={setPhone}
       
-
+uri={Uri}
       
 
       

@@ -39,7 +39,7 @@ const ProductoCardComponent = ({ Producto, navigation,cat,subCat}) => {
         <View style={styles.TextCont}>
         <Text style={styles.RecName}>{Producto.name?Producto.name:Producto.articles.name}</Text>
         {Producto.quantity?<Text style={styles.RecAmount}>Catidad: {Producto.quantity}</Text>:<Text style={styles.RecAmount}></Text>}
-        <Text style={styles.RecPrice}>${Producto.price?Number(Producto.price)+(COE*Number(Producto.price)):Number(Producto.price_total)+(COE*Number(Producto.price_total))}</Text>
+        <Text style={styles.RecPrice}>${Producto.price?(Number(Producto.price)+(COE*Number(Producto.price))).toFixed(2):(Number(Producto.price_total)+(COE*Number(Producto.price_total))).toFixed(2)}</Text>
         </View>
         <TouchableOpacity onPress={addToCart} style={styles.Carrito}>
           <Icon

@@ -7,8 +7,8 @@ import { useNavigation } from "@react-navigation/native";
 const Login = () => {
   const navigation = useNavigation()
   const [form, setForm] = useState({});
-  const [Email, setEmail] = useState("baldo.olga@gmail.com");
-  const [Password, setPassword] = useState("BALBO OLGA");
+  const [Email, setEmail] = useState("");
+  const [Password, setPassword] = useState("");
   const [error, setError]= useState(false)
   const [Message, setMessage]= useState("")
   const dispatch = useDispatch();
@@ -17,7 +17,7 @@ const Login = () => {
   const onSubmit = () => {
     setFetching(true)
 
-    fetch(`https://devtesting.gq/backend/public/api/Login`, {
+    fetch(`https://api.popeyemayorista.com.ar/backend/public/api/Login`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -34,7 +34,7 @@ const Login = () => {
         else {
          
           dispatch(SessionHash(jsonRes.data));
-          fetch(`https://devtesting.gq/backend/public/api/Auth/Me`, {
+          fetch(`https://api.popeyemayorista.com.ar/backend/public/api/Auth/Me`, {
             method: "GET",
             headers: {
               "Content-Type": "application/json",

@@ -16,7 +16,7 @@ import { useNavigation } from "@react-navigation/native";
 import { Button } from "react-native";
 const width = Dimensions.get("window").width;
 const heigth = Dimensions.get("window").height;
-const ModificarUserComponent = ({image,pickImage,  setForm, onSubmit, User, navigation ,name,
+const ModificarUserComponent = ({image,pickImage, uri, setForm, onSubmit, User, navigation ,name,
  setEmail,
  email,
   setLast_name,
@@ -39,10 +39,10 @@ const ModificarUserComponent = ({image,pickImage,  setForm, onSubmit, User, navi
         Atras={true}
       />
       <TouchableOpacity onPress={pickImage} style={styles.imagenContainer}>
-      {image?
-      <Image source={{ uri: image }} style={styles.imagen} />:
+      {uri?
+      <Image source={{ uri: uri}} style={styles.imagen} />:
 
-      <Image source={{ uri: `https://devtesting.gq/backend/storage/app/public/usuarios/${User.image.substring(1,User.image.length)}` }} style={styles.imagen} />}
+      <Image source={{ uri: `https://api.popeyemayorista.com.ar/backend/storage/app/public/usuarios/${User?.image?.substring(1,User.image.length)}` }} style={styles.imagen} />}
       <View style={styles.ButtonFoto}><Text style={styles.ButtonFotoT}>+</Text></View>
       </TouchableOpacity>
 

@@ -31,7 +31,7 @@ const HomeComponent = ({ navigation, User,
       <HeaderComponent navigation={navigation} Titulo="Popeye App" />
 
       <View style={styles.Perfil}>
-        <Image source={User.image?{ uri: `https://devtesting.gq/backend/storage/app/public/usuarios/${User.image.substring(1,User.image.length)}` }:avatar} style={styles.avatar} />
+        <Image source={User.image?{ uri: `https://api.popeyemayorista.com.ar/backend/storage/app/public/usuarios/${User.image.substring(1,User.image.length)}` }:avatar} style={styles.avatar} />
         <View>
           <Text style={styles.Hola}>¡Hola, {User.name}!</Text>
           <Text style={styles.Bienvenida}>

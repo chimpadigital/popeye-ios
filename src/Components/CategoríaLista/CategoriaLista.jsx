@@ -7,14 +7,23 @@ import {
   View,
 } from "react-native";
 import React from "react";
-import Escr from "../Catálogo/assets/escr";
+
 import { Divider } from "react-native-elements/dist/divider/Divider";
 import { Icon } from "react-native-elements/dist/icons/Icon";
 import HeaderComponent from "../Elementos/Header/Header.jsx";
 import {Rubros} from "../../../dataTemo"
+import Uno from "../Catálogo/assets/1.jsx";
+import Dos from "../Catálogo/assets/2.jsx";
+import Tres from "../Catálogo/assets/3.jsx";
+import Cuatro from "../Catálogo/assets/4.jsx";
+import Cinco from "../Catálogo/assets/5.jsx";
+import Seis from "../Catálogo/assets/6.jsx";
+import Siete from "../Catálogo/assets/7.jsx";
+import Ocho from "../Catálogo/assets/8.jsx";
+import Nueve from "../Catálogo/assets/9.jsx";
 const width = Dimensions.get("window").width;
 const heigth = Dimensions.get("window").height;
-const CategoriaListaComponent = ({ route, navigation,  cat}) => {
+const CategoriaListaComponent = ({ route, navigation,  cat, i}) => {
 
   
 
@@ -23,7 +32,19 @@ const CategoriaListaComponent = ({ route, navigation,  cat}) => {
       <HeaderComponent navigation={navigation} Titulo="Catálogo" Atras={true} />
       <View style={styles.CategoriaHeader}>
         <TouchableOpacity style={styles.CatCirc}>
-          <Escr />
+        {
+                           
+                           i==0?<Dos/>:
+                           i==1?<Siete/>:
+                           i==2?<Cinco/>:
+                           i==3?<Seis/>:
+                           i==4?<Ocho/>:
+                           i==5?<Cuatro/>:
+                           i==7?<Uno/>:
+                           i==8?<Tres/>:
+                           i==9?<Nueve/>:
+                           <Siete/>
+                         }
         </TouchableOpacity>
         <Text style={styles.CatTitle}>{cat.name}</Text>
       </View>

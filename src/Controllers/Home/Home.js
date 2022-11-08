@@ -11,7 +11,7 @@ const Home = () => {
     const [products, setProducts] = useState([])
     useEffect(()=>{
      
-        fetch(`https://devtesting.gq/backend/public/api/Auth/Productos?pagination=2`, {
+        fetch(`https://api.popeyemayorista.com.ar/backend/public/api/Auth/Productos?pagination=2`, {
               method: "GET",
               headers: {
                 "Content-Type": "application/json",
@@ -23,7 +23,7 @@ const Home = () => {
             })
       },[hash])
     useEffect(() => {
-        fetch(`https://devtesting.gq/backend/public/api/Pedidos?pagination=10`, {
+        fetch(`https://api.popeyemayorista.com.ar/backend/public/api/Pedidos?pagination=10`, {
             method: "GET",
             headers: {
               "Content-Type": "application/json",

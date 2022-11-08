@@ -29,7 +29,7 @@ const Checkout = () => {
     const body = {
       articles: JSON.stringify(
         Pedido.map((e) => {
-          return { id: e.Producto.id, quantity: e.Cantidad };
+          return { id: e.Producto.articles_id?e.Producto.articles_id: e.Producto.id, quantity: e.Cantidad };
         })
       ),
       payment_methods: JSON.stringify(paymentMethod),
@@ -37,7 +37,7 @@ const Checkout = () => {
     };
     observation.length && (body.observation = observation);
 
-    fetch(`https://devtesting.gq/backend/public/api/Auth/Pedidos/Crear`, {
+    fetch(`https://api.popeyemayorista.com.ar/backend/public/api/Auth/Pedidos/Crear`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

@@ -14,7 +14,7 @@ import notfound from "./notfound.png";
 import ColorSelectComponent from "../Elementos/ColorSelect/ColorSelect";
 import NoPhoto from "../../assets/NoPhoto";
 import FULL from "./FULL.png";
-import { Icon } from "react-native-elements";
+import { Divider, Icon } from "react-native-elements";
 import { TouchableHighlight } from "react-native";
 const width = Dimensions.get("window").width;
 const heigth = Dimensions.get("window").height;
@@ -40,7 +40,7 @@ const DetalleProductoComponent = ({
         {Producto.image ? (
           <Image
             source={{
-              uri: `https://devtesting.gq/assets/image/articles/${Producto.image.substring(
+              uri: `https://api.popeyemayorista.com.ar/assets/image/articles/${Producto.image.substring(
                 1,
                 Producto.image.length
               )}`,
@@ -74,7 +74,7 @@ const DetalleProductoComponent = ({
 
           <Text numberOfLines={1} ellipsizeMode="tail" style={styles.Ubi}>
             {Producto.rubros
-              ? Producto.rubros[0].name + ">" + Producto?.subrubros[0].name
+              ? Producto.rubros[0]?.name + ">" + Producto?.subrubros[0]?.name
               : ""}
           </Text>
           <Text style={styles.Price}>
@@ -83,6 +83,23 @@ const DetalleProductoComponent = ({
               ? parseFloat(Producto.price).toFixed(2) * cantidad
               : Producto.price_unit * cantidad}
           </Text>
+        </View>
+        <View style={styles.sizeContainer}>
+          <View style={styles.sizeBox}>
+            <Text style={styles.sizeTitle}>Ancho</Text>
+            <Text style={styles.sizeTitle1}>{Producto.width}</Text>
+          </View>
+          <Divider orientation="vertical"/>
+          <View style={styles.sizeBox}>
+            <Text style={styles.sizeTitle}>Alto</Text>
+            <Text style={styles.sizeTitle1}>{Producto.height}</Text>
+          </View>
+          <Divider orientation="vertical"/>
+          <View style={styles.sizeBox}>
+            <Text style={styles.sizeTitle}>Largo</Text>
+            <Text style={styles.sizeTitle1}>{Producto.length}</Text>
+          </View>
+          
         </View>
         {/* <View style={styles.ContainerSelect}>
         <ColorSelectComponent />
@@ -135,7 +152,7 @@ const DetalleProductoComponent = ({
           </TouchableHighlight>
           <Image
             source={{
-              uri: `https://devtesting.gq/assets/image/articles/${Producto.image.substring(
+              uri: `https://api.popeyemayorista.com.ar/assets/image/articles/${Producto.image.substring(
                 1,
                 Producto.image.length
               )}`,
@@ -274,7 +291,7 @@ const styles = StyleSheet.create({
     alignSelf: "flex-end",
     alignItems: "center",
     paddingHorizontal: width * 0.05,
-    marginTop: heigth * 0.11,
+    marginTop: heigth * 0.13,
   },
   botonMenos: {
     backgroundColor: "#E2E3E9",
@@ -331,7 +348,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     flexDirection: "row",
     alignSelf: "center",
-    marginTop: heigth * 0.095,
+    marginTop: heigth * 0.035,
   },
   botonText: {
     fontSize: 14,
@@ -370,4 +387,26 @@ const styles = StyleSheet.create({
     color: "#56CCF2",
     fontWeight: "700",
   },
+  sizeContainer:{
+    display:"flex",
+    flexDirection:"row",
+    width: width,
+    paddingHorizontal: width * 0.05,
+    justifyContent:"space-evenly",
+    marginTop:heigth*0.05
+  },
+  sizeTitle:{
+    fontFamily:"Roboto-Medium",
+    fontSize:16,
+    color:"#222831",
+    textAlign:"center",
+
+  },
+  sizeTitle1:{
+    fontFamily:"Roboto-Medium",
+    fontSize:16,
+    color:"#222831",
+    textAlign:"center",
+    marginTop:10
+  }
 });

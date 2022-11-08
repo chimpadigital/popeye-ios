@@ -29,7 +29,7 @@ function PerfilComponent({ navigation }) {
         Atras={true}
       />
       <View style={styles.imagenContainer}>
-      {User.image ? <Image source={{ uri: `https://devtesting.gq/backend/storage/app/public/usuarios/${User.image.substring(1,User.image.length)}` }} style={styles.imagen} />:<Image source={avatar} style={styles.imagen} />}
+      {User.image ? <Image source={{ uri: `https://api.popeyemayorista.com.ar/backend/storage/app/public/usuarios/${User.image.substring(1,User.image.length)}` }} style={styles.imagen} />:<Image source={avatar} style={styles.imagen} />}
       </View>
 
       <Text style={styles.Name}>{`${User.name}`}</Text>

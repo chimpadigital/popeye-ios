@@ -39,6 +39,7 @@ const DetallePedidoComponent = ({route}) => {
     }, 1);
     return () => clearTimeout(delayedAnimation);
   }, [isVisible]);
+  console.log(Pedido.reports, "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBB")
   return (
     <View style={{ height: heigth }}>
       <HeaderComponent

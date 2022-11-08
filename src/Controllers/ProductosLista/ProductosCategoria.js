@@ -15,8 +15,8 @@ const ProductosCategoria = ({navigation, route}) => {
 
     
     useEffect(() => {
-      setProd([])
-        fetch(`https://devtesting.gq/backend/public/api/Auth/Productos?pagination=10&rubros[0]=${cat.name}&subrubros[0]=${subCat.name}&page=${Pagination}`, {
+      setProd(null)
+        fetch(`https://api.popeyemayorista.com.ar/backend/public/api/Auth/Productos?pagination=10&rubros[0]=${cat.name}&subrubros[0]=${subCat.name}&page=${Pagination}`, {
             method: "GET",
             headers: {
               "Content-Type": "application/json",
@@ -25,9 +25,9 @@ const ProductosCategoria = ({navigation, route}) => {
           }).then(async (res) => {
              const jsonRes = await res.json();
              setProd(jsonRes.data);
-             console.log(Prod)
+             console.log(Prod, "BBBBBBBBBBBBBBBBBBBBBB")
           })
-       
+     
     }, [hash, subCat, Pagination])
 
   return (

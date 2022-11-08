@@ -39,7 +39,7 @@ const RecepcionComponent = ({ User, navigation, dispatch }) => {
           
             User.image
               ? {
-                  uri: `https://devtesting.gq/backend/storage/app/public/usuarios/${User?.image?.substring(
+                  uri: `https://api.popeyemayorista.com.ar/backend/storage/app/public/usuarios/${User?.image?.substring(
                     1,
                     User?.image?.length
                   )}`,

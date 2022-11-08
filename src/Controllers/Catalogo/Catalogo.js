@@ -12,7 +12,7 @@ const Catalogo = ({navigation, route}) => {
     const hash = useSelector(state=>state.SessionHash)
     const Added = useSelector(state=>state.Added)
     useEffect(() => {
-        fetch(`https://devtesting.gq/backend/public/api/Auth/Rubros`, {
+        fetch(`https://api.popeyemayorista.com.ar/backend/public/api/Auth/Rubros`, {
             method: "GET",
             headers: {
               "Content-Type": "application/json",
@@ -21,13 +21,14 @@ const Catalogo = ({navigation, route}) => {
           }).then(async (res) => {
              const jsonRes = await res.json();
              setCat(jsonRes);
+             console.log(jsonRes)
           })
        
     }, [hash])
 
     useEffect(()=>{
       search.length>=2&&
-      fetch(`https://devtesting.gq/backend/public/api/Auth/Productos?pagination=10&search=${search}`, {
+      fetch(`https://api.popeyemayorista.com.ar/backend/public/api/Auth/Productos?pagination=10&search=${search}`, {
             method: "GET",
             headers: {
               "Content-Type": "application/json",
