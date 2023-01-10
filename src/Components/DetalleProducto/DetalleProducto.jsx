@@ -29,6 +29,7 @@ const DetalleProductoComponent = ({
   setFS,
   navigation,
 }) => {
+  console.log("AAA", Producto)
   return (
     <View>
       <ScrollView style={styles.container}>
@@ -37,13 +38,10 @@ const DetalleProductoComponent = ({
           Titulo="Producto"
           Atras={true}
         />
-        {Producto.image ? (
+        {Producto.image_web ? (
           <Image
             source={{
-              uri: `https://api.popeyemayorista.com.ar/assets/image/articles/${Producto.image.substring(
-                1,
-                Producto.image.length
-              )}`,
+              uri: `https://popeyemayorista.com.ar/uploads/products/${Producto?.image_web}`,
             }}
             style={styles.image}
           />
@@ -61,20 +59,21 @@ const DetalleProductoComponent = ({
             <NoPhoto />
           </View>
         )}
+        {Producto.image_web&&
         <TouchableOpacity
           style={{ position: "absolute", top: heigth * 0.287, right: 10 }}
           onPress={() => setFS(!FS)}
         >
           <Image source={FULL} />
-        </TouchableOpacity>
+        </TouchableOpacity>}
 
         <View style={styles.textContanier}>
           <Text style={styles.Title}>{Producto.name}</Text>
-          <Text style={styles.ID}>ART. {Producto.id}</Text>
-
+          <Text style={styles.ID}>ART. {Producto.code}</Text>
+          {Producto.bar_code?<Text style={styles.ID}>Código {Producto.bar_code}</Text>:<></>}
           <Text numberOfLines={1} ellipsizeMode="tail" style={styles.Ubi}>
             {Producto.rubros
-              ? Producto.rubros[0]?.name + ">" + Producto?.subrubros[0]?.name
+              ? Producto.rubros[0]?.name.trim() + " > " + Producto?.subrubros[0]?.name.trim()
               : ""}
           </Text>
           <Text style={styles.Price}>
@@ -152,10 +151,7 @@ const DetalleProductoComponent = ({
           </TouchableHighlight>
           <Image
             source={{
-              uri: `https://api.popeyemayorista.com.ar/assets/image/articles/${Producto.image.substring(
-                1,
-                Producto.image.length
-              )}`,
+              uri: `https://popeyemayorista.com.ar/uploads/products/${Producto?.image_web}`,
             }}
             style={styles.FullImage}
           />

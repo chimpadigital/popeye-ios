@@ -4,7 +4,6 @@ import Escr from '../Catálogo/assets/escr';
 import sinProd from "../../assets/sinProd.png"
 import HeaderComponent from"../Elementos/Header/Header.jsx"
 import ProductoCardComponent from '../Elementos/ProductoCard/ProductoCard';
-import {DataTemp} from "../../../dataTemo"
 import { Image } from 'react-native';
 import { Icon } from 'react-native-elements/dist/icons/Icon';
 import spinner from "../../assets/spinner.gif"
@@ -27,19 +26,21 @@ const ProductosCategoriaComponent = ({navigation, route,Prod,cat,Pagination, set
         <Text style={styles.CatTitle} numberOfLines={2}>{cat} {'>'} {subCat}</Text>
       </View>
       <View >
-      {Prod==null?
+      {Prod===undefined?
       <Image
       source={spinner}
       style={{ width: 400, height: 400, alignSelf: "center" }}
     />
+    :Prod.data?.length?
+    Prod?.data?.map((e) => {
+        return (
+         <ProductoCardComponent Producto={e} navigation={navigation} cat={cat} subCat={subCat}/>
+        );
+      })
+    
       :
-      Prod.data?.length?
-      Prod?.data.map((e) => {
-          return (
-           <ProductoCardComponent Producto={e} navigation={navigation} cat={cat} subCat={subCat}/>
-          );
-        })
-      :<Image source={sinProd} style={{ marginTop:heigth*0.1,   alignSelf: "center" }}/>
+      <Image source={sinProd} style={{ marginTop:heigth*0.1,   alignSelf: "center" }}/>
+  
       }
       </View>
       {Prod?.data?.length==10?

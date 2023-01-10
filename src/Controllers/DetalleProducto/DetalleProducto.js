@@ -7,6 +7,7 @@ import { useDispatch, useSelector } from 'react-redux';
 
 const DetalleProducto = ({route}) => {
     const { Producto, navigation} = route.params;
+    console.log("PEDROOOOOOO", Producto)
     const [FS, setFS] = useState(false)
       const [cantidad, setCantidad] = useState(1)
       const dispatch = useDispatch()

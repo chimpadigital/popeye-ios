@@ -11,7 +11,6 @@ import React from "react";
 import { Divider } from "react-native-elements/dist/divider/Divider";
 import { Icon } from "react-native-elements/dist/icons/Icon";
 import HeaderComponent from "../Elementos/Header/Header.jsx";
-import {Rubros} from "../../../dataTemo"
 import Uno from "../Catálogo/assets/1.jsx";
 import Dos from "../Catálogo/assets/2.jsx";
 import Tres from "../Catálogo/assets/3.jsx";
@@ -51,7 +50,15 @@ const CategoriaListaComponent = ({ route, navigation,  cat, i}) => {
       <View style={styles.SubCatListCont}>
       
       {
-      cat.subrubros.map(e=>{
+      cat.subrubros.sort(function (a, b) {
+        if (a.name < b.name) {
+          return -1;
+        }
+        if (a.name > b.name) {
+          return 1;
+        }
+        return 0;
+      }).map(e=>{
        
         return(
           <TouchableOpacity

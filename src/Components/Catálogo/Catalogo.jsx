@@ -90,9 +90,17 @@ const CatalogoComponent = ({
               <View style={styles.CatIconosContainer}>
                 {Cat.data ? (
 
-                  Cat.data?.map((e,i) => {
+                  Cat.data?.sort(function (a, b) {
+                    if (a.name < b.name) {
+                      return -1;
+                    }
+                    if (a.name > b.name) {
+                      return 1;
+                    }
+                    return 0;
+                  }).map((e,i) => {
              
-                    console.log(i, e.name);
+            
                     if (!e.name.includes("PARA DESCARTAR"))
                       return (
                         <View style={styles.CatInd}>
@@ -117,7 +125,7 @@ const CatalogoComponent = ({
                             }
                           </TouchableOpacity>
                           <Text numberOfLines={2} style={styles.CatText}>
-                            {e.name}
+                            {e.name.trim()}
                           </Text>
                         </View>
                       );

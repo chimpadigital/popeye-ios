@@ -1,7 +1,7 @@
 import { View, Text } from 'react-native'
 import React, { useEffect, useState } from 'react'
 import CatalogoComponent from '../../Components/Catálogo/Catalogo'
-import { DataTemp } from '../../../dataTemo'
+
 import { useSelector } from 'react-redux'
 const Catalogo = ({navigation, route}) => {
     const [search, setSearch ]= useState("")
