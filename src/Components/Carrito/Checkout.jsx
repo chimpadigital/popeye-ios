@@ -8,6 +8,7 @@ import {
   Modal,
   ScrollView,
   KeyboardAvoidingView,
+  Alert,
 } from "react-native";
 import React from "react";
 import { useNavigation } from "@react-navigation/native";
@@ -37,16 +38,15 @@ const CheckoutComponent = ({
   setMessage,
 }) => {
   const navigation = useNavigation();
-  const COE = useSelector(e=>e.Coeficiente)
+  const COE = useSelector((e) => e.Coeficiente);
   return (
-    <View style={styles.container}>
+    <ScrollView style={styles.container}>
       <HeaderComponent
         Atras
         Titulo="Finalizar Pedido"
         navigation={navigation}
       />
-
-      <ScrollView style={{ minHeight: heigth * 0.85, paddingBottom: 50 }}>
+      <View style={{ minHeight: 500, paddingBottom: 0 }}>
         <View style={styles.OptionContainer}>
           <View>
             <Text style={styles.Title}>Método de pago</Text>
@@ -114,19 +114,38 @@ const CheckoutComponent = ({
             </View>
           </KeyboardAvoidingView>
         </View>
-      </ScrollView>
+      </View>
       <View style={styles.CheckOut}>
         <View style={styles.Row1}>
           <Text style={styles.PrecioSubTitle}>Precio total</Text>
           <Text style={styles.PrecioTitle}>
-            ${(Number(total)+(COE*Number(total))).toFixed(2)}
+            ${(Number(total) + COE * Number(total)).toFixed(2)}
           </Text>
         </View>
 
         <TouchableOpacity
           style={styles.boton}
-          onPress={()=>setOpenTerm(true)}
+          //onPress={()=>setOpenTerm(true)}
           //onPress={() => navigation.navigate("Finalizado")}
+          onPress={() => {
+            //function to make two option alert
+            Alert.alert(
+              //title
+              "Bases y condiciones",
+              //body
+              "Antes de continuar, se les recuerda a los clientes que los pedidos sólo pueden ser cancelados o modificados en un plazo de 24hs. Posterior a ese plazo, se cobrará un recargo ante cualquier cambio o cancelación. Ante cualquier duda o consulta, se les recuerda que pueden contactar a sus respectivos ejecutivos de cuenta.",
+              [
+                { text: "ACEPTO", onPress: () => onSubmitPedido() },
+                {
+                  text: "VOLVER",
+                  onPress: () => console.log("No Pressed"),
+                  style: "cancel",
+                },
+              ],
+              { cancelable: false }
+              //clicking out side of alert will not cancel
+            );
+          }}
         >
           <Icon
             name="shopping-cart"
@@ -169,7 +188,7 @@ const CheckoutComponent = ({
           }}
         >
           <View style={styles.centeredView1}>
-            <View style={{justifyContent:"space-between",height:"100%"}}>
+            <View style={{ justifyContent: "space-between", height: "100%" }}>
               <Text style={styles.TitleModal1}>Bases y condiciones</Text>
               <Text style={styles.TextModal}>
                 Antes de continuar, se les recuerda a los clientes que los
@@ -179,33 +198,36 @@ const CheckoutComponent = ({
                 se les recuerda que pueden contactar a sus respectivos
                 ejecutivos de cuenta.
               </Text>
-              <View style={{flexDirection:"row", justifyContent:"flex-end",}}>
-              <TouchableOpacity
-                style={[styles.modalButton1]}
-                onPress={() => setOpenTerm(false)}
+              <View
+                style={{ flexDirection: "row", justifyContent: "flex-end" }}
               >
-                <Text style={styles.loginButtonText1}>VOLVER</Text>
-              </TouchableOpacity>
-              <TouchableOpacity
-                style={[styles.modalButton1]}
-                onPress={onSubmitPedido}
-              >
-                <Text style={styles.loginButtonText2}>ACEPTO</Text>
-              </TouchableOpacity></View>
+                <TouchableOpacity
+                  style={[styles.modalButton1]}
+                  onPress={() => setOpenTerm(false)}
+                >
+                  <Text style={styles.loginButtonText1}>VOLVER</Text>
+                </TouchableOpacity>
+                <TouchableOpacity
+                  style={[styles.modalButton1]}
+                  onPress={onSubmitPedido}
+                >
+                  <Text style={styles.loginButtonText2}>ACEPTO</Text>
+                </TouchableOpacity>
+              </View>
             </View>
           </View>
         </Modal>
       </View>
-    </View>
+    </ScrollView>
   );
 };
 
 export default CheckoutComponent;
 
 const styles = StyleSheet.create({
-  TextModal:{
-    fontSize:14,
-    lineHeight:20
+  TextModal: {
+    fontSize: 14,
+    lineHeight: 20,
   },
   modalButton: {
     marginVertical: 30,
@@ -225,15 +247,14 @@ const styles = StyleSheet.create({
     lineHeight: 25,
     color: "#FFF",
   },
-  loginButtonText2:{
+  loginButtonText2: {
     fontSize: 16,
     lineHeight: 35,
     color: "#0F50A7",
     fontWeight: "600",
     fontFamily: "Roboto-Regular",
-  }
-  ,
-  loginButtonText1:{
+  },
+  loginButtonText1: {
     fontSize: 16,
     lineHeight: 35,
     color: "#322843",
@@ -247,12 +268,11 @@ const styles = StyleSheet.create({
     fontWeight: "600",
     fontFamily: "Roboto-Regular",
   },
-  modalButton1:{
-    width:"30%",
-    height:60,
-    alignItems:"center",
-    justifyContent:"center",
-    
+  modalButton1: {
+    width: "30%",
+    height: 60,
+    alignItems: "center",
+    justifyContent: "center",
   },
   TitleModal1: {
     fontSize: 18,
@@ -260,7 +280,7 @@ const styles = StyleSheet.create({
     color: "#322843",
     fontWeight: "600",
     fontFamily: "Roboto-Medium",
-    color:"#0F50A7",
+    color: "#0F50A7",
   },
   centeredView: {
     flex: 1,
@@ -281,21 +301,21 @@ const styles = StyleSheet.create({
     alignItems: "center",
     alignSelf: "center",
     marginTop: 280,
-    maxHeight:"33%",
+    maxHeight: "33%",
     width: "70%",
     backgroundColor: "white",
-    elevation:10,
+    elevation: 10,
     borderRadius: 8,
     paddingVertical: width * 0.02,
     paddingHorizontal: width * 0.03,
   },
-  
+
   container: {
     display: "flex",
     flexDirection: "column",
     backgroundColor: "#fff",
-    minHeight: heigth * 0.96,
-    maxHeight: heigth * 0.96,
+    //minHeight: 600,
+    //maxHeight: heigth * 0.96,
     flex: 1,
   },
   Title: {
@@ -347,9 +367,9 @@ const styles = StyleSheet.create({
 
   CheckOut: {
     display: "flex",
-    position: "absolute",
+    //position: "absolute",
     bottom: 0,
-    zIndex: 9,
+    //zIndex: 9,
     backgroundColor: "#FFF",
     borderTopLeftRadius: 25,
     borderTopRightRadius: 25,
@@ -388,7 +408,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     flexDirection: "row",
     alignSelf: "center",
-    marginBottom: heigth * 0.01,
+    //marginBottom: heigth * 0.01,
   },
   botonText: {
     fontSize: 14,

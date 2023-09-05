@@ -25,8 +25,8 @@ const initialState = {
   SessionHash: null,
   PaymentMethod: [],
   ShippingMethod: null,
-  OnBoard:true,
-  Initial:null
+  OnBoard: true,
+  Initial: null
 };
 
 export default function reducer(state = initialState, action) {
@@ -41,21 +41,21 @@ export default function reducer(state = initialState, action) {
         ...state,
         User: action.payload,
       };
-      case CLEAR_CARRO:
+    case CLEAR_CARRO:
       return {
         ...state,
         Pedido: [],
       };
-      case INITIAL:
-        return {
-          ...state,
-          Initial: action.payload,
-        };
-      case ONBOARD:
-        return {
-          ...state,
-          OnBoard: false,
-        };
+    case INITIAL:
+      return {
+        ...state,
+        Initial: action.payload,
+      };
+    case ONBOARD:
+      return {
+        ...state,
+        OnBoard: false,
+      };
     case RESET_USER:
       return {
         ...state,
@@ -66,25 +66,46 @@ export default function reducer(state = initialState, action) {
         ...state,
         Added: action.payload,
       };
-      case RESET_ADDED:
-        return {
-          ...state,
-          Added: false,
-        };
+    case RESET_ADDED:
+      return {
+        ...state,
+        Added: false,
+      };
     case ADD_PRODUCTO:
+
+
       if (
-        !state.Pedido.filter(
-          (e) => e.Producto.name == action.payload.Producto.name
-        ).length
-      )
+        state.Pedido.filter(
+          (e) => e.Producto.code == action.payload.Producto.code
+        ).length == 0
+      ) {
         return {
           ...state,
           Pedido: [...state.Pedido, action.payload],
         };
+      } else {
+        let setPedido = [];
+
+        state.Pedido.map((e) => {
+          if (action.payload.Producto.code == e.Producto.code) {
+            e = {
+              ...e,
+              Cantidad: e.Cantidad + action.payload.Cantidad
+            }
+          }
+
+          setPedido.push(e);
+        })
+
+        return {
+          ...state,
+          Pedido: [...setPedido],
+        };
+      }
     case DEL_PRODUCTO:
       return {
         ...state,
-        Pedido: state.Pedido.filter((e) => e.Nombre !== action.payload),
+        Pedido: state.Pedido.filter((e) => e.Code !== action.payload),
       };
     case AMO_PRODUCTO: {
       let temp = state.Pedido;
@@ -123,25 +144,60 @@ export default function reducer(state = initialState, action) {
         ShippingMethod: action.payload,
       };
     }
-    case ADD_PEDIDO:
-      let temp = state.Pedido
-      console.log("aaaaaaaaaaaaaaaaaaaa", temp)
-      action.payload.map(e=>{
-        if (
-          !state.Pedido.filter(
-            (f) => f.Producto?.name ==e.name
-          ).length
-        ){
-          temp.push({Producto:e,
-            Precio: e.price_unit,
-            Nombre: e.name,
-            Cantidad:e.price_total/e.price_unit})
-        }
-      })
+    case ADD_PEDIDO: {
+
+      if (
+        state.Pedido.filter(
+          (e) => e.Producto.code == action.payload.Producto.code
+        ).length == 0
+      ) {
         return {
           ...state,
-          Pedido: temp,
+          Pedido: [...state.Pedido, action.payload],
         };
+      } else {
+        let setPedido = [];
+
+        state.Pedido.map((e) => {
+          if (action.payload.Producto.code == e.Producto.code) {
+            e = {
+              ...e,
+              Cantidad: e.Cantidad + action.payload.Cantidad
+            }
+          }
+
+          setPedido.push(e);
+        })
+
+        return {
+          ...state,
+          Pedido: [...setPedido],
+        };
+        /*
+      let temp = state.Pedido
+      //console.log("aaaaaaaaaaaaaaaaaaaa", temp)
+      action.payload.map(e => {
+        if (
+          !state.Pedido.filter(
+            (f) => f.Producto?.code == e.code
+          ).length
+        ) {
+          temp.push({
+            Producto: e,
+            Precio: e.price_unit,
+            Nombre: e.name,
+            Code: e.code,
+            Cantidad: e.price_total / e.price_unit
+          })
+        }
+      })
+      return {
+        ...state,
+        Pedido: temp,
+      };
+      */
+    }
+    }
     default:
       return state;
   }

@@ -14,26 +14,17 @@ import NoPhoto from "../../assets/NoPhoto";
 import FULL from "./FULL.png";
 import { Divider, Icon } from "react-native-elements";
 import { TouchableHighlight } from "react-native";
-import { TextInput } from "react-native-gesture-handler";
 const width = Dimensions.get("window").width;
 const heigth = Dimensions.get("window").height;
 
-const DetalleProductoComponent = ({
-  cantidad,
-  setCantidad,
-  Added,
-  addToCart,
-  Producto,
-  FS,
-  setFS,
-  navigation,
+const DetalleProductoQrComponent = ({ Producto, FS, setFS, navigation }) => {
+  //console.log(Producto);
 
-  COE,
-}) => {
   const [currentImage, setCurrentImage] = useState(0);
+
   return (
-    <>
-      <ScrollView style={styles.container}>
+    <ScrollView style={styles.container}>
+      <ScrollView>
         <HeaderComponent
           navigation={navigation}
           Titulo="Producto"
@@ -71,7 +62,6 @@ const DetalleProductoComponent = ({
 
         <View style={styles.textContanier}>
           <Text style={styles.Title}>{Producto.name}</Text>
-          <Text style={styles.ID}>MARCA. {Producto.brand}</Text>
           <Text style={styles.ID}>ART. {Producto.code}</Text>
           {Producto.bar_code ? (
             <Text style={styles.ID}>Código {Producto.bar_code}</Text>
@@ -86,16 +76,16 @@ const DetalleProductoComponent = ({
               : ""}
           </Text>
           <Text style={styles.Price}>
-            $
+            Precio Contado $
             {Producto.price
-              ? (
-                  (Number(Producto.price) + COE * Number(Producto.price)) *
-                  cantidad
-                ).toFixed(2)
-              : (Producto.price_unit * cantidad).toFixed(2)}
-            {/*Producto.price
-              ? parseFloat(Producto.price).toFixed(2) * cantidad
-          : Producto.price_unit * cantidad */}
+              ? parseFloat(Producto.price_contado).toFixed(2)
+              : parseFloat(Producto.price_cheque).toFixed(2)}
+          </Text>
+          <Text style={styles.Price}>
+            Precio Cheque $
+            {Producto.price
+              ? parseFloat(Producto.price_cheque).toFixed(2)
+              : parseFloat(Producto.price_cheque).toFixed(2)}
           </Text>
         </View>
         <View style={styles.sizeContainer}>
@@ -119,52 +109,7 @@ const DetalleProductoComponent = ({
         <ColorSelectComponent />
       </View> */}
         {/* <Text style={styles.desc}>Paragraphs are the building blocks of papers. Many students define paragraphs in terms of length: a paragraph is a group of at least five sentences, a paragraph is half a page long, etc.</Text> */}
-        <View style={styles.CantidadContainer}>
-          <TouchableOpacity
-            style={styles.botonMenos}
-            onPress={() => setCantidad(cantidad > 0 ? Number(cantidad) - 1 : 0)}
-          >
-            <Text style={styles.CantidadMenos}>-</Text>
-          </TouchableOpacity>
-
-          <TextInput
-            style={styles.botonCantidad}
-            keyboardType="numeric"
-            onChangeText={(text) => setCantidad(Number(text))}
-            value={String(cantidad)}
-            maxLength={10} //setting limit of input
-          />
-
-          <TouchableOpacity
-            style={styles.botonMas}
-            onPress={() => setCantidad(Number(cantidad) + 1)}
-          >
-            <Text style={styles.CantidadMas}>+</Text>
-          </TouchableOpacity>
-        </View>
-
-        <TouchableOpacity onPress={addToCart} style={styles.boton}>
-          <Icon
-            name="shopping-cart"
-            type="material"
-            color="#322843"
-            size={25}
-          />
-          <Text style={styles.botonText}>AGREGAR AL PEDIDO</Text>
-        </TouchableOpacity>
-
-        {Added && (
-          <View style={styles.AddedCont}>
-            <Text style={styles.AddedContText}>
-              ¡El producto ha sido agregado al pedido con éxito!
-            </Text>
-            <TouchableOpacity onPress={() => navigation.navigate("Carrito")}>
-              <Text style={styles.AddedContBut}>IR AL PEDIDO</Text>
-            </TouchableOpacity>
-          </View>
-        )}
       </ScrollView>
-
       {FS && (
         <View style={styles.FullContainer}>
           <TouchableHighlight style={styles.close} onPress={() => setFS(!FS)}>
@@ -172,14 +117,13 @@ const DetalleProductoComponent = ({
               X
             </Text>
           </TouchableHighlight>
-
           {Producto?.images.length > 0 ? (
-            <Image
-              source={{
-                uri: `https://popeyemayorista.com.ar/uploads/products/${Producto?.images[currentImage].url}`,
-              }}
-              style={styles.FullImage}
-            />
+              <Image
+                source={{
+                  uri: `https://popeyemayorista.com.ar/uploads/products/${Producto?.images[currentImage].url}`,
+                }}
+                style={styles.FullImage}
+              />
           ) : (
             <Image
               source={{
@@ -190,61 +134,54 @@ const DetalleProductoComponent = ({
           )}
 
           {Producto?.images.length > 0 && currentImage != 0 ? (
-            <TouchableOpacity
-              style={styles.prevImage}
-              onPress={() => setCurrentImage(currentImage - 1)}
-            >
+            <TouchableHighlight style={styles.prevImage} onPress={() => setCurrentImage(currentImage - 1)}>
               <Text
-                style={{ color: "#0F50A7", fontWeight: "700", fontSize: 80 }}
+                style={{ color: "#0F50A7", fontWeight: "700", fontSize: 20 }}
               >
               </Text>
-            </TouchableOpacity>
+            </TouchableHighlight>
           ) : null}
 
-          {Producto?.images.length > 0 &&
-          currentImage != Producto?.images.length - 1 ? (
-            <TouchableOpacity
-              style={styles.nextImage}
-              onPress={() => setCurrentImage(currentImage + 1)}
-            >
+          {Producto?.images.length > 0 && currentImage != Producto?.images.length - 1 ? (
+            <TouchableHighlight style={styles.nextImage} onPress={() => setCurrentImage(currentImage + 1)}>
               <Text
-                style={{ color: "#0F50A7", fontWeight: "700", fontSize: 80 }}
+                style={{ color: "#0F50A7", fontWeight: "700", fontSize: 20 }}
               >
               </Text>
-            </TouchableOpacity>
+            </TouchableHighlight>
           ) : null}
         </View>
       )}
-    </>
+    </ScrollView>
   );
 };
 
-export default DetalleProductoComponent;
+export default DetalleProductoQrComponent;
 
 const styles = StyleSheet.create({
   prevImage: {
     position: "absolute",
-    top: 20,
-    left: 0,
+    top: heigth / 2,
+    left: 20,
     width: 35,
-    height: "100%",
+    height: 35,
+    borderRadius: 50,
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
-    backgroundColor: "rgba(15, 80, 167, 0.3)",
-    zIndex: 80,
+    zIndex: 99,
   },
   nextImage: {
     position: "absolute",
-    top: 30,
-    right: 0,
+    top: heigth / 2,
+    right: 20,
     width: 35,
-    height: "100%",
+    height: 35,
+    borderRadius: 50,
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
-    backgroundColor: "rgba(15, 80, 167, 0.3)",
-    zIndex: 80,
+    zIndex: 99,
   },
   close: {
     position: "absolute",
@@ -267,19 +204,21 @@ const styles = StyleSheet.create({
   },
   FullContainer: {
     position: "absolute",
-    minHeight: 800,
+    height: heigth,
     width: width,
-    backgroundColor: "rgba(255, 255, 255, 0.9)",
+    backgroundColor: "rgba(0, 0, 0, 0.274)",
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
     top: 0,
   },
   container: {
+    display: "flex",
+    flexDirection: "column",
 
-    //minHeight: heigth * 1,
-    //paddingBottom: 100,
-    minHeight: 600,
+    minHeight: heigth,
+
+    paddingBottom: 100,
   },
   CategoriaHeader: {
     width: "100%",
@@ -331,7 +270,7 @@ const styles = StyleSheet.create({
   },
   Price: {
     color: "#2F80ED",
-    fontSize: 32,
+    fontSize: 20,
     fontWeight: "700",
     marginTop: 8,
   },
@@ -416,7 +355,7 @@ const styles = StyleSheet.create({
   },
   boton: {
     width: width * 0.94,
-    height: 60,
+    height: 56,
     backgroundColor: "#56CCF2",
     borderRadius: 10,
     display: "flex",
@@ -425,7 +364,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignSelf: "center",
     marginTop: heigth * 0.035,
-    marginBottom: 10,
+    marginBottom: heigth * 0.05,
     //position: "absolute",
     //bottom: 0,
   },

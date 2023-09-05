@@ -27,11 +27,15 @@ const MetodoPago = () => {
   }, [hash])
 
   const onSubmit = () => {
-    let temp = Coefi.filter(e=>e.id==method1[0].id)
-    dispatch(coeficiente(Number(temp[0].coefficient)/100))
-    dispatch(delPaymentMethod([]))
-    dispatch(paymentMethod(method1));
-    navigation.navigate("MetodoEntrega")
+    let method_payment = method1? method1 : [{id: 6}]
+
+    if(Coefi){
+      let temp = Coefi.filter(e=>e.id==method_payment[0].id)
+      dispatch(coeficiente(Number(temp[0].coefficient)/100))
+      dispatch(delPaymentMethod([]))
+      dispatch(paymentMethod(method_payment));
+      navigation.navigate("MetodoEntrega")
+    }
   };
   return (
   <MetodoPagoComponent 

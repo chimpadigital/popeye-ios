@@ -1,6 +1,7 @@
 import {
   Dimensions,
   Image,
+  ScrollView,
   StyleSheet,
   Text,
   TouchableOpacity,
@@ -10,17 +11,16 @@ import React from "react";
 import avatar from "../../assets/NoAvatar.png";
 import { Icon } from "react-native-elements";
 import Dots11 from "../../assets/Dots11";
-import Dots2 from "../../assets/Dots2";
 import Dots33 from "../../assets/Dots33";
-import ofer1 from "./ofer1.png";
-import ofer2 from "./ofer2.png";
+import { useSelector } from "react-redux";
 import { initial } from "../../Redux/actions";
 const width = Dimensions.get("window").width;
 const heigth = Dimensions.get("window").height;
-const RecepcionComponent = ({ User, navigation, dispatch }) => {
-  console.log(User);
+const RecepcionComponent = ({ User, navigation, dispatch, promotions }) => {
+  const _initial = useSelector((state) => state.Initial);
+
   return (
-    <View style={styles.container}>
+    <ScrollView style={styles.container}>
       <View style={styles.header}>
         <Icon
           onPress={() => {
@@ -36,7 +36,6 @@ const RecepcionComponent = ({ User, navigation, dispatch }) => {
       <View style={styles.Perfil}>
         <Image
           source={
-          
             User.image
               ? {
                   uri: `https://api.popeyemayorista.com.ar/backend/storage/app/public/usuarios/${User?.image?.substring(
@@ -50,28 +49,56 @@ const RecepcionComponent = ({ User, navigation, dispatch }) => {
         />
         <View>
           <Text style={styles.Hola}>¡Hola, {User?.name}!</Text>
-          <Text style={styles.Bienvenida}>
-          ¿Qué querés hacer hoy?
-          </Text>
+          <Text style={styles.Bienvenida}>¿Qué querés hacer hoy?</Text>
         </View>
       </View>
 
       <View style={styles.containerButton}>
-        <TouchableOpacity style={styles.Button} onPress={()=>dispatch(initial("Pedidos"))}>
+        <TouchableOpacity
+          style={styles.Button}
+          //onPress={() => dispatch(initial("Pedidos"))}
+          //onPress={() =>{navigation.navigate("Pedidos")}}
+
+          onPress={function () {
+            if (_initial) {
+              return navigation.navigate("Pedidos");
+            } else {
+              return dispatch(initial("Pedidos"));
+            }
+          }}
+        >
           <Dots11 />
           <Text style={styles.ButtonText}>REVISAR TUS PEDIDOS</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.Button} onPress={()=>dispatch(initial("Catalogo"))}>
+        <TouchableOpacity
+          style={styles.Button}
+          onPress={function () {
+            if (_initial) {
+              return navigation.navigate("Catalogo");
+            } else {
+              return dispatch(initial("Catalogo"));
+            }
+          }}
+        >
           <Dots33 />
           <Text style={styles.ButtonText}>REVISAR EL CATÁLOGO DE PRECIOS</Text>
         </TouchableOpacity>
       </View>
       <View style={styles.oferContainer}>
-
-        <TouchableOpacity style={styles.ofer}><Image style={styles.ofer} source={ofer1} /></TouchableOpacity>
-        <TouchableOpacity style={styles.ofer}><Image style={styles.ofer} source={ofer2} /></TouchableOpacity>
+        {promotions
+          ? promotions.map((promo) => (
+              <TouchableOpacity style={styles.ofer}>
+                <Image
+                  style={styles.ofer}
+                  source={{
+                    uri: `${promo.url}`,
+                  }}
+                />
+              </TouchableOpacity>
+            ))
+          : null}
       </View>
-    </View>
+    </ScrollView>
   );
 };
 
@@ -82,7 +109,7 @@ const styles = StyleSheet.create({
     display: "flex",
     flexDirection: "column",
     backgroundColor: "#fff",
-    minHeight: "100%",
+    minHeight: heigth,
     paddingBottom: 100,
   },
   Hola: {
@@ -108,6 +135,7 @@ const styles = StyleSheet.create({
     width: 66,
     height: 66,
     borderRadius: 100,
+    marginHorizontal: 30
   },
   header: {
     width: width,
@@ -127,36 +155,36 @@ const styles = StyleSheet.create({
   Button: {
     width: width * 0.45,
     backgroundColor: "#fff",
-    paddingHorizontal: width * 0.02 ,
+    paddingHorizontal: width * 0.02,
     borderRadius: 10,
     elevation: 10,
-    justifyContent:"space-between",
+    justifyContent: "space-between",
     alignItems: "center",
     display: "flex",
-    height:width * 0.45,
-    paddingTop: heigth*0.02,
-    paddingBottom: heigth*0.007
+    height: width * 0.45,
+    paddingTop: heigth * 0.02,
+    paddingBottom: heigth * 0.007,
   },
   ButtonText: {
     color: "#0F50A7",
     textAlign: "center",
     fontFamily: "Roboto-Medium",
-    minHeight:38,
-    
+    minHeight: 38,
   },
   oferContainer: {
     height: heigth * 0.5,
 
     display: "flex",
     justifyContent: "space-between",
-    paddingVertical: heigth * 0.04,
+    paddingTop: heigth * 0.02,
+    marginBottom: heigth * 0.05,
   },
   ofer: {
-    width: width * 0.9,
+    width: "100%", //width * 0.9,
     alignSelf: "center",
     height: width * 0.5,
     borderRadius: 10,
-    elevation:10,
+    elevation: 10,
     marginBottom: 10,
   },
 });

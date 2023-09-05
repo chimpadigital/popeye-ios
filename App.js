@@ -4,7 +4,6 @@ import { Provider } from "react-redux";
 
 import { useFonts } from "expo-font";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import TabNavigator from "./src/Navigation/TabNavigator";
 import Root from "./Root";
 import { PersistGate } from "redux-persist/integration/react";
 import { store, persistor } from "./src/Redux/store";

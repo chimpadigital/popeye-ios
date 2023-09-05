@@ -10,10 +10,6 @@ import {
 } from "react-native";
 import React from "react";
 import HeaderComponent from "../Elementos/Header/Header";
-import avatar from "../../assets/NoAvatar.png";
-import { useSelector } from "react-redux";
-import { useNavigation } from "@react-navigation/native";
-import { Button } from "react-native";
 const width = Dimensions.get("window").width;
 const heigth = Dimensions.get("window").height;
 const ModificarUserComponent = ({image,pickImage, uri, setForm, onSubmit, User, navigation ,name,

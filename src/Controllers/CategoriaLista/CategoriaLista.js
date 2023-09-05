@@ -1,7 +1,5 @@
-import { StyleSheet, Text, View } from 'react-native'
-import React, { useEffect, useState } from 'react'
-import CategoriaListaComponent from '../../Components/CategoríaLista/CategoriaLista';
-import { useSelector } from 'react-redux';
+import React, {  useState } from 'react'
+import CategoriaListaComponent from '../../Components/CategoriaLista/CategoriaLista'
 
 const CategoriaLista = ({ route, navigation,  }) => {
     const { cat, i } = route.params;

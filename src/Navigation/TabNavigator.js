@@ -1,5 +1,5 @@
 import * as React from "react";
-import { StyleSheet, View } from "react-native";
+//import { StyleSheet, View } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
@@ -7,7 +7,7 @@ import CatalogoNavigator from "./CatalogoNavigator";
 import AsesorComponent from "../Components/Asesor/Asesor";
 import PerfilNavigator from "./PerfilNavigator";
 import PedidosNavigator from "./PedidosNavigation";
-import Home from "../Controllers/Home/Home";
+//import Home from "../Controllers/Home/Home";
 import { useSelector } from "react-redux";
 import Recepcion from "../Controllers/Recepcion/Recepcion";
 import TabHomeS from "../assets/TabHomeS";
@@ -69,7 +69,8 @@ const TabNavigator = () => {
         >
           <Tab.Screen name="Catalogo" component={CatalogoNavigator} />
           <Tab.Screen name="Pedidos" component={PedidosNavigator} />
-          <Tab.Screen name="Home" component={Home} />
+           <Tab.Screen name="Home" component={Recepcion} /> 
+          {/* <Tab.Screen name="Home" component={Home} /> */}
           <Tab.Screen name="Contacto" component={AsesorComponent} />
           <Tab.Screen name="Perfil" component={PerfilNavigator} />
         </Tab.Navigator>

@@ -2,24 +2,30 @@
   "expo": {
     "name": "Popeye-App",
     "slug": "Popeye-App",
-    "version": "1.3.3",
+    "version": "1.0.2",
     "orientation": "portrait",
     "icon": "./assets/ico1.png",
     "userInterfaceStyle": "light",
-   
     "splash": {
       "image": "./assets/splash1.png",
       "resizeMode": "contain",
       "backgroundColor": "#0F50A7"
     },
     "updates": {
-      "fallbackToCacheTimeout": 0
+      "fallbackToCacheTimeout": 0,
+      "url": "https://u.expo.dev/3eea346d-6388-4445-89c9-f5be0e8805c4"
     },
     "assetBundlePatterns": [
       "**/*"
     ],
     "ios": {
-      "supportsTablet": true
+      "usesAppleSignIn": true,
+      "supportsTablet": true,
+      "image": "macos-ventura-13.3-xcode-14.3",
+      "bundleIdentifier": "com.peedro008.popeyefront",
+      "infoPlist": {
+        "NSCameraUsageDescription": "Enable camera acess so read qr code or bar code for articles for view all information."
+      }
     },
     "android": {
       "permissions": [],
@@ -27,7 +33,7 @@
         "foregroundImage": "./assets/ico1.png",
         "backgroundColor": "#FFFFFF"
       },
-      "versionCode": 13,
+      "versionCode": 1,
       "package": "com.peedro008.popeyefront"
     },
     "web": {
@@ -37,6 +43,10 @@
       "eas": {
         "projectId": "3eea346d-6388-4445-89c9-f5be0e8805c4"
       }
+    },
+    "owner": "peedro008",
+    "runtimeVersion": {
+      "policy": "sdkVersion"
     }
   }
 }

@@ -20,7 +20,6 @@ const Root = () => {
         dispatch(initial(false))
         dispatch(resetUser());
         dispatch(resetAdded())
-
   }, []);
 
  

@@ -7,6 +7,7 @@ import {
   CheckBox,
   TouchableOpacity,
   View,
+  ScrollView,
 } from "react-native";
 import React from "react";
 import { TextInput } from "react-native";
@@ -26,7 +27,7 @@ const MetodoEntregaComponent = ({
   onSubmit,
 }) => {
   return (
-    <View style={styles.container}>
+    <ScrollView style={styles.container}>
       <View style={styles.Header}>
         <View style={styles.atras}>
           <Icon
@@ -87,7 +88,7 @@ const MetodoEntregaComponent = ({
       <TouchableOpacity onPress={onSubmit} style={styles.loginButton}>
         <Text style={styles.loginButtonText}>CONTINUAR</Text>
       </TouchableOpacity>
-    </View>
+    </ScrollView>
   );
 };
 
@@ -97,6 +98,8 @@ const styles = StyleSheet.create({
   checkboxContainer: {
     paddingHorizontal: width * 0.07,
     paddingVertical: "3%",
+    //marginBottom: heigth * 0.2
+    height: 510
   },
   checkboxRow: {
     flexDirection: "row",

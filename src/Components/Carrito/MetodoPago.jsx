@@ -7,6 +7,7 @@ import {
   CheckBox,
   TouchableOpacity,
   View,
+  ScrollView,
 } from "react-native";
 import React from "react";
 import { TextInput } from "react-native";
@@ -24,7 +25,7 @@ const heigth = Dimensions.get("window").height;
 const MetodoPagoComponent = ({method1, setMethod1, onSubmit,navigation}) => {
 
   return (
-    <View style={styles.container}>
+    <ScrollView style={styles.container}>
       <View style={styles.Header}>
         <View style={styles.atras}>
           <Icon
@@ -83,7 +84,7 @@ const MetodoPagoComponent = ({method1, setMethod1, onSubmit,navigation}) => {
         </View>
     
       <TouchableOpacity onPress={onSubmit} style={styles.loginButton} ><Text style={styles.loginButtonText}>SIGUIENTE</Text></TouchableOpacity >
-    </View>
+    </ScrollView>
   );
 };
 
@@ -92,7 +93,9 @@ export default MetodoPagoComponent;
 const styles = StyleSheet.create({
   checkboxContainer: {
     paddingHorizontal: width * 0.07,
-    paddingTop:"10%"
+    paddingTop:"10%",
+    height: 410
+    //marginBottom: heigth * 0.1
   },
   checkboxRow: {
     flexDirection: "row",
@@ -110,7 +113,6 @@ const styles = StyleSheet.create({
   IconCheck: {
     marginHorizontal: 10,
   },
-
   logo: {
     width: 300,
     height: 120,
@@ -138,7 +140,6 @@ const styles = StyleSheet.create({
     paddingVertical: heigth * 0.01,
   },
   loginButton: {
-   
     width:width*0.94,
     height:56,
     paddingBottom:3, 
@@ -146,11 +147,9 @@ const styles = StyleSheet.create({
     backgroundColor:"#0F50A7",
     alignSelf:"center",
     borderRadius:10,
-    display:"flex",
     alignItems:"center",
     position:"absolute",
-    bottom:15
-   
+    bottom:0
   },
   loginButtonText:{
     fontSize:12,

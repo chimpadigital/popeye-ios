@@ -8,36 +8,53 @@ import {
 import React, { useEffect, useState } from "react";
 import { Divider } from "react-native-elements";
 import { Icon } from "react-native-elements/dist/icons/Icon";
-import { useNavigation } from "@react-navigation/native";
+import { useIsFocused, useNavigation } from "@react-navigation/native";
 import { useDispatch, useSelector } from "react-redux";
 import { amoProducto, delProducto } from "../../../Redux/actions";
 const width = Dimensions.get("window").width;
 const heigth = Dimensions.get("window").height;
-const CarritoCardComponent = ({ Nombre, Precio,  Cantidad, Producto, index, setTemp, temp}) => {
-  const COE = useSelector(e=>e.Coeficiente)
+const CarritoCardComponent = ({
+  Nombre,
+  Precio,
+  Code,
+  Cantidad,
+  Producto,
+  index,
+  setTemp,
+  temp,
+}) => {
+  const isFocused = useIsFocused();
+  const COE = useSelector((e) => e.Coeficiente);
   const navigation = useNavigation();
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
   const [cantidad, setCantidad] = useState(Cantidad);
+
   useEffect(() => {
-    dispatch(amoProducto({index:index, cantidad:cantidad}))
-    setTemp(temp+1)
-  }, [cantidad])
-  
-  const dropToCart = ()=>{
-    dispatch(delProducto(
-    Nombre
-    ))
-}
+    dispatch(amoProducto({ index: index, cantidad: cantidad }));
+    setTemp(temp + 1);
+  }, [cantidad]);
+
+  const dropToCart = () => {
+    dispatch(delProducto(Code));
+  };
   return (
     <View style={styles.container}>
       <TouchableOpacity
         style={styles.card}
-        onPress={() => navigation.navigate("DetalleProducto",{Producto:Producto, navigation:navigation})}
+        onPress={() =>
+          navigation.navigate("DetalleProducto", {
+            Producto: Producto,
+            navigation: navigation,
+          })
+        }
       >
         <View style={styles.TextCont}>
           <Text style={styles.RecName}>{Nombre}</Text>
+          <Text style={styles.ID}>ART. {Producto.code}</Text>
           <View style={styles.Row1}>
-            <Text style={styles.RecPrice}>${(Number(Precio)+(COE*Number(Precio))).toFixed(2)}</Text>
+            <Text style={styles.RecPrice}>
+              ${(Number(Precio) + COE * Number(Precio)).toFixed(2)}
+            </Text>
             <Divider
               height={18}
               orientation="vertical"
@@ -92,7 +109,7 @@ const styles = StyleSheet.create({
     fontSize: 16,
     fontWeight: "700",
     color: "#333542",
-    textTransform:"capitalize"
+    textTransform: "capitalize",
   },
   RecAmount: {
     color: "#333542",

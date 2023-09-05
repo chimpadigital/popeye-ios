@@ -17,7 +17,7 @@ import { useNavigation } from "@react-navigation/native";
 import { addPedido } from "../../Redux/actions";
 const width = Dimensions.get("window").width;
 const heigth = Dimensions.get("window").height;
-const PedidosComponent = ({ pedidos, pedidoS, setPedidoS ,dispatch}) => {
+const PedidosComponent = ({ pedidos, pedidoS, setPedidoS, dispatch }) => {
   const navigation = useNavigation();
   const [open, setOpen] = useState(false);
 
@@ -40,19 +40,21 @@ const PedidosComponent = ({ pedidos, pedidoS, setPedidoS ,dispatch}) => {
   }, [isVisible]);
   return (
     <View style={styles.container}>
-      <HeaderComponent Titulo={"Mis Pedidos"}navigation={navigation}/>
+      <HeaderComponent Titulo={"Mis Pedidos"} navigation={navigation} />
       <View style={styles.PedidosContainer}>
         <Text style={styles.SubTitleP}>Pedidos Actuales</Text>
+        
+        <ScrollView style={styles.container2}>
         <View style={styles.ViewCatch}>
-          {pedidos.filter((e) => e.status.id == 1).length ? (
+          {pedidos.filter((e) => [1, 5, 7, 8, 9].indexOf(e.status.id) >= 0)
+            .length ? (
             pedidos
-              .filter((e) => e.status.id == 1)
-              .map((e, i) => {
-                if (i < 2) {
-                  return (
+              .filter((e) => [1, 5, 7, 8, 9].indexOf(e.status.id) >= 0)
+              .map((e, i) =>(
                     <TouchableOpacity
                       style={styles.pedidosCard1}
-                      onPress={() => { navigation.navigate("DetallePedido", { Pedido: e })
+                      onPress={() => {
+                        navigation.navigate("DetallePedido", { Pedido: e });
                       }}
                     >
                       <Text style={styles.PedNum1}>Pedido #{e.id}</Text>
@@ -61,21 +63,20 @@ const PedidosComponent = ({ pedidos, pedidoS, setPedidoS ,dispatch}) => {
                           ? "1 unidad"
                           : e.reports.length + " unidades"}
                       </Text>
-                      <Text style={styles.PedT1}>{e.status.name}</Text>
+                      <Text style={styles.PedT1}>{e.status.description}</Text>
                     </TouchableOpacity>
-                  );
-                }
-              })
+                  ))
           ) : (
             <Text style={styles.catch}>No tenés pedidos actuales</Text>
           )}
         </View>
+        </ScrollView>
       </View>
       <View style={styles.PedidosContainer}>
         <Text style={styles.SubTitleP}>Historial de pedidos</Text>
         <ScrollView style={styles.container1}>
           {pedidos.length ? (
-            pedidos.map((e) => {
+            pedidos.filter((e) => [4, 5, 7, 8, 9].indexOf(e.status.id) >= 0).map((e) => {
               return (
                 <TouchableOpacity
                   onPress={() => {
@@ -95,6 +96,7 @@ const PedidosComponent = ({ pedidos, pedidoS, setPedidoS ,dispatch}) => {
                       : e.reports.length + " unidades"}
                   </Text>
                   <Text style={styles.PedT}>
+                    {e.status.description+" "}
                     {e.created_at.substring(0, 10)}
                   </Text>
                   <Divider />
@@ -135,7 +137,6 @@ const PedidosComponent = ({ pedidos, pedidoS, setPedidoS ,dispatch}) => {
             >
               <Text style={styles.loginButtonText}>VER EL PEDIDO</Text>
             </TouchableOpacity>
-         
           </View>
         </View>
       </Animated.View>
@@ -159,8 +160,17 @@ const styles = StyleSheet.create({
     display: "flex",
     flexDirection: "column",
     backgroundColor: "#fff",
-    minHeight: heigth * 0.6,
+    minHeight: heigth * 0.3,
     paddingBottom: 100,
+  },
+  container2: {
+    flex: 1,
+    display: "flex",
+    flexDirection: "column",
+    backgroundColor: "#fff",
+    minHeight: heigth * 0.3,
+    paddingBottom: 100,
+    marginBottom: 150,
   },
   PedidosContainer: {
     paddingHorizontal: width * 0.04,
@@ -270,10 +280,9 @@ const styles = StyleSheet.create({
     lineHeight: 25,
   },
   butonContainer: {
-
-    height:"100%",
-    paddingBottom:8,
-    justifyContent:"center"
+    height: "100%",
+    paddingBottom: 8,
+    justifyContent: "center",
   },
   pedidosCard1: {
     maxWidth: width * 0.92,

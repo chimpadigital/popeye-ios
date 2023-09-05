@@ -1,6 +1,6 @@
 import { Dimensions, ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import React from 'react'
-import Escr from '../Catálogo/assets/escr';
+import Escr from '../Catalogo/assets/escr';
 import sinProd from "../../assets/sinProd.png"
 import HeaderComponent from"../Elementos/Header/Header.jsx"
 import ProductoCardComponent from '../Elementos/ProductoCard/ProductoCard';

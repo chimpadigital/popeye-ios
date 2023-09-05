@@ -17,6 +17,9 @@ import { Divider } from "react-native-elements";
 import spinner from "../../assets/spinner.gif";
 import { Image } from "react-native";
 import { useSelector } from "react-redux";
+import { useEffect } from "react";
+import { useIsFocused } from "@react-navigation/native";
+import { useState } from "react";
 
 const CarritoComponent = ({
   Pedido,
@@ -27,6 +30,7 @@ const CarritoComponent = ({
   setTemp,
 }) => {
   const COE = useSelector((e) => e.Coeficiente);
+
   return (
     <>
       <ScrollView style={styles.container}>
@@ -38,6 +42,7 @@ const CarritoComponent = ({
                   Nombre={e.Nombre}
                   Color={"red"}
                   Precio={e.Precio}
+                  Code={e.Code}
                   Cantidad={e.Cantidad}
                   navigation={navigation}
                   Producto={e.Producto}
@@ -53,12 +58,6 @@ const CarritoComponent = ({
         </View>
       </ScrollView>
       <View style={styles.CheckOut}>
-        <Divider
-          orientation="horizontal"
-          width={5}
-          style={{ width: 130, alignSelf: "center", borderRadius: 8 }}
-          color={"#ACBAC3"}
-        />
         <View style={styles.Row1}>
           <Text style={styles.PrecioSubTitle}>Precio total</Text>
           <Text style={styles.PrecioTitle}>

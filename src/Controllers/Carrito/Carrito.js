@@ -3,22 +3,27 @@ import React, { useEffect, useState } from "react";
 import CarritoComponent from "../../Components/Carrito/Carrito";
 import HeaderComponent from "../../Components/Elementos/Header/Header";
 import { useSelector } from "react-redux";
-import { useNavigation } from "@react-navigation/native";
+import { useFocusEffect, useIsFocused, useNavigation } from "@react-navigation/native";
 
 const Carrito = () => {
+  const isFocused = useIsFocused();
   const paymentMethod = useSelector(e=>e.PaymentMethod)
   const shippingMethod = useSelector(e=>e.ShippingMethod)
   const navigation = useNavigation();
+  const Added = useSelector(state => state.Added)
   const Pedido = useSelector((state) => state.Pedido);
+  const [pedidos, setPedidos] = useState(null)
   const [total, setTotal]= useState()
   const [temp, setTemp]=useState(1)
-  useEffect(() => {
-    let temp = 0
+
+  useFocusEffect(() => {
+    let temp = 0;
     Pedido.map(e => {
       temp = temp + (e.Precio*e.Cantidad)
     })
     setTotal(temp)
-  }, [Pedido, temp])
+    setPedidos(Pedido)
+  }, [Pedido, temp, isFocused])
   
   const onSubmitCarrito = () =>{
     if(!paymentMethod.length){
@@ -31,13 +36,18 @@ const Carrito = () => {
   }
 
   return (
-    <>
+      <>
       <HeaderComponent Atras Titulo="Pedido"  navigation={navigation}/>
-      <CarritoComponent navigation={navigation} Pedido={Pedido} total={total} 
-      temp={temp}
-      setTemp={setTemp}
-      onSubmitCarrito={onSubmitCarrito}
-      />
+      {
+        pedidos 
+        ? 
+        <CarritoComponent navigation={navigation} Pedido={pedidos} total={total} 
+        temp={temp}
+        setTemp={setTemp}
+        onSubmitCarrito={onSubmitCarrito}
+        />
+        : null
+      }
     </>
   );
 };

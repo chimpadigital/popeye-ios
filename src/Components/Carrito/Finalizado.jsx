@@ -13,8 +13,8 @@ const FinalizadoComponent = () => {
       <View style={styles.imageContainer}>
       <Envi/></View>
       <View style={styles.butonContainer}>
-      <TouchableOpacity onPress={()=>navigation.navigate("Pedidos")} style={styles.loginButton} ><Text style={styles.loginButtonText}>VOLVER AL MENÚ DE PEDIDOS</Text></TouchableOpacity >
-      <TouchableOpacity  onPress={()=>navigation.navigate("Home")} style={styles.SignUpButton} ><Text style={styles.SingUpTextButton}>VOLVER AL INICIO</Text></TouchableOpacity>
+      <TouchableOpacity onPress={()=>  navigation.navigate("Pedidos")} style={styles.loginButton} ><Text style={styles.loginButtonText}>VOLVER AL MENÚ DE PEDIDOS</Text></TouchableOpacity >
+      <TouchableOpacity  onPress={()=> navigation.navigate("Catalogo")} style={styles.SignUpButton} ><Text style={styles.SingUpTextButton}>VOLVER AL CATALOGO</Text></TouchableOpacity>
     </View>
 
     </View>

@@ -17,41 +17,41 @@ import MetodoEntrega from '../Controllers/Metodos/MetodoEntrega';
 import FinalizadoComponent from '../Components/Carrito/Finalizado';
 import DetalleProducto from '../Controllers/DetalleProducto/DetalleProducto';
 const PedidosNavigator = () => {
-    const Stack = createNativeStackNavigator();
-    const customTextProps = {
-      style: {
-        fontSize: 14,
-        fontFamily: "Roboto-Regular",
-      },
-    };
-  
-    const customImageProps = {
-      width: "100%",
-      height: "100%",
-    };
-  
-    setCustomText(customTextProps);
-    setCustomImage(customImageProps);
-    return (
-      <Provider store={store}>
- 
-          <Stack.Navigator   screenOptions={{
-      headerShown: false
-    }}>
-          <Stack.Screen Screen name="Pedidos" component={Pedidos} />
-          <Stack.Screen Screen name="DetallePedido" component={DetallePedidoComponent} />
+  const Stack = createNativeStackNavigator();
+  const customTextProps = {
+    style: {
+      fontSize: 14,
+      fontFamily: "Roboto-Regular",
+    },
+  };
+
+  const customImageProps = {
+    width: "100%",
+    height: "100%",
+  };
+
+  setCustomText(customTextProps);
+  setCustomImage(customImageProps);
+  return (
+    <Provider store={store}>
+
+      <Stack.Navigator screenOptions={{
+        headerShown: false
+      }}>
+        <Stack.Screen Screen name="Pedidos" component={Pedidos} />
+        <Stack.Screen Screen name="DetallePedido" component={DetallePedidoComponent} />
         <Stack.Screen Screen name="Carrito" component={Carrito} />
         <Stack.Screen Screen name="Checkout" component={Checkout} />
-          <Stack.Screen Screen name="MetodosComponent" component={MetodosComponent} />
-          <Stack.Screen Screen name="MetodoPago" component={MetodoPago} />
-          <Stack.Screen Screen name="DividirPago" component={DividirPago} />
-          <Stack.Screen Screen name="MetodoEntrega" component={MetodoEntrega} />
-          <Stack.Screen Screen name="DetalleProducto" component={DetalleProducto} />
-          <Stack.Screen Screen name="Finalizado" component={FinalizadoComponent} />
-          </Stack.Navigator>
-   
-      </Provider>
-    );
+        <Stack.Screen Screen name="MetodosComponent" component={MetodosComponent} />
+        <Stack.Screen Screen name="MetodoPago" component={MetodoPago} />
+        <Stack.Screen Screen name="DividirPago" component={DividirPago} />
+        <Stack.Screen Screen name="MetodoEntrega" component={MetodoEntrega} />
+        <Stack.Screen Screen name="DetalleProducto" component={DetalleProducto} />
+        <Stack.Screen Screen name="Finalizado" component={FinalizadoComponent} />
+      </Stack.Navigator>
+
+    </Provider>
+  );
 
 }
 

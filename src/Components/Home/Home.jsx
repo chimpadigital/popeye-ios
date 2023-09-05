@@ -43,9 +43,9 @@ const HomeComponent = ({ navigation, User,
       <View style={styles.PedidosContainer}>
         <Text style={styles.SubTitleP}>Pedidos Actuales</Text>
         <ScrollView style={styles.ScrollView}>
-        {pedidos.filter((e) => e.status.id == 1).length ? (
+        {pedidos.filter((e) => [1, 5, 7, 8, 9].indexOf(e.status.id) >= 0).length ? (
             pedidos
-              .filter((e) => e.status.id == 1)
+              .filter((e) => [1, 5, 7, 8, 9].indexOf(e.status.id) >= 0)
               .map((e,i) => {
                 if(i<2){
                 return (
@@ -57,7 +57,7 @@ const HomeComponent = ({ navigation, User,
                         : e.reports.length + " unidades"}
                     </Text>
                     <Text style={styles.PedT1}>
-                      {e.status.name}
+                      {e.status.description}
                     </Text>
                   </TouchableOpacity>
                 );}
@@ -83,7 +83,7 @@ const HomeComponent = ({ navigation, User,
           </View> */}
         </View>
         <ScrollView style={styles.ScrollView1}>
-          <View style={{ paddingBottom:40}}>
+          <View style={{ paddingBottom:100}}>
           {products.data?
           products.data.map((e) => {
             return (
@@ -157,7 +157,7 @@ const styles = StyleSheet.create({
   ScrollView1: {
     flex: 1,
     display: "flex",
-    minHeight: heigth * 0.35,
+    minHeight: heigth * 0.6,
     
     width: width,
     paddingBottom: 150,
@@ -239,6 +239,7 @@ const styles = StyleSheet.create({
     shadowColor: "#000",
     height: 96,
     alignSelf: "center",
+    paddingBottom: 30,
     borderRadius: 12,
     display: "flex",
     justifyContent: "center",

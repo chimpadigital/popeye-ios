@@ -12,8 +12,10 @@ import React, { useState } from "react";
 import { TextInput } from "react-native";
 import LogoLogin from "../../assets/LogoLogin";
 import Icon from "react-native-vector-icons/FontAwesome5";
+import IconSvg from "react-native-vector-icons/MaterialCommunityIcons";
 import { user } from "../../Redux/actions";
 import { useNavigation } from "@react-navigation/native";
+import { ScrollView } from "react-native";
 const width = Dimensions.get("window").width;
 const heigth = Dimensions.get("window").height;
 const LoginComponent = ({
@@ -29,12 +31,15 @@ const LoginComponent = ({
   modalVisible,
   setModalVisible,
   Message,
+  file,
+  hash,
+  setActiveScanned,
 }) => {
   const navigation = useNavigation();
   const [hidePass, setHidePass] = useState(true);
 
   return (
-    <View style={styles.container}>
+    <ScrollView style={styles.container}>
       <View style={styles.Header}>
         <LogoLogin />
       </View>
@@ -56,22 +61,20 @@ const LoginComponent = ({
         ></TextInput>
         <Text style={styles.formText}>Contraseña</Text>
         <View style={styles.Input}>
-        <TextInput
-          value={Password}
-          onChangeText={setPassword}
-          secureTextEntry={hidePass ? true : false}
-          placeholder={"Ingresa tu contraseña"}
-          style={{width:"80%", height:"100%"}}
-          >  
-     
-        </TextInput>
-        <Icon
-        name={hidePass ? "eye-slash" : "eye"}
-        size={17}
-        style={{marginEnd:20, }}
-        onPress={() => setHidePass(!hidePass)}
-      />
-</View>
+          <TextInput
+            value={Password}
+            onChangeText={setPassword}
+            secureTextEntry={hidePass ? true : false}
+            placeholder={"Ingresa tu contraseña"}
+            style={{ width: "80%", height: "100%" }}
+          ></TextInput>
+          <Icon
+            name={hidePass ? "eye-slash" : "eye"}
+            size={17}
+            style={{ marginEnd: 20 }}
+            onPress={() => setHidePass(!hidePass)}
+          />
+        </View>
         {/* <TouchableOpacity onPress={()=>navigation.navigate("ResetPass")} style={{display:"flex"}}>
         <Text style={styles.forgott}>¿Olvidaste tu contraseña?</Text></TouchableOpacity> */}
       </View>
@@ -82,6 +85,23 @@ const LoginComponent = ({
           {fetching ? "..." : "INICIAR SESIÓN"}
         </Text>
       </TouchableOpacity>
+
+      {/*
+ <TouchableOpacity
+ onPress={() => setActiveScanned(true)}
+ style={styles.qrButton}
+>
+ <Text style={styles.scannerButtonText}>
+   ESCANEAR PRODUCTO
+ </Text>
+   <IconSvg
+     name={"qrcode-scan"} 
+     size={17}
+     color={"#0F50A7"}
+   />
+</TouchableOpacity>
+    */}
+
       {modalVisible ? (
         <Modal
           animationType="slide"
@@ -106,7 +126,7 @@ const LoginComponent = ({
       ) : (
         <></>
       )}
-    </View>
+    </ScrollView>
   );
 };
 
@@ -134,7 +154,7 @@ const styles = StyleSheet.create({
     display: "flex",
     flexDirection: "column",
     backgroundColor: "#fff",
-    minHeight: "100%",
+    height: heigth,
   },
   Header: {
     marginBottom: 8,
@@ -176,6 +196,7 @@ const styles = StyleSheet.create({
   Form: {
     display: "flex",
     marginTop: 70,
+    marginBottom: heigth * 0.2,
   },
   Input: {
     width: width * 0.94,
@@ -184,9 +205,9 @@ const styles = StyleSheet.create({
     alignSelf: "center",
     borderRadius: 10,
     marginVertical: 20,
-    flexDirection:"row",
-    justifyContent:"space-between",
-    alignItems:"center",
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
     paddingLeft: 10,
   },
   formText: {
@@ -202,7 +223,7 @@ const styles = StyleSheet.create({
     color: "#E41A4A",
   },
   loginButton: {
-    marginVertical: 30,
+    marginVertical: 0,
     width: width * 0.94,
     height: 56,
     paddingBottom: 3,
@@ -211,7 +232,7 @@ const styles = StyleSheet.create({
     alignSelf: "center",
     borderRadius: 10,
     display: "flex",
-    position: "absolute",
+    //position: "absolute",
     bottom: 8,
     alignItems: "center",
   },
@@ -228,11 +249,30 @@ const styles = StyleSheet.create({
     alignItems: "center",
     marginBottom: -5,
   },
-
   loginButtonText: {
     fontSize: 12,
     lineHeight: 25,
     color: "#FFF",
+  },
+  qrButton: {
+    width: width * 0.94,
+    backgroundColor: "#FFF",
+    height: 56,
+    alignSelf: "center",
+    borderRadius: 10,
+    marginVertical: 20,
+    flexDirection: "row",
+    justifyContent: "center",
+    alignItems: "center",
+    borderColor: "#0F50A7",
+    borderWidth: 1.5,
+    paddingLeft: 10,
+  },
+  scannerButtonText: {
+    fontSize: 15,
+    lineHeight: 30,
+    color: "#0F50A7",
+    marginEnd: 10,
   },
   SingUpText: {
     textAlign: "center",
